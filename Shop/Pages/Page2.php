@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" href="layout.css">
 </head>
 <body>
-<?php include ("Header.php") ?>
-<?php include ("Navigation.php") ?>
+<?php include("Shared/Header.php") ?>
+<?php include("Shared/Navigation.php") ?>
 
 <aside>
     <h2>Info</h2>
@@ -22,6 +22,6 @@
     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
     <p>Duis autem veleum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel willum lunombro dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim.</p>
 </section>
-<?php include ("Footer.php") ?>
+<?php include("Shared/Footer.php") ?>
 </body>
 </html>

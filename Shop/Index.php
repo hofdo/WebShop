@@ -1,1 +1,4 @@
-<a href="Pages/Page1.php">Link 1</a>
+<nav>
+    <a href="Pages/Page1.php">Home</a>
+</nav>
+
