@@ -1,3 +1,4 @@
 - Responsive Web Design
 - Layout
-- More toDo
+- export Contents
+- multi Languages
