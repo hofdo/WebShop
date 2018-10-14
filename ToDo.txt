@@ -1,4 +1,3 @@
 - Responsive Web Design
 - Layout
-- export Contents
-- multi Languages
+- Better Navigation

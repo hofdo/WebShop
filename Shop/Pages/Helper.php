@@ -17,27 +17,40 @@ function add_param(&$url, $name, $value)
     return $url;
 }
 
+function render_header()
+{
+    echo t("header");
+}
+
+function render_footer()
+{
+    echo t("footer");
+}
+
 // Renders the page mainContent for a certain page ID.
 function render_mainContent($pageId)
 {
-    echo t('mainContent') . " $pageId";
+    echo t("mainContent_$pageId");
 }
 
 // Renders the page sideContent for a certain page ID.
 function render_sideContent($pageId)
 {
-    echo t('sideContent') . " $pageId";
+    echo t("sideContent_$pageId");
 }
 
 // Renders the navigation for the passed language and page ID.
 function render_navigation($language, $pageId)
 {
+    $navigation = array("home", "products");
     $urlBase = $_SERVER['PHP_SELF'];
     add_param($urlBase, "lang", $language);
+    foreach ($navigation as $nav){
         $url = $urlBase;
-        add_param($url, "id", "home");
+        add_param($url, "id", $nav);
         $class = $pageId == $pageId ? 'active' : 'inactive';
-        echo "<a class=\"$class\" href=\"$url\">" . t('page') . " $pageId</a>";
+        echo "<a class=\"$class\" href=\"$url\">".t($nav);
+    }
 
 }
 

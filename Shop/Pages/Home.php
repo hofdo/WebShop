@@ -16,7 +16,9 @@ $pageId = get_param('id', "home");
 
 <body>
 
-<header><h1>This is the header</h1></header>
+<header>
+    <h1><?php render_header()?></h1>
+</header>
 
 <nav>
     <span>Navigation</span>
@@ -27,14 +29,16 @@ $pageId = get_param('id', "home");
 </nav>
 
 <?php
-if (file_exists("../Contents/page_$pageId.php")) {
-    include "../Contents/page_$pageId.php";
+if (file_exists("../Contents/$pageId.php")) {
+    include "../Contents/$pageId.php";
 } else {
     echo "Not yet implemented";
 }
 ?>
 
-<footer>This is the footer</footer>
+<footer>
+    <?php render_footer() ?>
+</footer>
 
 </body>
 </html>
