@@ -40,9 +40,7 @@ function render_navigation($language, $pageId)
         add_param($url, "id", $nav);
         $class = $pageId == $pageId ? 'active' : 'inactive';
         echo "<a class=\"$class\" href=\"$url\">" . t($nav);
-
     }
-
 }
 
 // Renders the language navigation.
@@ -67,9 +65,13 @@ function t($key)
         if (isset($text[$key])) {
             return $text[$key];
         } else {
-            return "$key";
+            return "NEED TRANSLATION $key";
         }
     } else {
-        echo "Not yet implemented";
+        return "Not yet implemented.2";
     }
 }
+
+
+
+
