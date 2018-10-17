@@ -9,6 +9,8 @@
 <?php include ("Header.php") ?>
 <?php include ("Navigation.php") ?>
 <?php include ("Content.php") ?>
+<?php include ("Login.php") ?>
+<?php include ("Registration.php") ?>
 <?php include ("Footer.php") ?>
 </body>
 </html>
