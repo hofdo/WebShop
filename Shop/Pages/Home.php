@@ -6,27 +6,26 @@ $language = get_param('lang', 'de');
 $pageId = get_param('id', "home");
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Layout Example</title>
-    <link rel="stylesheet" type="text/css" href="layout.css">
-</head>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>WebShop</title>
+        <link rel="stylesheet" type="text/css" href="layout.css">
+    </head>
 
 <body>
+    <header>
+        <h1><?php echo t("header") ?></h1>
+    </header>
 
-<header>
-    <h1><?php render_header()?></h1>
-</header>
-
-<nav>
-    <span>Navigation</span>
-    <?php render_navigation($language, $pageId); ?>
-    <div>
-        <?php render_languages($language, $pageId); ?>
-    </div>
-</nav>
+    <nav>
+        <span>Navigation</span>
+        <?php render_navigation($language, $pageId); ?>
+        <div>
+            <?php render_languages($language, $pageId); ?>
+        </div>
+    </nav>
 
 <?php
 if (file_exists("../Contents/$pageId.php")) {
@@ -36,8 +35,8 @@ if (file_exists("../Contents/$pageId.php")) {
 }
 ?>
 
-<footer>
-    <?php render_footer() ?>
+    <footer>
+<?php echo t("footer")?>
 </footer>
 
 </body>
