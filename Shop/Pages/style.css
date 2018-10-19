@@ -19,18 +19,6 @@ header {
 Navigation
  */
 
-.homeActive{
-    background-color: greenyellow;
-}
-
-.homeActive a {
-    color: black;
-}
-
-.homeActive:hover {
-    background-color: grey;
-}
-
 .navigation {
     position: sticky;
     top: 0;
@@ -38,26 +26,42 @@ Navigation
 }
 
 .navigation ul {
-    list-style-type: none;
+    width: 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
 }
 
 .navigation ul li {
-    float: left;
+    list-style-type: none;
 }
 
-.navigation ul li a {
+.navigation ul li{
+    float: left;
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
+
+}
+
+.navigation ul li a {
+    color: white;
     text-decoration: none;
+    font-family: Arial;
+    font-size: 16px;
+}
+
+.navigation ul li a img {
+    padding-right: 10px;
 }
 
 .navigation ul li:hover {
-    background-color: darkgrey;
+    background-color: darkorchid;
+}
+
+.active {
+    background-color: yellow;
 }
 
 /*
@@ -237,7 +241,6 @@ Footer
  */
 
 footer {
-    background-color: red;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -282,12 +285,17 @@ Sidebar right
     background-color: grey;
 }
 
-.sideBar button {
+.sideBar ul{
+    list-style-type: none;
+}
+
+.sideBar ul li button {
     border: none;
     cursor: pointer;
     background-color: lawngreen;
-    padding: 14px 20px;
-    margin: 10px 8px;
+    width: 80%;
+    padding: 14px;
+    margin: 10px;
     color: white;
 }
 
