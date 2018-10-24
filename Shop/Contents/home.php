@@ -1,9 +1,5 @@
-<section>
-    <?php render_mainContent($pageId); ?>
+<?php
 
-</section>
+    render_mainContent($pageId);
 
-<aside>
-    <?php render_sideContent($pageId); ?>
-
-</aside>
+?>

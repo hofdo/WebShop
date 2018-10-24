@@ -23,12 +23,6 @@ function render_mainContent($pageId)
     echo t("mainContent_$pageId");
 }
 
-// Renders the page sideContent for a certain page ID.
-function render_sideContent($pageId)
-{
-    echo t("sideContent_$pageId");
-}
-
 // Renders the navigation for the passed language and page ID.
 function render_navigation($language, $pageId)
 {

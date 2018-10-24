@@ -27,6 +27,8 @@ $cancel = t("cancel");
 <!--- Header --->
 
 <header>
+    <img src="../Pictures/webshop.png" height="80" width="80">
+    <h1>Domotec.ch</h1>
 </header>
 
 <!-- Navigation  -->
@@ -54,8 +56,7 @@ $cancel = t("cancel");
 <!-- Sidebar  -->
 
 
-<div class="contentContainter">
-    <div class="sideBar">
+<div class="sideBar">
         <ul>
             <li>
             <button onclick="document.getElementById('login').style.display='block'"><?php echo t("login")?></button>
@@ -63,8 +64,10 @@ $cancel = t("cancel");
             <li>
             <button onclick="document.getElementById('registration').style.display='block'"><?php echo t("registration")?></button>
             </li>
+            <li>
+            <button onclick="document.getElementById('shoppingCart').style.display='block'"><?php echo t("shoppingCart")?></button>
+            </li>
         </ul>
-    </div>
 </div>
 
 <!-- Registration  -->
@@ -83,7 +86,6 @@ $cancel = t("cancel");
         <input type="text" placeholder="<?php echo $first_name ?>">
         <label><b><?php echo $last_name ?></b></label>
         <input type="text" placeholder="<?php echo $last_name ?>">
-        <label class="close" onclick="document.getElementById('registration').style.display='none'">X</label>
 
         <button type="submit"><?php echo $submit ?></button>
         <button type="button" onclick="document.getElementById('registration').style.display='none'" class="cancel_Btn">
@@ -101,7 +103,6 @@ $cancel = t("cancel");
         <input type="text" placeholder=<?php echo $user ?>>
         <label><b><?php echo $password ?></b></label>
         <input type="password" placeholder=<?php echo $password ?>>
-        <label class="close" onclick="document.getElementById('login').style.display='none'">X</label>
 
         <button type="submit"><?php echo $submit ?></button>
         <button type="button" onclick="document.getElementById('login').style.display='none'" class="cancel_Btn">
@@ -109,6 +110,24 @@ $cancel = t("cancel");
         </button>
     </form>
 </div>
+
+<!-- Shopping Cart  -->
+
+
+<div id="login" class="login_container">
+        <label><b><?php echo $user ?></b></label>
+        <input type="text" placeholder=<?php echo $user ?>>
+        <label><b><?php echo $password ?></b></label>
+        <input type="password" placeholder=<?php echo $password ?>>
+
+        <button type="submit"><?php echo $submit ?></button>
+        <button type="button" onclick="document.getElementById('login').style.display='none'" class="cancel_Btn">
+            <?php echo $cancel ?>
+        </button>
+
+</div>
+
+
 
 <!-- Content  -->
 

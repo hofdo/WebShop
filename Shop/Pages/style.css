@@ -1,7 +1,7 @@
 html, body {
     height: 100%;
     margin: 0px;
-    background-color: darkgrey;
+    background-color: #ecf0f1;
 }
 
 /*
@@ -9,11 +9,29 @@ Header
  */
 
 header {
-    background-color: grey;
+    background-color: #0be881;
     width: 100%;
-    padding-bottom: 10%;
-    margin-top: 0px;
+    margin: 0;
 }
+
+header h1 {
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 80px;
+    font-family: Arial, serif;
+    color: #222f3e
+}
+
+header img {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 25%;
+    padding-right: 20px;
+}
+
+
+
 
 /*
 Navigation
@@ -22,7 +40,7 @@ Navigation
 .navigation {
     position: sticky;
     top: 0;
-    background-color: #333;
+    background-color: #485460;
 }
 
 .navigation ul {
@@ -39,16 +57,15 @@ Navigation
 .navigation ul li{
     float: left;
     display: block;
-    color: white;
     text-align: center;
     padding: 14px 16px;
 
 }
 
 .navigation ul li a {
-    color: white;
+    color: #ecf0f1;
     text-decoration: none;
-    font-family: Arial;
+    font-family: Arial, serif;
     font-size: 16px;
 }
 
@@ -57,69 +74,12 @@ Navigation
 }
 
 .navigation ul li:hover {
-    background-color: darkorchid;
+    background-color: #3498db;
 }
 
 .active {
-    background-color: yellow;
+    background-color: #05c46b;
 }
-
-/*
-DropDown Home
- */
-
-.homeDropDown {
-    float: left;
-    overflow: hidden;
-}
-
-/* Dropdown button */
-.homeDropDown .homebtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: lawngreen;
-    font-family: inherit;
-    margin: 0;
-}
-
-/* Add a red background color to navbar links on hover */
-.homebtn a:hover, .homeDropDown:hover .homebtn {
-    background-color: deepskyblue;
-}
-
-/* Dropdown content (hidden by default) */
-.home-content {
-    display: none;
-    left: 0;
-    position: absolute;
-    background-color: #333;
-    min-width: 80px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-/* Links inside the dropdown */
-.home-content a {
-    float: none;
-    color: white;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-/* Add a grey background color to dropdown links on hover */
-.home-content a:hover {
-    background-color: darkgrey;
-}
-
-/* Show the dropdown menu on hover */
-.homeDropDown:hover .home-content {
-    display: block;
-}
-
 /*
 DropDown Language
  */
@@ -129,49 +89,43 @@ DropDown Language
     overflow: hidden;
 }
 
-/* Dropdown button */
 .languageDropDown .languagebtn {
     font-size: 16px;
     border: none;
     outline: none;
-    color: white;
+    color: #ecf0f1;
     padding: 14px 16px;
-    background-color: lawngreen;
+    background-color: #485460;
     font-family: inherit;
     margin: 0;
 }
 
-/* Add a red background color to navbar links on hover */
 .languagebtn a:hover, .languageDropDown:hover .languagebtn {
-    background-color: deepskyblue;
+    background-color: #3498db;
 }
 
-/* Dropdown content (hidden by default) */
 .language-content {
     display: none;
     right: 0;
     position: absolute;
-    background-color: #333;
+    background-color: #485460;
     min-width: 95px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-/* Links inside the dropdown */
 .language-content a {
     float: none;
-    color: white;
+    color: #ecf0f1;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     text-align: left;
 }
 
-/* Add a grey background color to dropdown links on hover */
 .language-content a:hover {
-    background-color: darkgrey;
+    background-color: #3498db;
 }
 
-/* Show the dropdown menu on hover */
 .languageDropDown:hover .language-content {
     display: block;
 }
@@ -185,29 +139,26 @@ DropDown Searchbar
     overflow: hidden;
 }
 
-/* Dropdown button */
 .searchDropDown .searchbtn {
     font-size: 16px;
     border: none;
     outline: none;
-    color: white;
+    color: #ecf0f1;
     padding: 14px 16px;
-    background-color: lawngreen;
+    background-color: #485460;
     font-family: inherit;
     margin: 0;
 }
 
-/* Add a red background color to navbar links on hover */
 .searchbtn a:hover, .searchDropDown:hover .searchbtn {
-    background-color: deepskyblue;
+    background-color: #3498db;
 }
 
-/* Dropdown content (hidden by default) */
 .search-content {
     display: none;
     right: 0;
     position: absolute;
-    background-color: #333;
+    background-color: #485460;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
@@ -216,24 +167,120 @@ DropDown Searchbar
     min-width: 100px;
 }
 
-/* Links inside the dropdown */
 .search-content a {
     float: none;
-    color: white;
+    color: #ecf0f1;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     text-align: left;
 }
 
-/* Add a grey background color to dropdown links on hover */
 .search-content a:hover {
-    background-color: darkgrey;
+    background-color: #3498db;
 }
 
-/* Show the dropdown menu on hover */
 .searchDropDown:hover .search-content {
     display: block;
+}
+
+/*
+Content-Container
+ */
+
+/*
+Sidebar right
+ */
+
+.sideBar {
+    width: 25%;
+    float: right;
+    background-color: #808e9b;
+}
+
+.sideBar ul{
+    list-style-type: none;
+}
+
+.sideBar ul li button {
+    border: none;
+    cursor: pointer;
+    background-color: #05c46b;
+    width: 80%;
+    padding: 14px;
+    margin: 10px;
+    color: #ecf0f1;
+}
+
+/*
+Content of the Site
+ */
+
+.content {
+    padding: 5px 10px;
+    margin-right: 25%;
+    margin-left: 10%;
+    background-color: #808e9b;
+    color: #ecf0f1;
+}
+
+/*
+Login-form, Registration-form and Shopping Cart
+ */
+
+.login_container, .registration_container, .shoppingCart_Container{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-top: 60px;
+    background: rgba(0,0,0, 0.4);
+}
+
+
+.login_Form input[type=text], .login_Form input[type=password], .registration_Form input[type=text], .registration_Form input[type=password], .registration_Form input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.login_Form label, .registration_Form label{
+    font-size: 20px;
+    font-style: normal;
+    font-family: Arial, serif;
+    color: #576574;
+}
+
+.login_Form button, .registration_Form button{
+    background-color: #0be881;
+    color: #576574;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.login_Form button:hover, .registration_Form button:hover {
+    opacity: 0.8;
+}
+
+.cancel_Btn {
+    width: auto;
+    padding: 10px 18px;
+}
+
+.login_Form, .registration_Form{
+    background-color: #dfe4ea;
+    margin: 10% auto 15% auto;
+    width: 40%;
+    padding: 10px;
 }
 
 /*
@@ -252,7 +299,7 @@ footer {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #485460;
 }
 
 .footerMenu li {
@@ -260,126 +307,17 @@ footer {
 }
 
 .footerMenu li:hover {
-    background-color: darkgrey;
+    background-color: #3498db;
 }
 
 .footerMenu li a {
     display: block;
-    color: white;
+    color: #ecf0f1;
     text-align: center;
     padding: 10px 5px;
     text-decoration: none;
 }
 
-/*
-Content-Container
- */
-
-/*
-Sidebar right
- */
-
-.sideBar {
-    width: 25%;
-    float: right;
-    background-color: grey;
-}
-
-.sideBar ul{
-    list-style-type: none;
-}
-
-.sideBar ul li button {
-    border: none;
-    cursor: pointer;
-    background-color: lawngreen;
-    width: 80%;
-    padding: 14px;
-    margin: 10px;
-    color: white;
-}
-
-/*
-Content of the Site
- */
-
-.content {
-    padding: 5px 10px;
-    margin-right: 25%;
-    margin-left: 10%;
-    background-color: white;
-}
-
-/*
-Login-form and Registration-form
- */
-
-.login_container, .registration_container {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 60px;
-}
-
-
-.login_Form input[type=text], .login_Form input[type=password], .registration_Form input[type=text], .registration_Form input[type=password], .registration_Form input[type=email] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-.login_Form label, .registration_Form label{
-    font-size: 20px;
-    font-style: normal;
-    font-family: Arial;
-}
-
-.login_Form button, .registration_Form button{
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
-
-.login_Form button:hover, .registration_Form button:hover {
-    opacity: 0.8;
-}
-
-.cancel_Btn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
-
-.login_Form, .registration_Form{
-    background-color: #fefefe;
-    margin: 10% auto 15% auto;
-    border: 1px solid #888;
-    width: 40%;
-    padding: 10px;
-}
-
-.close {
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
-}
 
 
 

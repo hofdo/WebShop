@@ -1,4 +1,6 @@
-<nav>
-    <a href="Pages/Home.php">Home</a>
-</nav>
+<?php
+    header('Location: http://localhost/Shop/Pages/home.php?#');
+?>
+
+
 
