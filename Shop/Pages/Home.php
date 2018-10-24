@@ -5,13 +5,12 @@ require "Helper.php";
 $language = get_param('lang', 'de');
 $pageId = get_param('id', "home");
 
-$user = t("username");
-$password = t('password');
-$first_name = t("firstName");
-$last_name = t("lastName");
-$submit = t("submit");
-$cancel = t("cancel");
-
+// Set the language.ini
+if (file_exists("../Languages/$language.ini")) {
+    $lang_file = parse_ini_file("../Languages/$language.ini");
+} else {
+    echo "Lang not yet implemented";
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,28 +23,35 @@ $cancel = t("cancel");
 
 <body>
 
-<!--- Header --->
+<!---Header--->
 
 <header>
     <img src="../Pictures/webshop.png" height="80" width="80">
     <h1>Domotec.ch</h1>
 </header>
 
-<!-- Navigation  -->
+<!--Navigation-->
 
 <nav class="navigation">
     <ul>
+        <div class="homeDropDown">
+            <button class="homebtn"><img src="../Pictures/home.png" height="14" width="14"></button>
+            <div class="home-content">
+                <?php render_navigation($language, $pageId); ?>
+            </div>
+        </div>
+
         <?php render_navigation($language, $pageId); ?>
 
         <div class="searchDropDown">
             <button class="searchbtn"><img src="../Pictures/search.png" height="14" width="14"></button>
             <div class="search-content">
-                <input type="text" placeholder="<?php echo t("searchDefault")?>">
+                <input type="text" placeholder="<?php echo t("searchDefault") ?>">
             </div>
         </div>
 
         <div class="languageDropDown">
-            <button class="languagebtn"><img src="../Pictures/translation.png" height="14" width="14"></button>
+            <button class="language"><img src="../Pictures/translation.png" height="14" width="14"></button>
             <div class="language-content">
                 <?php render_languages($language, $pageId); ?>
             </div>
@@ -53,26 +59,34 @@ $cancel = t("cancel");
     </ul>
 </nav>
 
-<!-- Sidebar  -->
+<!--Sidebar-->
 
 
 <div class="sideBar">
-        <ul>
-            <li>
-            <button onclick="document.getElementById('login').style.display='block'"><?php echo t("login")?></button>
-            </li>
-            <li>
-            <button onclick="document.getElementById('registration').style.display='block'"><?php echo t("registration")?></button>
-            </li>
-            <li>
-            <button onclick="document.getElementById('shoppingCart').style.display='block'"><?php echo t("shoppingCart")?></button>
-            </li>
-        </ul>
+    <ul>
+        <li>
+            <button onclick="document.getElementById('login').style.display='block'"><?php echo t("login") ?></button>
+        </li>
+        <li>
+            <button onclick="document.getElementById('registration').style.display='block'"><?php echo t("registration") ?></button>
+        </li>
+        <li>
+            <button onclick="document.getElementById('shoppingCart').style.display='block'"><?php echo t("shoppingCart") ?></button>
+        </li>
+    </ul>
 </div>
 
-<!-- Registration  -->
+<!--Loads variables for login and registration service-->
+<?php
+$user = t("username");
+$password = t('password');
+$first_name = t("firstName");
+$last_name = t("lastName");
+$submit = t("submit");
+$cancel = t("cancel");
+?>
 
-
+<!--Registration-->
 <div id="registration" class="registration_container">
     <form class="registration_Form">
 
@@ -94,9 +108,7 @@ $cancel = t("cancel");
     </form>
 </div>
 
-<!-- Login  -->
-
-
+<!--Login-->
 <div id="login" class="login_container">
     <form class="login_Form">
         <label><b><?php echo $user ?></b></label>
@@ -111,25 +123,24 @@ $cancel = t("cancel");
     </form>
 </div>
 
-<!-- Shopping Cart  -->
+<!--Shopping Cart-->
 
 
 <div id="login" class="login_container">
-        <label><b><?php echo $user ?></b></label>
-        <input type="text" placeholder=<?php echo $user ?>>
-        <label><b><?php echo $password ?></b></label>
-        <input type="password" placeholder=<?php echo $password ?>>
+    <label><b><?php echo $user ?></b></label>
+    <input type="text" placeholder=<?php echo $user ?>>
+    <label><b><?php echo $password ?></b></label>
+    <input type="password" placeholder=<?php echo $password ?>>
 
-        <button type="submit"><?php echo $submit ?></button>
-        <button type="button" onclick="document.getElementById('login').style.display='none'" class="cancel_Btn">
-            <?php echo $cancel ?>
-        </button>
+    <button type="submit"><?php echo $submit ?></button>
+    <button type="button" onclick="document.getElementById('login').style.display='none'" class="cancel_Btn">
+        <?php echo $cancel ?>
+    </button>
 
 </div>
 
 
-
-<!-- Content  -->
+<!--Content-->
 
 <div class="content">
     <?php
@@ -141,6 +152,7 @@ $cancel = t("cancel");
     ?>
 </div>
 
+<!--Footer-->
 <footer>
     <ul class="footerMenu">
         <?php render_footer($language, $pageId) ?>

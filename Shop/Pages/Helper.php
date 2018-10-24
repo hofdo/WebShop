@@ -33,11 +33,10 @@ function render_navigation($language, $pageId)
         $url = $urlBase;
         add_param($url, "id", $nav);
         $class = $pageId == $nav ? 'active' : 'inactive';
-        if ($nav == 'home'){
+        if ($nav == 'home') {
             echo "<li class=\"$class\"><a href=\"$url\"><img src='../Pictures/home.png' height='14' width='14'> "
-                . t($nav) ."</a></li>";
-        }
-        else {
+                . t($nav) . "</a></li>";
+        } else {
             echo "<li class=\"$class\"><a href=\"$url\">" . t($nav) . "</a></li>";
         }
     }
@@ -53,7 +52,7 @@ function render_footer($language, $pageId)
         $url = $urlBase;
         add_param($url, "id", $foot);
         $class = $pageId == $foot ? 'active' : 'inactive';
-        echo "<li><a class=\"$class\" href=\"$url\">" . t($foot)."</a></li>";
+        echo "<li><a class=\"$class\" href=\"$url\">" . t($foot) . "</a></li>";
     }
 }
 
@@ -73,19 +72,10 @@ function render_languages($language, $pageId)
 // The translation function.
 function t($key)
 {
-    global $language;
-    if (file_exists("../Languages/$language.ini")) {
-        $text = parse_ini_file("../Languages/$language.ini");
-        if (isset($text[$key])) {
-            return $text[$key];
-        } else {
-            return "NEED TRANSLATION $key";
-        }
+    global $lang_file;
+    if (isset($lang_file[$key])) {
+        return $lang_file[$key];
     } else {
-        return "Not yet implemented.2";
+        return "NEED TRANSLATION $key";
     }
 }
-
-
-
-
