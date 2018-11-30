@@ -80,6 +80,31 @@ Navigation
 .active {
     background-color: #05c46b;
 }
+
+/*
+Profile
+ */
+
+.profile {
+    float: right;
+    overflow: hidden;
+}
+
+.profileBtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: #ecf0f1;
+    padding: 14px 16px;
+    background-color: #485460;
+    font-family: inherit;
+    margin: 0;
+}
+
+.profileBtn:hover {
+    background-color: #3498db;
+}
+
 /*
 DropDown Language
  */
@@ -225,10 +250,10 @@ Content of the Site
 }
 
 /*
-Login-form, Registration-form and Shopping Cart
+Login-form, Registration-form
  */
 
-.login_container, .registration_container, .shoppingCart_Container{
+.login_container, .registration_container{
     display: none;
     position: fixed;
     z-index: 1;
@@ -282,6 +307,51 @@ Login-form, Registration-form and Shopping Cart
     width: 40%;
     padding: 10px;
 }
+
+/*
+Shopping Cart
+ */
+
+.shoppingCart_Container{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-top: 60px;
+    background: rgba(0,0,0, 0.4);
+}
+
+.shoppingCart_Container button{
+    background-color: #0be881;
+    color: #576574;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.shoppingCart_Container button:hover{
+    opacity: 0.8;
+}
+
+.cancel_Btn {
+    width: auto;
+    padding: 10px 18px;
+}
+
+.shoppingCart_Content {
+    background-color: #dfe4ea;
+    margin: 10% auto 15% auto;
+    width: 40%;
+    padding: 10px;
+}
+
+
 
 /*
 Footer
