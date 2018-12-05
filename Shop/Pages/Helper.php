@@ -1,4 +1,6 @@
 <?php
+
+require_once "../SQLDB/Session.php";
 // Returns a certain GET parameter or $default if the parameter
 // does not exist.
 function get_param($name, $default)
@@ -26,7 +28,7 @@ function render_mainContent($pageId)
 // Renders the navigation for the passed language and page ID.
 function render_navigation($language, $pageId)
 {
-    $navigation = array("home", "products");
+    $navigation = array("home", "products", "profile");
     $urlBase = $_SERVER['PHP_SELF'];
     add_param($urlBase, "lang", $language);
     foreach ($navigation as $nav) {
@@ -36,6 +38,11 @@ function render_navigation($language, $pageId)
         if ($nav == 'home'){
             echo "<li class=\"$class\"><a href=\"$url\"><img src='../Pictures/home.png' height='14' width='14'> "
                 . t($nav) ."</a></li>";
+        }
+        elseif ($nav == 'profile') {
+            if($_SESSION["logged_in"] == true){
+                echo "<li class='$class'><a href=\"$url\">" . t($nav) . "</a></li>";
+            }
         }
         else {
             echo "<li class=\"$class\"><a href=\"$url\">" . t($nav) . "</a></li>";
@@ -70,6 +77,51 @@ function render_languages($language, $pageId)
     }
 }
 
+function render_sidebar($pageId){
+    $sidebarNav = array("loginBtn", "registrationBtn", "logoutBtn", "shoppingCartBtn");
+    foreach ($sidebarNav as $sidebar) {
+        if($sidebar == "loginBtn"){
+            if($_SESSION["logged_in"] == false){
+                echo "<li><button id='loginBtn' onclick=document.getElementById('login').style.display='block'>" . t('login') . "</button></li>";
+            }
+        }
+        elseif ($sidebar == "registrationBtn"){
+            if($_SESSION["logged_in"] == false){
+                echo "<li><button id='registrationBtn' onclick=document.getElementById('registration').style.display='block'>" . t('registration') . "</button></li>";
+            }
+        }
+        elseif ($sidebar == "logoutBtn"){
+            if($_SESSION["logged_in"] == true){
+                echo "<li><form action='../SQLDB/Logout.php' method='post'><button type='submit' value='logout' id='logoutBtn' >" . t("logout") . "</button></form></li>";
+            }
+        }
+        elseif ($sidebar == "shoppingCartBtn"){
+            echo "<li><button id='shoppingCartBtn' class='shoppingCartBtn' onclick=document.getElementById('shoppingCart').style.display='block'>" . t("shoppingCart") . "</button></li>";
+        }
+        else{
+            echo"<li><button id='$sidebar' class='sidebarComponent'>". t('$sidebar') . "</button></li>";
+        }
+    }
+}
+
+function render_dropDown($language, $pageId){
+    $dropDownNav = array("languageDropDown", "searchDropDown");
+    foreach ($dropDownNav as $dropDown) {
+        if ($dropDown == "languageDropDown"){
+            echo "<div class='searchDropDown'><button class='searchbtn'><img src='../Pictures/search.png' height='14' width='14'></button>";
+            echo "<div class='search-content'><input type='text' placeholder=" . t('searchDefault') . "></div></div>";
+        }
+        elseif($dropDown == "searchDropDown"){
+            echo "<div class='languageDropDown'><button class='languagebtn'><img src='../Pictures/translation.png' height='14' width='14'></button>";
+            echo "<div class='language-content'>";
+            echo render_languages($language, $pageId) . "</div></div>";
+        }
+        else{
+            echo "<button></button>";
+        }
+    }
+}
+
 // The translation function.
 function t($key)
 {
@@ -82,7 +134,7 @@ function t($key)
             return "NEED TRANSLATION $key";
         }
     } else {
-        return "Not yet implemented.2";
+        return "Not yet implemented.";
     }
 }
 

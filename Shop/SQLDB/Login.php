@@ -3,7 +3,6 @@
 require "../Entity/DB.php";
 require "../Entity/User.php";
 require "../Entity/Admin.php";
-require "Session.php";
 
 $db = DB::getInstance();
 

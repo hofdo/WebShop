@@ -1,5 +1,7 @@
 <?php
 
+require_once "../SQLDB/Session.php";
+
 class User
 {
     private $username;
@@ -16,29 +18,87 @@ class User
         $this->email = $email;
     }
 
+    // Getter and Setter
 
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+    }
+
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    }
+
+
+    //Methods
 
     public function createUser(){
         $query = "INSERT INTO `users` (`uid`, `username`, `password`, `firstname`, `lastname`, `email`) VALUES (NULL, '$this->username', '$this->password', '$this->firstName', '$this->lastName', '$this->email')";
         return(DB::doQuery($query));
     }
 
-    public function updateUsername($username){
-        if (preg_match("^([A-Za-z0-9\-_.?!]){3,20}", $username)){
+    public static function updateUser($uid, $subject, $toChange){
+        try {
+            if ($subject == "username" && preg_match("^([A-Za-z0-9\-_.?!]){3,20}^", $toChange)) {
+                $query = "UPDATE users SET $subject='$toChange' WHERE users.uid='$uid'";
+                DB::doQuery($query);
+            } elseif ($subject == "password" && preg_match("^([A-Za-z0-9\-_.?!]){1,30}^", $toChange)) {
+                $query = "UPDATE users SET $subject='$toChange' WHERE users.uid='$uid'";
+                DB::doQuery($query);
+            } elseif ($subject == "email" && preg_match("^[A-Za-z0-9.,!?:;\-_]+[@]{1}[A-Za-z0-9]+\.{1}[A-Za-z]{2,5}^", $toChange)) {
+                $query = "UPDATE users SET $subject='$toChange' WHERE users.uid='$uid'";
+                DB::doQuery($query);
+            } elseif ($subject == "firstname" || $subject == "lastname" && preg_match("^[A-Za-z]{1,30}^", $toChange)) {
+                $query = "UPDATE users SET $subject='$toChange' WHERE users.uid='$uid'";
+                DB::doQuery($query);
+            }
+        }
+        catch (Exception $exception){
+            echo $exception->getMessage();
         }
     }
-    public function updatePassword($password){
-        if (preg_match("^([A-Za-z0-9\-_.?!]){1,30}", $password)){}
-    }
-    public function updateEmail($email){
-        if (preg_match("^([A-Za-z0-9.,!?:;\-_]+[@]{1}[A-Za-z0-9]+\.{1}[A-Za-z]{2,5})", $email)){}
-    }
-    public function updateFirstName($firstName){
 
-    }
-    public function updateLastName($lastName){
-
-    }
 
     public static function getUser($username){
         $query = "SELECT * FROM users WHERE username='$username'";

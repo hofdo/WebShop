@@ -26,7 +26,7 @@ class Cart {
     }
     public function render() {
         if ($this->isEmpty()) {
-            echo "<div class=\"cart empty\">[Empty Cart]</div>";
+            echo "<div class=\"cart empty\">The Cart is empty</div>";
         } else {
             echo "<div class=\"cart\"><table>";
             echo "<tr><th>Article-Id</th><th>#</th></tr>";

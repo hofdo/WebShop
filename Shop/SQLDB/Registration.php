@@ -2,7 +2,6 @@
 
 require "../Entity/User.php";
 require "../Entity/DB.php";
-require "../SQLDB/Session.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 

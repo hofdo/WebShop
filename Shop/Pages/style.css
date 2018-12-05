@@ -85,24 +85,28 @@ Navigation
 Profile
  */
 
-.profile {
-    float: right;
-    overflow: hidden;
-}
-
-.profileBtn {
+.profileView button, .profileEdit button {
     font-size: 16px;
     border: none;
     outline: none;
     color: #ecf0f1;
-    padding: 14px 16px;
+    padding: 10px 12px;
     background-color: #485460;
     font-family: inherit;
     margin: 0;
 }
 
-.profileBtn:hover {
+.profileView table tr td {
+    padding: 8px;
+}
+
+.profileView table tr td button:hover {
     background-color: #3498db;
+}
+
+.profileEdit {
+    margin-top: 10px;
+    display: none;
 }
 
 /*
@@ -237,6 +241,11 @@ Sidebar right
     color: #ecf0f1;
 }
 
+.sideBar ul li button:hover {
+    opacity: 0.8;
+}
+
+
 /*
 Content of the Site
  */
@@ -351,7 +360,10 @@ Shopping Cart
     padding: 10px;
 }
 
-
+.Item_Container {
+    margin: 2px;
+    background-color: white;
+}
 
 /*
 Footer
@@ -387,13 +399,3 @@ footer {
     padding: 10px 5px;
     text-decoration: none;
 }
-
-
-
-
-
-
-
-
-
-
