@@ -2,6 +2,7 @@
 require_once "../Entity/ShoppingCart.php";
 
 $submit = t("submit");
+$buy = t("buy");
 $cancel = t("cancel");
 ?>
 

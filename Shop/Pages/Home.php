@@ -4,19 +4,9 @@ require "Helper.php";
 require_once "../SQLDB/Session.php";
 require_once "../Entity/ShoppingCart.php";
 
-
 // Set language and page ID as global variables.
 $language = get_param('lang', 'de');
 $pageId = get_param('id', "home");
-
-$user = t("username");
-$password = t('password');
-$first_name = t("firstName");
-$last_name = t("lastName");
-$submit = t("submit");
-$buy = t("buy");
-$cancel = t("cancel");
-
 ?>
 
 <!DOCTYPE html>

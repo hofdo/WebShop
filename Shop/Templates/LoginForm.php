@@ -1,8 +1,6 @@
 <?php
 $user = t("username");
 $password = t('password');
-$first_name = t("firstName");
-$last_name = t("lastName");
 $submit = t("submit");
 $cancel = t("cancel");
 ?>
