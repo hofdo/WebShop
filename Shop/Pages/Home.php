@@ -42,8 +42,8 @@ $cancel = t("cancel");
 <nav class="navigation">
     <ul>
         <?php
-            render_navigation($language, $pageId);
-            render_dropDown($language, $pageId)
+            render_leftNav($language, $pageId);
+            render_rightNav($language, $pageId)
         ?>
     </ul>
 </nav>

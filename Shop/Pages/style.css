@@ -62,7 +62,7 @@ Navigation
 
 }
 
-.navigation ul li a {
+.navigation ul li a, .adminViewBtn {
     color: #ecf0f1;
     text-decoration: none;
     font-family: Arial, serif;
@@ -82,10 +82,10 @@ Navigation
 }
 
 /*
-Profile
+Profile & Admin
  */
 
-.profileView button, .profileEdit button {
+.profileView button, .profileEdit button, .userEdit button, .userList button {
     font-size: 16px;
     border: none;
     outline: none;
@@ -96,17 +96,66 @@ Profile
     margin: 0;
 }
 
-.profileView table tr td {
+.profileView table tr td, .userList table tr td {
     padding: 8px;
 }
 
-.profileView table tr td button:hover {
+.profileView button:hover, .userEdit button:hover, .userList button:hover{
     background-color: #3498db;
 }
 
-.profileEdit {
+.profileEdit, .userEdit{
     margin-top: 10px;
     display: none;
+}
+
+/*
+DropDown AdminView
+ */
+.adminViewDropDown {
+    float: left;
+    overflow: hidden;
+}
+
+.adminViewDropDown .adminViewBtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: #ecf0f1;
+    padding: 14px 16px;
+    background-color: #485460;
+    font-family: inherit;
+    margin: 0;
+}
+
+.adminViewDropDown:hover .adminViewBtn {
+    background-color: #3498db;
+}
+
+.adminView-content {
+    display: none;
+    position: absolute;
+    background-color: #485460;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.adminView-content a {
+    float: none;
+    color: #ecf0f1;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.adminView-content a:hover {
+    background-color: #3498db;
+}
+
+.adminViewDropDown:hover .adminView-content {
+    display: block;
 }
 
 /*
@@ -254,6 +303,7 @@ Content of the Site
     padding: 5px 10px;
     margin-right: 25%;
     margin-left: 10%;
+    margin-bottom: 5%;
     background-color: #808e9b;
     color: #ecf0f1;
 }

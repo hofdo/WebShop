@@ -110,6 +110,18 @@ class User
         return(DB::doQuery($query));
     }
 
+    public static function renderUserList(){
+        $query = "SELECT * From users";
+        $counter = 1;
+        $result = DB::doQuery($query)->fetch_all();
+        echo "<tr><td>Select</td><td>ID</td><td>Username</td><td>Firstname</td><td>Lastname</td><td>Email</td></tr>";
+        foreach ($result as $row){
+            echo "<tr><td><input type='checkbox' id='adminCheckBox$counter'></td><td>$row[0]</td><td id='editUsername'>$row[1]</td><td>$row[3]</td><td>$row[4]</td><td>$row[5]</td></tr>";
+            $counter++;
+        }
+
+    }
+
     public static function checkLogin($username, $password){
         $query = "SELECT * FROM users WHERE username='$username' and password='$password'";
         $result = DB::doQuery($query);
@@ -136,6 +148,17 @@ class User
             return false;
         }
         return true;
+    }
+
+    public static function isAdmin($username){
+        $query = "SELECT isAdmin FROM users WHERE username = '$username' AND isAdmin > 0";
+        $result = DB::doQuery($query)->fetch_row();
+        if ($result[0]==1){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 

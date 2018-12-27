@@ -1,6 +1,9 @@
 <?php
 
 require_once "../SQLDB/Session.php";
+require_once "../Entity/User.php";
+
+
 // Returns a certain GET parameter or $default if the parameter
 // does not exist.
 function get_param($name, $default)
@@ -26,9 +29,9 @@ function render_mainContent($pageId)
 }
 
 // Renders the navigation for the passed language and page ID.
-function render_navigation($language, $pageId)
+function render_leftNav($language, $pageId)
 {
-    $navigation = array("home", "products", "profile");
+    $navigation = array("home", "products", "profile", "adminView");
     $urlBase = $_SERVER['PHP_SELF'];
     add_param($urlBase, "lang", $language);
     foreach ($navigation as $nav) {
@@ -44,8 +47,35 @@ function render_navigation($language, $pageId)
                 echo "<li class='$class'><a href=\"$url\">" . t($nav) . "</a></li>";
             }
         }
+        elseif ($nav == "adminView"){
+            if (User::isAdmin($_SESSION["username"])){
+                echo "<div class='adminViewDropDown'><button class='adminViewBtn'>" . t("adminView") . "</button>";
+                echo "<div class='adminView-content'>";
+                render_adminDropDown($language, $pageId);
+                echo "</div></div>";
+            }
+
+        }
         else {
             echo "<li class=\"$class\"><a href=\"$url\">" . t($nav) . "</a></li>";
+        }
+    }
+}
+
+function render_rightNav($language, $pageId){
+    $dropDownNav = array("languageDropDown", "searchDropDown");
+    foreach ($dropDownNav as $dropDown) {
+        if ($dropDown == "languageDropDown"){
+            echo "<div class='searchDropDown'><button class='searchbtn'><img src='../Pictures/search.png' height='14' width='14'></button>";
+            echo "<div class='search-content'><input type='text' placeholder=" . t('searchDefault') . "></div></div>";
+        }
+        elseif($dropDown == "searchDropDown"){
+            echo "<div class='languageDropDown'><button class='languagebtn'><img src='../Pictures/translation.png' height='14' width='14'></button>";
+            echo "<div class='language-content'>";
+            echo render_languages($language, $pageId) . "</div></div>";
+        }
+        else{
+            echo "<button></button>";
         }
     }
 }
@@ -63,6 +93,22 @@ function render_footer($language, $pageId)
         echo "<li><a class=\"$class\" href=\"$url\">" . t($foot)."</a></li>";
     }
 }
+
+
+function render_adminDropDown($language, $pageId){
+
+    $urlBase = $_SERVER['PHP_SELF'];
+    add_param($urlBase, "lang", $language);
+    $adminDropDownNav = array("userList", "productList");
+    foreach ($adminDropDownNav as $adminNav) {
+        $url = $urlBase;
+        add_param($url, "id", $adminNav);
+        $class = $pageId == $adminNav ? 'active' : 'inactive';
+        echo "<a class='$class' href=\"$url\">" . t($adminNav) . "</a>";
+    };
+
+}
+
 
 // Renders the language navigation.
 function render_languages($language, $pageId)
@@ -104,23 +150,6 @@ function render_sidebar($pageId){
     }
 }
 
-function render_dropDown($language, $pageId){
-    $dropDownNav = array("languageDropDown", "searchDropDown");
-    foreach ($dropDownNav as $dropDown) {
-        if ($dropDown == "languageDropDown"){
-            echo "<div class='searchDropDown'><button class='searchbtn'><img src='../Pictures/search.png' height='14' width='14'></button>";
-            echo "<div class='search-content'><input type='text' placeholder=" . t('searchDefault') . "></div></div>";
-        }
-        elseif($dropDown == "searchDropDown"){
-            echo "<div class='languageDropDown'><button class='languagebtn'><img src='../Pictures/translation.png' height='14' width='14'></button>";
-            echo "<div class='language-content'>";
-            echo render_languages($language, $pageId) . "</div></div>";
-        }
-        else{
-            echo "<button></button>";
-        }
-    }
-}
 
 // The translation function.
 function t($key)
