@@ -109,6 +109,10 @@ Profile & Admin
     display: none;
 }
 
+.adminChangeUser, .adminAddUser, .adminSectionIDRow {
+    display: none;
+}
+
 /*
 DropDown AdminView
  */

@@ -116,8 +116,10 @@ class User
         $result = DB::doQuery($query)->fetch_all();
         echo "<tr><td>Select</td><td>ID</td><td>Username</td><td>Firstname</td><td>Lastname</td><td>Email</td></tr>";
         foreach ($result as $row){
-            echo "<tr><td><input type='checkbox' id='adminCheckBox$counter'></td><td>$row[0]</td><td id='editUsername'>$row[1]</td><td>$row[3]</td><td>$row[4]</td><td>$row[5]</td></tr>";
-            $counter++;
+            if ($row[1]!="admin") {
+                echo "<tr><td><input type='checkbox' id='adminCheckBox$counter'></td><td>$row[0]</td><td id='editUsername'>$row[1]</td><td>$row[3]</td><td>$row[4]</td><td>$row[5]</td></tr>";
+                $counter++;
+            }
         }
 
     }

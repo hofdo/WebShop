@@ -6,34 +6,12 @@ require_once "../Pages/Helper.php";
 
 
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <h1>Admin</h1>
 <h2>Studentlist</h2>
 
-<script>
-    function changeUser() {
-        var table = document.getElementById("userTable");
-        var counter = 0;
-        for (var i = 1; i < (table.rows.length-1) ; i++){
-            var idName = "adminCheckBox"+i;
-            if(document.getElementById(idName).checked = true){
-                counter++;
-                var row = table.rows[i];
-            }
-        }
-        if (counter === 1){
-
-        }
-        else if (counter < 1){
-
-        }
-        else{
-
-        }
-        document.getElementById('userEdit').style.display='block';
-
-    }
-</script>
+<script src="../js/AdminSection.js"></script>
 
 <div class="userList">
     <table id="userTable">
@@ -42,20 +20,21 @@ require_once "../Pages/Helper.php";
             User::renderUserList();
         ?>
         </form>
-        <tr><td><button onclick="changeUser()">Change User</button></td><td><button>Delete User</button></td><td><button>Add User</button></td></tr>
+        <tr><td><button onclick="showEditUserForm()">Change User</button></td><td><button onclick="deleteUser()">Delete User</button></td><td><button onclick="showAddUserForm()">Add User</button></td></tr>
     </table>
+    <label id="adminUserAddLabel"></label>
     <div id="userEdit" class="userEdit">
-        <form method="post" action="../SQLDB/UpdateUserAdmin.php">
             <h2>Edit user</h2>
             <table>
-                <tr><td>Username:</td><td><input type="text" name="username" value="<?php  ?>" pattern="^([A-Za-z0-9\-_.?!]){3,20}" title="Username should only contain letters, numbers, the following characters: {-_.?!} and must not be longer than 20\" required></td></tr>
-                <tr><td>Password:</td><td><input type="password" name="password" value="<?php  ?>" pattern="^([A-Za-z0-9\-_.?!]){1,30}" title="Password should only contain letters, numbers, the following characters: {-_.?!} and must not be longer than 20"  required></td></tr>
-                <tr><td>Email:</td><td><input type="email" name="email" value="<?php  ?>" pattern="^[A-Za-z0-9.,!?:;\-_]+[@]{1}[A-Za-z0-9]+\.{1}[A-Za-z]{2,5}" title="Email-address should only contain letters, numbers and the following characters: {.,!?:;\-_}" required></td></tr>
-                <tr><td>Firstname:</td><td><input type="text" name="firstname" value="<?php  ?>" ></td></tr>
-                <tr><td>Lastname:</td><td><input type="text" name="lastname" value="<?php  ?>"></td></tr>
-                <tr><td><button type='submit'>Update</button></td></tr>
+                <tr><td><button onclick="closeEdit()">X</button></td></tr>
+                <tr class="adminSectionIDRow" ><td>ID:</td><td><input id="adminSectionID" class="adminSectionID" name="ID" readonly></td></tr>
+                <tr><td>Username:</td><td><input id="adminSectionUsername" type="text" value=""></td></tr>
+                <tr><td>Password:</td><td><input id="adminSectionPassword" type="password" value="" ></td></tr>
+                <tr><td>Email:</td><td><input id="adminSectionEmail" type="email" value="" ></td></tr>
+                <tr><td>Firstname:</td><td><input id="adminSectionFirstName" type="text" value="" ></td></tr>
+                <tr><td>Lastname:</td><td><input id="adminSectionLastName" type="text" value=""></td></tr>
+                <tr><td><button type='submit' id="adminChangeUser" class="adminChangeUser" onclick="editUser()">Edit User</button></td><td><button type='submit' id="adminAddUser" class="adminAddUser" onclick="addUser()">Add user</button></td></tr>
             </table
-        </form>
     </div>
 
 </div>

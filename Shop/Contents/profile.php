@@ -20,7 +20,7 @@ $user = new User($username, mysqli_fetch_row(User::getUser($username))[2], $firs
         <tr><td><button onclick=document.getElementById('profileEdit').style.display='block'>Edit profile</button></td></tr>
         </table>
     <div id="profileEdit" class="profileEdit">
-        <form method="post" action="../SQLDB/UpdateUser.php">
+        <form method="post" action="../SQLDB/UpdateUserProfile.php">
             <h2>Edit profile</h2>
             <table>
                 <tr><td>Profile Picture to upload:</td><td><input type="file" name="image"/></td></tr>
