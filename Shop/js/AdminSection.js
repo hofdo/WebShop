@@ -1,75 +1,3 @@
-function showEditUserForm() {
-    var table = document.getElementById("userTable");
-    var counter = 0;
-    for (var i = 1; i < (table.rows.length-1) ; i++){
-        var idName = "adminCheckBox"+i;
-        if(document.getElementById(idName).checked === true){
-            counter++;
-            var row = table.rows[i];
-        }
-    }
-    if (counter === 1){
-        var username = row.cells[2].innerHTML;
-        var request = new XMLHttpRequest();
-        request.open("GET", "../SQLDB/adminGetUser.php?username=" + username);
-        request.onload = function(){
-            var data = request.responseText;
-            var array = data.split(";");
-            document.getElementById("adminSectionID").value = array[0];
-            document.getElementById("adminSectionUsername").value = array[1];
-            document.getElementById("adminSectionPassword").value = array[2];
-            document.getElementById("adminSectionEmail").value = array[5];
-            document.getElementById("adminSectionFirstName").value = array[3];
-            document.getElementById("adminSectionLastName").value = array[4];
-        }
-        request.send();
-
-        document.getElementById("adminUserAddLabel").innerText = "";
-        document.getElementById('userEdit').style.display='block';
-
-        if (document.getElementById('adminAddUser').style.display !== "block") {
-            document.getElementById('adminChangeUser').style.display = 'block';
-        }
-        else{
-            document.getElementById("adminUserAddLabel").innerText = "Cannot edit while adding a user";
-        }
-    }
-    else if (counter > 1){
-        document.getElementById("adminUserAddLabel").innerText = "Please Select only one user";
-    }
-    else{
-        document.getElementById("adminUserAddLabel").innerText = "Please select one user";
-    }
-
-}
-
-function showAddUserForm() {
-    document.getElementById('userEdit').style.display='block';
-
-    if (document.getElementById('adminChangeUser').style.display !== "block") {
-        document.getElementById('adminAddUser').style.display='block';
-
-    }
-    else{
-        document.getElementById("adminUserAddLabel").innerText = "Cannot add while editing a user";
-    }
-
-}
-
-function closeEdit() {
-    document.getElementById('userEdit').style.display='none';
-    document.getElementById("adminUserAddLabel").innerText = "";
-    document.getElementById('adminAddUser').style.display='none';
-    document.getElementById('adminChangeUser').style.display='none';
-
-    document.getElementById("adminSectionID").value="";
-    document.getElementById("adminSectionUsername").value="";
-    document.getElementById("adminSectionPassword").value="";
-    document.getElementById("adminSectionEmail").value="";
-    document.getElementById("adminSectionFirstName").value="";
-    document.getElementById("adminSectionLastName").value="";
-}
-
 function editUser() {
     var uid = document.getElementById("adminSectionID").value;
     var userName = document.getElementById("adminSectionUsername").value;
@@ -82,12 +10,12 @@ function editUser() {
         if (checkRegex("^([A-Za-z0-9\-_.?!]){1,30}", password)) {
             if (checkRegex("^[A-Za-z0-9.,!?:;\-_]+[@]{1}[A-Za-z0-9]+\.{1}[A-Za-z]{2,5}", email)) {
                 var request = new XMLHttpRequest();
-                request.open("POST", "../SQLDB/adminEditUser.php?uid=" + uid + "&username=" + userName + "&password="
+                request.open("POST", "../Admin/adminEditUser.php?uid=" + uid + "&username=" + userName + "&password="
                     + password + "&email=" + email + "&firstname=" + firstName + "&lastname=" + lastName);
                 request.onload = function () {
                     var userExists = request.responseText;
+                    alert(request.responseText);
                     if (!userExists) {
-                        alert(userExists);
                         var table = document.getElementById("userTable");
                         for (var i = 1; i < (table.rows.length - 1); i++) {
                             var idName = "adminCheckBox" + i;
@@ -127,15 +55,12 @@ function addUser() {
     var firstName = document.getElementById("adminSectionFirstName").value;
     var lastName = document.getElementById("adminSectionLastName").value;
 
-
-
-
     if (checkRegex("^([A-Za-z0-9\-_.?!]){3,20}", userName)) {
         if (checkRegex("^([A-Za-z0-9\-_.?!]){1,30}", password)) {
             if (checkRegex("^[A-Za-z0-9.,!?:;\-_]+[@]{1}[A-Za-z0-9]+\.{1}[A-Za-z]{2,5}", email)) {
                 if (firstName !== "" && lastName !== "") {
                     var request = new XMLHttpRequest();
-                    request.open("POST", "../SQLDB/adminAddUser.php?username=" + userName + "&password="
+                    request.open("POST", "../Admin/adminAddUser.php?username=" + userName + "&password="
                         + password + "&email=" + email + "&firstname=" + firstName + "&lastname=" + lastName);
                     request.onload = function () {
 
@@ -209,7 +134,7 @@ function deleteUser() {
     if (counter === 1){
         var username = row.cells[2].innerHTML;
         var request = new XMLHttpRequest();
-        request.open("POST", "../SQLDB/adminDeleteUser.php?username=" + username);
+        request.open("POST", "../Admin/adminDeleteUser.php?username=" + username);
         request.onload = function(){
             table.deleteRow(rowNumber);
         };
@@ -221,6 +146,100 @@ function deleteUser() {
     }
     else{
         document.getElementById("adminUserAddLabel").innerText = "Please select one user";
+    }
+}
+
+function showEditUserForm() {
+    var table = document.getElementById("userTable");
+    var counter = 0;
+    for (var i = 1; i < (table.rows.length-1) ; i++){
+        var idName = "adminCheckBox"+i;
+        if(document.getElementById(idName).checked === true){
+            counter++;
+            var row = table.rows[i];
+        }
+    }
+    if (counter === 1 && document.getElementById('adminAddUser').style.display !== "block"){
+        var username = row.cells[2].innerHTML;
+        var request = new XMLHttpRequest();
+        request.open("GET", "../Admin/adminGetUser.php?username=" + username);
+        request.onload = function(){
+            var data = request.responseText;
+            var array = data.split(";");
+            document.getElementById("adminSectionID").value = array[0];
+            document.getElementById("adminSectionUsername").value = array[1];
+            document.getElementById("adminSectionPassword").value = array[2];
+            document.getElementById("adminSectionEmail").value = array[5];
+            document.getElementById("adminSectionFirstName").value = array[3];
+            document.getElementById("adminSectionLastName").value = array[4];
+        }
+        request.send();
+
+        document.getElementById("adminUserAddLabel").innerText = "";
+        document.getElementById('userEdit').style.display='block';
+
+        if (document.getElementById('adminAddUser').style.display !== "block") {
+            document.getElementById('adminChangeUser').style.display = 'block';
+        }
+        else{
+            document.getElementById("adminUserAddLabel").innerText = "Cannot edit while adding a user";
+        }
+    }
+    else if (counter > 1){
+        document.getElementById("adminUserAddLabel").innerText = "Please Select only one user";
+    }
+    else if (document.getElementById('adminAddUser').style.display === "block"){
+        document.getElementById("adminUserAddLabel").innerText = "Please close the add user interface first!";
+    }
+    else{
+        document.getElementById("adminUserAddLabel").innerText = "Please select one user";
+    }
+
+}
+
+function showAddUserForm() {
+    document.getElementById('userEdit').style.display='block';
+
+    if (document.getElementById('adminChangeUser').style.display !== "block") {
+        document.getElementById('adminAddUser').style.display='block';
+
+    }
+    else{
+        document.getElementById("adminUserAddLabel").innerText = "Cannot add while editing a user";
+    }
+
+}
+
+function closeEdit() {
+    document.getElementById('userEdit').style.display='none';
+    document.getElementById("adminUserAddLabel").innerText = "";
+    document.getElementById('adminAddUser').style.display='none';
+    document.getElementById('adminChangeUser').style.display='none';
+
+    document.getElementById("adminSectionID").value="";
+    document.getElementById("adminSectionUsername").value="";
+    document.getElementById("adminSectionPassword").value="";
+    document.getElementById("adminSectionEmail").value="";
+    document.getElementById("adminSectionFirstName").value="";
+    document.getElementById("adminSectionLastName").value="";
+}
+
+
+function adminSearchUser() {
+    var input = document.getElementById("adminSearch");
+    var filter = input.value.toUpperCase();
+    var table = document.getElementById("userTable");
+    var tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length-1; i++) {
+        var td = tr[i].getElementsByTagName("td")[2];
+        if (td){
+            if (td.textContent.toUpperCase().indexOf(filter) > -1){
+                tr[i].style.display="";
+            }
+            else {
+                tr[i].style.display="none";
+            }
+        }
     }
 }
 

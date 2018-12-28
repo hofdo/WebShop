@@ -7,19 +7,17 @@ require_once "../Pages/Helper.php";
 
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../js/AdminSection.js"></script>
 
 <h1>Admin</h1>
 <h2>Studentlist</h2>
 
-<script src="../js/AdminSection.js"></script>
-
 <div class="userList">
+    <input type="search" placeholder="Search..." onkeyup="adminSearchUser()" id="adminSearch" class="adminSearch">
     <table id="userTable">
-        <form>
         <?php
             User::renderUserList();
         ?>
-        </form>
         <tr><td><button onclick="showEditUserForm()">Change User</button></td><td><button onclick="deleteUser()">Delete User</button></td><td><button onclick="showAddUserForm()">Add User</button></td></tr>
     </table>
     <label id="adminUserAddLabel"></label>
@@ -27,7 +25,7 @@ require_once "../Pages/Helper.php";
             <h2>Edit user</h2>
             <table>
                 <tr><td><button onclick="closeEdit()">X</button></td></tr>
-                <tr class="adminSectionIDRow" ><td>ID:</td><td><input id="adminSectionID" class="adminSectionID" name="ID" readonly></td></tr>
+                <tr><td>ID:</td><td><input id="adminSectionID" class="adminSectionID" name="ID" readonly></td></tr>
                 <tr><td>Username:</td><td><input id="adminSectionUsername" type="text" value=""></td></tr>
                 <tr><td>Password:</td><td><input id="adminSectionPassword" type="password" value="" ></td></tr>
                 <tr><td>Email:</td><td><input id="adminSectionEmail" type="email" value="" ></td></tr>

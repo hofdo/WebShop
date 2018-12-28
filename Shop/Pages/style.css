@@ -85,7 +85,7 @@ Navigation
 Profile & Admin
  */
 
-.profileView button, .profileEdit button, .userEdit button, .userList button {
+.profileView button, .profileEdit button, .userEdit table tr td button, .userList table tr td button {
     font-size: 16px;
     border: none;
     outline: none;
@@ -100,6 +100,11 @@ Profile & Admin
     padding: 8px;
 }
 
+.profileView table tr th, .userList table tr th {
+    padding: 8px;
+    text-align: left;
+}
+
 .profileView button:hover, .userEdit button:hover, .userList button:hover{
     background-color: #3498db;
 }
@@ -109,9 +114,14 @@ Profile & Admin
     display: none;
 }
 
-.adminChangeUser, .adminAddUser, .adminSectionIDRow {
+.adminChangeUser, .adminAddUser {
     display: none;
 }
+
+.adminSearch {
+    padding: 6px 8px;
+}
+
 
 /*
 DropDown AdminView
@@ -161,6 +171,8 @@ DropDown AdminView
 .adminViewDropDown:hover .adminView-content {
     display: block;
 }
+
+
 
 /*
 DropDown Language

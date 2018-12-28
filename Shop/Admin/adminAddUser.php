@@ -2,7 +2,6 @@
 
 require "../Entity/DB.php";
 require "../Entity/User.php";
-require "../Entity/Admin.php";
 
 
 
