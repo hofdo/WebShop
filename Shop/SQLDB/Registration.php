@@ -6,7 +6,7 @@ require "../Entity/DB.php";
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
-    $user = new User($_POST["username"], $_POST["password"], $_POST["firstName"], $_POST["lastName"], $_POST["email"]);
+    $user = new User(strtolower($_POST["username"]), $_POST["password"], $_POST["firstName"], $_POST["lastName"], $_POST["email"]);
 
     if (!($user->checkUserExists($_POST["username"])) && isset($user)) {
         $user->createUser();

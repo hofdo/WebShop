@@ -16,27 +16,32 @@ require "../Entity/Admin.php";
             $lastName = mysqli_escape_string($db, $_REQUEST['lastname']);
             $uid = mysqli_escape_string($db, $_REQUEST['uid']);
 
+            $result = User::checkUserExists($username);
 
-            try {
-                if (isset($username)) {
-                    User::updateUser($uid, "username", $username);
-                }
-                if (isset($password)) {
-                    User::updateUser($uid, "password", $password);
-                }
-                if (isset($email)) {
-                    User::updateUser($uid, "email", $email);
-                }
-                if (isset($firstName)) {
-                    User::updateUser($uid, "firstname", $firstName);
-                }
-                if (isset($lastName)) {
-                    User::updateUser($uid, "lastname", $lastName);
-                }
+            if (!$result) {
 
-            } catch (Exception $exception) {
+                try {
+                    if (isset($username)) {
+                        User::updateUser($uid, "username", $username);
+                    }
+                    if (isset($password)) {
+                        User::updateUser($uid, "password", $password);
+                    }
+                    if (isset($email)) {
+                        User::updateUser($uid, "email", $email);
+                    }
+                    if (isset($firstName)) {
+                        User::updateUser($uid, "firstname", $firstName);
+                    }
+                    if (isset($lastName)) {
+                        User::updateUser($uid, "lastname", $lastName);
+                    }
 
+                } catch (Exception $exception) {
+
+                }
             }
+            echo $result;
         }
 
     DB::closeConnection();

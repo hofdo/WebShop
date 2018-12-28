@@ -142,7 +142,9 @@ class User
         if ($count == 1){
             return true;
         }
-        return false;
+        else{
+            return false;
+        }
     }
 
     public static function isLoggedIn(){

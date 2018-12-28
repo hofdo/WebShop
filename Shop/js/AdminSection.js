@@ -45,6 +45,7 @@ function showEditUserForm() {
 
 function showAddUserForm() {
     document.getElementById('userEdit').style.display='block';
+
     if (document.getElementById('adminChangeUser').style.display !== "block") {
         document.getElementById('adminAddUser').style.display='block';
 
@@ -58,7 +59,15 @@ function showAddUserForm() {
 function closeEdit() {
     document.getElementById('userEdit').style.display='none';
     document.getElementById("adminUserAddLabel").innerText = "";
+    document.getElementById('adminAddUser').style.display='none';
+    document.getElementById('adminChangeUser').style.display='none';
 
+    document.getElementById("adminSectionID").value="";
+    document.getElementById("adminSectionUsername").value="";
+    document.getElementById("adminSectionPassword").value="";
+    document.getElementById("adminSectionEmail").value="";
+    document.getElementById("adminSectionFirstName").value="";
+    document.getElementById("adminSectionLastName").value="";
 }
 
 function editUser() {
@@ -74,17 +83,24 @@ function editUser() {
             if (checkRegex("^[A-Za-z0-9.,!?:;\-_]+[@]{1}[A-Za-z0-9]+\.{1}[A-Za-z]{2,5}", email)) {
                 var request = new XMLHttpRequest();
                 request.open("POST", "../SQLDB/adminEditUser.php?uid=" + uid + "&username=" + userName + "&password="
-                    + password + "&email=" + email + "&firstname=" + firstName + "&lastname" + lastName);
+                    + password + "&email=" + email + "&firstname=" + firstName + "&lastname=" + lastName);
                 request.onload = function () {
-                    var table = document.getElementById("userTable");
-                    for (var i = 1; i < (table.rows.length - 1); i++) {
-                        var idName = "adminCheckBox" + i;
-                        if (document.getElementById(idName).checked === true) {
-                            table.rows[i].cells[2].innerHTML = userName;
-                            table.rows[i].cells[3].innerHTML = firstName;
-                            table.rows[i].cells[4].innerHTML = lastName;
-                            table.rows[i].cells[5].innerHTML = email;
+                    var userExists = request.responseText;
+                    if (!userExists) {
+                        alert(userExists);
+                        var table = document.getElementById("userTable");
+                        for (var i = 1; i < (table.rows.length - 1); i++) {
+                            var idName = "adminCheckBox" + i;
+                            if (document.getElementById(idName).checked === true) {
+                                table.rows[i].cells[2].innerHTML = userName;
+                                table.rows[i].cells[3].innerHTML = firstName;
+                                table.rows[i].cells[4].innerHTML = lastName;
+                                table.rows[i].cells[5].innerHTML = email;
+                            }
                         }
+                    }
+                    else{
+                        document.getElementById("adminUserAddLabel").innerText = "User already exists";
                     }
                 };
                 request.send();
@@ -102,7 +118,6 @@ function editUser() {
     else{
         document.getElementById("adminUserAddLabel").innerText = "Username should only contain letters, numbers, the following characters: {-_.?!} and must not be longer than 20";
     }
-
 }
 
 function addUser() {
@@ -114,27 +129,46 @@ function addUser() {
 
 
 
+
     if (checkRegex("^([A-Za-z0-9\-_.?!]){3,20}", userName)) {
         if (checkRegex("^([A-Za-z0-9\-_.?!]){1,30}", password)) {
             if (checkRegex("^[A-Za-z0-9.,!?:;\-_]+[@]{1}[A-Za-z0-9]+\.{1}[A-Za-z]{2,5}", email)) {
                 if (firstName !== "" && lastName !== "") {
                     var request = new XMLHttpRequest();
                     request.open("POST", "../SQLDB/adminAddUser.php?username=" + userName + "&password="
-                        + password + "&email=" + email + "&firstname=" + firstName + "&lastname" + lastName);
+                        + password + "&email=" + email + "&firstname=" + firstName + "&lastname=" + lastName);
                     request.onload = function () {
-                        var table = document.getElementById("userTable");
-                        var row = table.insertRow(table.rows.length - 1);
-                        var cell1 = row.insertCell(0);
-                        var cell2 = row.insertCell(1);
-                        var cell3 = row.insertCell(2);
-                        var cell4 = row.insertCell(3);
-                        var cell5 = row.insertCell(4);
-                        var cell6 = row.insertCell(5);
 
-                        var checkbox = document.createElement("input");
-                        checkbox.type = "checkbox";
-                        checkbox.id = "adminCheckBox" + (table.rows.length - 2);
-                        cell1.appendChild(checkbox);
+                        var response = request.responseText.split(";");
+                        var uid = response[0];
+                        var userExists = response[1];
+
+                        if (!userExists) {
+
+                            var table = document.getElementById("userTable");
+                            var row = table.insertRow(table.rows.length - 1);
+                            var checkboxCell = row.insertCell(0);
+                            var uidCell = row.insertCell(1);
+                            var usernameCell = row.insertCell(2);
+                            var firstnameCell = row.insertCell(3);
+                            var lastNameCell = row.insertCell(4);
+                            var emailCell = row.insertCell(5);
+
+                            var checkbox = document.createElement("input");
+                            checkbox.type = "checkbox";
+                            checkbox.id = "adminCheckBox" + (table.rows.length - 2);
+                            checkboxCell.appendChild(checkbox);
+
+                            uidCell.innerHTML = uid;
+                            usernameCell.innerHTML = userName;
+                            firstnameCell.innerHTML = firstName;
+                            lastNameCell.innerHTML = lastName;
+                            emailCell.innerHTML = email;
+                        }
+                        else{
+                            document.getElementById("adminUserAddLabel").innerText = "User already exists";
+
+                        }
 
                     };
                     request.send();
