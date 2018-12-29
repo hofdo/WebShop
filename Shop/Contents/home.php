@@ -1,5 +1,3 @@
 <?php
 
-    render_mainContent($pageId);
-
-?>
+echo t("mainContent_$pageId");
