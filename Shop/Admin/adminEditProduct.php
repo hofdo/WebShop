@@ -9,29 +9,34 @@ require "../Entity/Product.php";
         if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $name = mysqli_escape_string($db, $_REQUEST['productName']);
+            $oldName = mysqli_escape_string($db, $_REQUEST['oldName']);
             $value = mysqli_escape_string($db, $_REQUEST['value']);
             $category = mysqli_escape_string($db, $_REQUEST['category']);
             $pid = mysqli_escape_string($db, $_REQUEST['pid']);
 
-            $result = Product::checkProductExists($name);
 
-            if (!$result) {
+            $resultName = Product::checkProductExists($name);
+            $resultCategory = Product::checkCategoryExists($category);
+            if (!($resultName) || $oldName == $name) {
+                if (!($resultCategory)) {
 
-                try {
-                    if (isset($name)) {
-                    }
-                    if (isset($value)) {
-                    }
-                    if (isset($category)) {
-                    }
-                    if (isset($pid)) {
-                    }
+                    try {
+                        if (isset($name)) {
+                            Product::updateProduct($pid, "name", $name);
+                        }
+                        if (isset($value)) {
+                            Product::updateProduct($pid, "value", $value);
+                        }
+                        if (isset($category)) {
+                            Product::updateProduct($pid, "category", $category);
+                        }
 
-                } catch (Exception $exception) {
+                    } catch (Exception $exception) {
 
+                    }
                 }
             }
-            echo $result;
+            echo $resultName . ";" . $resultCategory;
         }
 
     DB::closeConnection();

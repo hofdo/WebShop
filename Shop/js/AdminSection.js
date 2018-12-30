@@ -10,16 +10,24 @@ function editUser() {
     var firstName = document.getElementById("adminSectionFirstName").value;
     var lastName = document.getElementById("adminSectionLastName").value;
 
+    var table = document.getElementById("userTable");
+    for (var i = 1; i < (table.rows.length-1) ; i++){
+        var idName = "adminCheckBox"+i;
+        if(document.getElementById(idName).checked === true){
+            var oldUserName = table.rows[i].cells[2].innerHTML;
+        }
+    }
+
     if (checkRegex("^([A-Za-z0-9\-_.?!]){3,20}", userName)) {
         if (checkRegex("^([A-Za-z0-9\-_.?!]){1,30}", password)) {
             if (checkRegex("^[A-Za-z0-9.,!?:;\-_]+[@]{1}[A-Za-z0-9]+\.{1}[A-Za-z]{2,5}", email)) {
                 var request = new XMLHttpRequest();
-                request.open("POST", "../Admin/adminEditUser.php?uid=" + uid + "&username=" + userName + "&password="
+                request.open("POST", "../Admin/adminEditUser.php?uid=" + uid + "&username=" + userName + "&oldUsername=" + oldUserName + "&password="
                     + password + "&email=" + email + "&firstname=" + firstName + "&lastname=" + lastName);
                 request.onload = function () {
                     var userExists = request.responseText;
-                    alert(request.responseText);
-                    if (!userExists) {
+                    alert(oldUserName);
+                    if (!(userExists) || oldUserName === userName) {
                         var table = document.getElementById("userTable");
                         for (var i = 1; i < (table.rows.length - 1); i++) {
                             var idName = "adminCheckBox" + i;
@@ -247,26 +255,40 @@ function editProduct() {
     var value = document.getElementById("adminSectionValue").value;
     var category = document.getElementById("adminSectionCategory").value;
 
-
+    var table = document.getElementById("productTable");
+    for (var i = 1; i < (table.rows.length-1) ; i++){
+        var idName = "adminProductCheckBox"+i;
+        if(document.getElementById(idName).checked === true){
+            var oldName = table.rows[i].cells[2].innerHTML;
+        }
+    }
                 var request = new XMLHttpRequest();
                 request.open("POST", "../Admin/adminEditProduct.php?pid=" + pid + "&productName=" + productName + "&value="
-                    + value + "&category=" + category);
+                    + value + "&category=" + category + "&oldName=" + oldName);
                 request.onload = function () {
-                    var userExists = request.responseText;
-                    alert(request.responseText);
-                    if (!userExists) {
-                        var table = document.getElementById("userTable");
-                        for (var i = 1; i < (table.rows.length - 1); i++) {
-                            var idName = "adminCheckBox" + i;
-                            if (document.getElementById(idName).checked === true) {
-                                table.rows[i].cells[2].innerHTML = productName;
-                                table.rows[i].cells[3].innerHTML = value;
-                                table.rows[i].cells[4].innerHTML = category;
+                    var result = request.responseText.split(";");
+                    var productExists = result[0];
+                    var categoryExists = result[1];
+
+                    if (!(productExists) || oldName === productName) {
+                        if (!(categoryExists)) {
+                            var table = document.getElementById("productTable");
+                            for (var i = 1; i < (table.rows.length - 1); i++) {
+                                var idName = "adminProductCheckBox" + i;
+                                if (document.getElementById(idName).checked === true) {
+                                    table.rows[i].cells[2].innerHTML = productName;
+                                    table.rows[i].cells[3].innerHTML = value;
+                                    table.rows[i].cells[4].innerHTML = category;
+
+                                }
                             }
+                        }
+                        else {
+                            document.getElementById("adminProductAddLabel").innerText = "Category already exists";
                         }
                     }
                     else{
-                        document.getElementById("adminUserAddLabel").innerText = "User already exists";
+                        document.getElementById("adminProductAddLabel").innerText = "Product already exists";
                     }
                 };
                 request.send();
@@ -300,7 +322,16 @@ function showEditProductForm() {
             document.getElementById("adminSectionProductID").value = array[0];
             document.getElementById("adminSectionProductName").value = array[1];
             document.getElementById("adminSectionValue").value = array[2];
-            document.getElementById("adminSectionCategory").value = array[3];
+
+            var category = array[3];
+
+            var categories = document.getElementById("adminSectionCategory");
+
+            for (var i = 0; i < categories.length; i++){
+                if (categories[i].innerHTML === category){
+                    categories[i].selected = true;
+                }
+            }
         };
         request.send();
 
@@ -339,12 +370,23 @@ function closeEdit() {
     document.getElementById('adminAddUser').style.display='none';
     document.getElementById('adminChangeUser').style.display='none';
 
+
+    document.getElementById('productEdit').style.display='none';
+    document.getElementById("adminProductAddLabel").innerText = "";
+    document.getElementById('adminAddProduct').style.display='none';
+    document.getElementById('adminChangeProduct').style.display='none';
+
+
     document.getElementById("adminSectionID").value="";
     document.getElementById("adminSectionUsername").value="";
     document.getElementById("adminSectionPassword").value="";
     document.getElementById("adminSectionEmail").value="";
     document.getElementById("adminSectionFirstName").value="";
     document.getElementById("adminSectionLastName").value="";
+
+    document.getElementById("adminSectionProductID").value="";
+    document.getElementById("adminSectionProductName").value="";
+    document.getElementById("adminSectionValue").value="";
 }
 
 

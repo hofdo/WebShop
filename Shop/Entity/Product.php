@@ -49,13 +49,33 @@ class Product
 
     //Methods
 
+    public static function updateProduct($pid, $subject, $toChange){
+        try {
+            if ($subject == "name") {
+                $query = "UPDATE products SET $subject='$toChange' WHERE products.pid='$pid'";
+                DB::doQuery($query);
+            } elseif ($subject == "value") {
+                $query = "UPDATE products SET $subject='$toChange' WHERE products.pid='$pid'";
+                DB::doQuery($query);
+            } elseif ($subject == "category") {
+                $queryCategoryID = "SELECT cid FROM `categories` WHERE category = '$toChange'";
+                $categoryID = DB::doQuery($queryCategoryID)->fetch_row();
+                $query = "UPDATE `products` SET `categories_id` = '$categoryID[0]' WHERE `products`.`pid` = '$pid'";
+                DB::doQuery($query);
+            }
+        }
+        catch (Exception $exception){
+            echo $exception->getMessage();
+        }
+    }
+
     public static function getCategories(){
-        $query = "SELECT categorie FROM `categories`";
+        $query = "SELECT category FROM `categories`";
         return(DB::doQuery($query));
     }
 
     public static function getProduct($name){
-        $query = "SELECT pid, name, value, picture, categorie FROM `products` As p INNER JOIN `categories` AS c ON p.categories_id = c.cid WHERE name = '$name'";
+        $query = "SELECT pid, name, value, picture, category FROM `products` As p INNER JOIN `categories` AS c ON p.categories_id = c.cid WHERE name = '$name'";
         return(DB::doQuery($query));
     }
 
@@ -65,19 +85,31 @@ class Product
     }
 
     public static function getProductList(){
-        $query = "SELECT pid, name, value, picture, categorie FROM `products` As p INNER JOIN `categories` AS c ON p.categories_id = c.cid";
+        $query = "SELECT pid, name, value, picture, category FROM `products` As p INNER JOIN `categories` AS c ON p.categories_id = c.cid";
         return (DB::doQuery($query));
     }
 
     public static function checkProductExists($name){
-        $query = "Select * FROM `products` WHERE name = $name";
+        $query = "Select * FROM `products` WHERE name = '$name'";
         $result = DB::doQuery($query);
-        $count = $result->num_rows;
+        $count = mysqli_num_rows($result);
         if ($count == 1){
             return true;
         }
         else{
             return false;
+        }
+    }
+
+    public static function checkCategoryExists($newCategory){
+        $categories = self::getCategories();
+        foreach ($categories as $category){
+            if ($category == $newCategory){
+                return true;
+            }
+            else{
+                return false;
+            }
         }
     }
 

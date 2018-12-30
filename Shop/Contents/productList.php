@@ -28,7 +28,15 @@ require_once "../Pages/Helper.php";
             <tr><td>ID:</td><td><input id="adminSectionProductID" class="adminSectionID" name="ID" readonly></td></tr>
             <tr><td>Name:</td><td><input id="adminSectionProductName" type="text" value=""></td></tr>
             <tr><td>Value:</td><td><input id="adminSectionValue" type="text" value="" ></td></tr>
-            <tr><td>Category:</td><td><input id="adminSectionCategory" type="text" value="" ></td></tr>
+            <tr><td>Category:</td><td><select id="adminSectionCategory">
+                        <?php
+                        $categories = Product::getCategories()->fetch_all();
+                        foreach ($categories as $category){
+                            echo "<option value='$category[0]'>$category[0]</option>";
+                        }
+
+                        ?>
+                    </select></td></tr>
             <tr><td><button type='submit' id="adminChangeProduct" class="adminChangeProduct" onclick="editProduct()">Edit User</button></td><td><button type='submit' id="adminAddProduct" class="adminAddProduct" onclick="addProduct()">Add user</button></td></tr>
         </table
     </div>

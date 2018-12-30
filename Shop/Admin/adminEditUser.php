@@ -9,6 +9,7 @@ require "../Entity/User.php";
         if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $username = mysqli_escape_string($db, $_REQUEST['username']);
+            $oldUsername = mysqli_escape_string($db, $_REQUEST['oldUsername']);
             $password = mysqli_escape_string($db, $_REQUEST['password']);
             $email = mysqli_escape_string($db, $_REQUEST['email']);
             $firstName = mysqli_escape_string($db, $_REQUEST['firstname']);
@@ -17,7 +18,7 @@ require "../Entity/User.php";
 
             $result = User::checkUserExists($username);
 
-            if (!$result) {
+            if (!($result) || $oldUsername==$username) {
 
                 try {
                     if (isset($username)) {
