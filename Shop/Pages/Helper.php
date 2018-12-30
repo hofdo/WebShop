@@ -128,11 +128,13 @@ function render_productsDropDown($language, $pageId)
     $productDropDownNav = (DB::doQuery($query))->fetch_all();
     foreach ($productDropDownNav as $categories_id) {
         $categories_id = $categories_id[0];
+        $query = "SELECT categories FROM categories WHERE cid = $categories_id";
+        $name = (DB::doQuery($query))->fetch_all();
         $url = $urlBase;
         add_param($url, "id", 'products');
         add_param($url, "categories", $categories_id);
         $class = $pageId == $categories_id ? 'active' : 'inactive';
-        echo "<a class='$class' href=\"$url\">" . t($categories_id) . "</a>";
+        echo "<a class='$class' href=\"$url\">" . t($name[0][0]) . "</a>";
     };
 }
 
