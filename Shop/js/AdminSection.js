@@ -1,3 +1,7 @@
+/*
+Userlist
+ */
+
 function editUser() {
     var uid = document.getElementById("adminSectionID").value;
     var userName = document.getElementById("adminSectionUsername").value;
@@ -172,7 +176,7 @@ function showEditUserForm() {
             document.getElementById("adminSectionEmail").value = array[5];
             document.getElementById("adminSectionFirstName").value = array[3];
             document.getElementById("adminSectionLastName").value = array[4];
-        }
+        };
         request.send();
 
         document.getElementById("adminUserAddLabel").innerText = "";
@@ -210,21 +214,6 @@ function showAddUserForm() {
 
 }
 
-function closeEdit() {
-    document.getElementById('userEdit').style.display='none';
-    document.getElementById("adminUserAddLabel").innerText = "";
-    document.getElementById('adminAddUser').style.display='none';
-    document.getElementById('adminChangeUser').style.display='none';
-
-    document.getElementById("adminSectionID").value="";
-    document.getElementById("adminSectionUsername").value="";
-    document.getElementById("adminSectionPassword").value="";
-    document.getElementById("adminSectionEmail").value="";
-    document.getElementById("adminSectionFirstName").value="";
-    document.getElementById("adminSectionLastName").value="";
-}
-
-
 function adminSearchUser() {
     var input = document.getElementById("adminSearch");
     var filter = input.value.toUpperCase();
@@ -242,6 +231,122 @@ function adminSearchUser() {
         }
     }
 }
+
+/*
+Productlist
+ */
+
+
+function addProduct() {
+
+}
+
+function editProduct() {
+    var pid = document.getElementById("adminSectionProductID").value;
+    var productName = document.getElementById("adminSectionProductName").value;
+    var value = document.getElementById("adminSectionValue").value;
+    var category = document.getElementById("adminSectionCategory").value;
+
+
+                var request = new XMLHttpRequest();
+                request.open("POST", "../Admin/adminEditProduct.php?pid=" + pid + "&productName=" + productName + "&value="
+                    + value + "&category=" + category);
+                request.onload = function () {
+                    var userExists = request.responseText;
+                    alert(request.responseText);
+                    if (!userExists) {
+                        var table = document.getElementById("userTable");
+                        for (var i = 1; i < (table.rows.length - 1); i++) {
+                            var idName = "adminCheckBox" + i;
+                            if (document.getElementById(idName).checked === true) {
+                                table.rows[i].cells[2].innerHTML = productName;
+                                table.rows[i].cells[3].innerHTML = value;
+                                table.rows[i].cells[4].innerHTML = category;
+                            }
+                        }
+                    }
+                    else{
+                        document.getElementById("adminUserAddLabel").innerText = "User already exists";
+                    }
+                };
+                request.send();
+}
+
+function showAddProductForm() {
+
+}
+
+function deleteProduct() {
+
+}
+
+function showEditProductForm() {
+    var table = document.getElementById("productTable");
+    var counter = 0;
+    for (var i = 1; i < (table.rows.length-1) ; i++){
+        var idName = "adminProductCheckBox"+i;
+        if(document.getElementById(idName).checked === true){
+            counter++;
+            var row = table.rows[i];
+        }
+    }
+    if (counter === 1 && document.getElementById('adminAddProduct').style.display !== "block"){
+        var productName = row.cells[2].innerHTML;
+        var request = new XMLHttpRequest();
+        request.open("GET", "../Admin/adminGetProduct.php?name=" + productName);
+        request.onload = function(){
+            var data = request.responseText;
+            var array = data.split(";");
+            document.getElementById("adminSectionProductID").value = array[0];
+            document.getElementById("adminSectionProductName").value = array[1];
+            document.getElementById("adminSectionValue").value = array[2];
+            document.getElementById("adminSectionCategory").value = array[3];
+        };
+        request.send();
+
+        document.getElementById("adminProductAddLabel").innerText = "";
+        document.getElementById('productEdit').style.display='block';
+
+        if (document.getElementById('adminAddProduct').style.display !== "block") {
+            document.getElementById('adminChangeProduct').style.display = 'block';
+        }
+        else{
+            document.getElementById("adminProductAddLabel").innerText = "Cannot edit while adding a user";
+        }
+    }
+    else if (counter > 1){
+        document.getElementById("adminProductAddLabel").innerText = "Please Select only one user";
+    }
+    else if (document.getElementById('adminAddProduct').style.display === "block"){
+        document.getElementById("adminProductAddLabel").innerText = "Please close the add user interface first!";
+    }
+    else{
+        document.getElementById("adminProductAddLabel").innerText = "Please select one user";
+    }
+}
+
+function adminSearchProduct() {
+    
+}
+
+/*
+Common methods
+ */
+
+function closeEdit() {
+    document.getElementById('userEdit').style.display='none';
+    document.getElementById("adminUserAddLabel").innerText = "";
+    document.getElementById('adminAddUser').style.display='none';
+    document.getElementById('adminChangeUser').style.display='none';
+
+    document.getElementById("adminSectionID").value="";
+    document.getElementById("adminSectionUsername").value="";
+    document.getElementById("adminSectionPassword").value="";
+    document.getElementById("adminSectionEmail").value="";
+    document.getElementById("adminSectionFirstName").value="";
+    document.getElementById("adminSectionLastName").value="";
+}
+
 
 
 function checkRegex(regex, object) {

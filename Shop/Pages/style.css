@@ -85,7 +85,7 @@ Navigation
 Profile & Admin
  */
 
-.profileView button, .profileEdit button, .userEdit table tr td button, .userList table tr td button {
+.profileView button, .profileEdit button, .userEdit table tr td button, .userList table tr td button, .productList table tr td button, .profileEdit table tr td button {
     font-size: 16px;
     border: none;
     outline: none;
@@ -96,29 +96,29 @@ Profile & Admin
     margin: 0;
 }
 
-.profileView table tr td, .userList table tr td {
+.profileView table tr td, .userList table tr td, .productList table tr td {
     padding: 8px;
 }
 
-.profileView table tr th, .userList table tr th {
+.profileView table tr th, .userList table tr th, .productList table tr th {
     padding: 8px;
     text-align: left;
 }
 
-.profileView button:hover, .userEdit button:hover, .userList button:hover{
+.profileView button:hover, .userEdit button:hover, .userList button:hover, .productList button:hover, .profileEdit button:hover{
     background-color: #3498db;
 }
 
-.profileEdit, .userEdit{
+.profileEdit, .userEdit, .productEdit{
     margin-top: 10px;
     display: none;
 }
 
-.adminChangeUser, .adminAddUser {
+.adminChangeUser, .adminAddUser, .adminAddProduct {
     display: none;
 }
 
-.adminSearch {
+.adminSearch, .adminProductSearch {
     padding: 6px 8px;
 }
 
