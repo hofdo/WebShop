@@ -16,10 +16,7 @@ require "../Entity/Product.php";
 
 
             $resultName = Product::checkProductExists($name);
-            $resultCategory = Product::checkCategoryExists($category);
             if (!($resultName) || $oldName == $name) {
-                if (!($resultCategory)) {
-
                     try {
                         if (isset($name)) {
                             Product::updateProduct($pid, "name", $name);
@@ -34,9 +31,8 @@ require "../Entity/Product.php";
                     } catch (Exception $exception) {
 
                     }
-                }
             }
-            echo $resultName . ";" . $resultCategory;
+            echo $resultName;
         }
 
     DB::closeConnection();

@@ -24,7 +24,7 @@ require_once "../Pages/Helper.php";
     <div id="userEdit" class="userEdit">
             <h2>Edit user</h2>
             <table>
-                <tr><td><button onclick="closeEdit()">X</button></td></tr>
+                <tr><td><button onclick="closeUserEdit()">X</button></td></tr>
                 <tr><td>ID:</td><td><input id="adminSectionID" class="adminSectionID" name="ID" readonly></td></tr>
                 <tr><td>Username:</td><td><input id="adminSectionUsername" type="text" value=""></td></tr>
                 <tr><td>Password:</td><td><input id="adminSectionPassword" type="password" value="" ></td></tr>

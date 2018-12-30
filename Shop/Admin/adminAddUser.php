@@ -16,18 +16,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $result = User::checkUserExists($username);
 
-    try {
-        $user = new User($username, $password, $firstName, $lastName, $email);
+        try {
+            $user = new User($username, $password, $firstName, $lastName, $email);
 
-        if (!$result && isset($user)) {
-            $user->createUser();
+            if (!$result && isset($user)) {
+                $user->createUser();
+            }
+        } catch (Exception $exception) {
+
         }
-    } catch (Exception $exception) {
-
     }
     $uid = User::getUser($username)->fetch_row()[0];
     echo $uid . ";" . $result;
-}
 
 DB::closeConnection();
 

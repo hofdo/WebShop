@@ -75,7 +75,7 @@ class User
 
     public function createUser(){
         $query = "INSERT INTO `users` (`uid`, `username`, `password`, `firstname`, `lastname`, `email`) VALUES (NULL, '$this->username', '$this->password', '$this->firstName', '$this->lastName', '$this->email')";
-        return(DB::doQuery($query));
+        DB::doQuery($query);
     }
 
     public static function updateUser($uid, $subject, $toChange){
@@ -91,7 +91,7 @@ class User
                 DB::doQuery($query);
             } elseif ($subject == "firstname" || $subject == "lastname" && preg_match("^[A-Za-z]{1,30}^", $toChange)) {
                 $query = "UPDATE users SET $subject='$toChange' WHERE users.uid='$uid'";
-                DB::doQuery($query);
+                return(DB::doQuery($query));
             }
         }
         catch (Exception $exception){

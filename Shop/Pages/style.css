@@ -114,7 +114,7 @@ Profile & Admin
     display: none;
 }
 
-.adminChangeUser, .adminAddUser, .adminAddProduct {
+.adminChangeUser, .adminAddUser, .adminAddProduct, .adminChangeProduct {
     display: none;
 }
 

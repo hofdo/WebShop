@@ -6,13 +6,13 @@ require_once "DB.php";
 class Product
 {
     private $name;
-    private $categorie;
-    private $description;
+    private $value;
+    private $category;
 
-    public function __construct($name, $categorie, $description) {
+    public function __construct($name, $category, $value) {
         $this->name = $name;
-        $this-> categorie = $categorie;
-        $this->description = $description;
+        $this->category = $category;
+        $this->value = $value;
     }
 
     //Getter and Setter
@@ -27,27 +27,34 @@ class Product
         $this->name = $name;
     }
 
-    public function getCategorie()
+    public function getCategory()
     {
-        return $this->categorie;
+        return $this->category;
     }
 
-    public function setCategorie($categorie)
+    public function setCategory($category)
     {
-        $this->categorie = $categorie;
+        $this->category = $category;
     }
 
-    public function getDescription()
+    public function getvalue()
     {
-        return $this->description;
+        return $this->value;
     }
 
-    public function setDescription($description)
+    public function setvalue($value)
     {
-        $this->description = $description;
+        $this->value = $value;
     }
 
     //Methods
+
+    public function createProduct(){
+        $queryCategoryID = "SELECT cid FROM `categories` WHERE category = '$this->category'";
+        $categoryID = DB::doQuery($queryCategoryID)->fetch_row();
+        $query = "INSERT INTO `products` (`pid`, `name`, `value`, `categories_id`) VALUES (NULL, '$this->name', '$this->value', '$categoryID[0]')";
+        DB::doQuery($query);
+    }
 
     public static function updateProduct($pid, $subject, $toChange){
         try {
@@ -67,6 +74,11 @@ class Product
         catch (Exception $exception){
             echo $exception->getMessage();
         }
+    }
+
+    public static function deleteProduct($name){
+        $query = "DELETE FROM `products` WHERE `products`.`name` = '$name'";
+        return(DB::doQuery($query));
     }
 
     public static function getCategories(){
