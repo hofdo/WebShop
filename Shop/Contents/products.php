@@ -3,16 +3,18 @@ require_once "../SQLDB/Session.php";
 require_once "../Entity/Product.php";
 require_once "../Entity/DB.php";
 
-$categories = get_param('categories', 'all');
-if ($categories == 'all') {
+$categories_id = get_param('categories', '0');
+if ($categories_id == '0') {
     $result = product::getAllProducts();
 } else {
-    $result = Product::getProductByCategories($categories);
+    $result = Product::getProductByCategories($categories_id);
 }
 echo '<h1>';
 echo t("products");
-if ($categories != "all"){
-    echo ": ".t($categories);
+if ($categories_id != "0"){
+    $query = "SELECT categories FROM categories WHERE cid=$categories_id";
+    $res = (DB::doQuery($query))->fetch_all();
+    echo ": ".t($res[0][0]);
 }
 echo '</h1>';
 

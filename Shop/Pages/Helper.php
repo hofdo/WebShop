@@ -124,13 +124,15 @@ function render_productsDropDown($language, $pageId)
 {
     $urlBase = $_SERVER['PHP_SELF'];
     add_param($urlBase, "lang", $language);
-    $productDropDownNav = array("laptop", "SM");
-    foreach ($productDropDownNav as $productNav) {
+    $query = "SELECT cid FROM categories";
+    $productDropDownNav = (DB::doQuery($query))->fetch_all();
+    foreach ($productDropDownNav as $categories_id) {
+        $categories_id = $categories_id[0];
         $url = $urlBase;
         add_param($url, "id", 'products');
-        add_param($url, "categories", $productNav);
-        $class = $pageId == $productNav ? 'active' : 'inactive';
-        echo "<a class='$class' href=\"$url\">" . t($productNav) . "</a>";
+        add_param($url, "categories", $categories_id);
+        $class = $pageId == $categories_id ? 'active' : 'inactive';
+        echo "<a class='$class' href=\"$url\">" . t($categories_id) . "</a>";
     };
 }
 

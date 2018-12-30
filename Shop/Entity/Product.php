@@ -52,9 +52,9 @@ class Product
         return (DB::doQuery($query));
     }
 
-    public static function getProductByCategories($categories)
+    public static function getProductByCategories($categories_id)
     {
-        $query = "SELECT * FROM products WHERE categorie ='$categories'";
+        $query = "SELECT * FROM products WHERE categories_id ='$categories_id'";
         return (DB::doQuery($query));
     }
 
