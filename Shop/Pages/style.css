@@ -62,7 +62,7 @@ Navigation
 
 }
 
-.navigation ul li a, .adminViewBtn {
+.navigation ul li a, .adminViewBtn, .productViewBtn a {
     color: #ecf0f1;
     text-decoration: none;
     font-family: Arial, serif;
@@ -131,7 +131,7 @@ DropDown AdminView
     overflow: hidden;
 }
 
-.adminViewDropDown .adminViewBtn {
+.adminViewDropDown .adminViewBtn, .productViewBtn {
     font-size: 16px;
     border: none;
     outline: none;
@@ -182,7 +182,7 @@ Dropdown Products
     overflow: hidden;
 }
 
-.productDropDown .productViewBtn {
+.productDropDown, .productViewBtn {
     font-size: 16px;
     border: none;
     outline: none;
@@ -192,7 +192,7 @@ Dropdown Products
     margin: 0;
 }
 
-.productDropDown:hover .productBtn {
+.productDropDown:hover, .productViewBtn:hover {
     background-color: #3498db;
 }
 

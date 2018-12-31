@@ -65,7 +65,7 @@ function render_leftNav($language, $pageId)
                 echo "</div></div>";
             }
         } elseif ($nav == "products") {
-            echo "<div class='productDropDown'><button class='productViewBtn'><li class=\"$class\"><a href=\"$url\">" . t($nav) . "</a></li></button>";
+            echo "<div class='productDropDown'><button class='productViewBtn'><a href=\"$url\">" . t($nav) . "</a></button>";
             echo "<div class='product-content'>";
             render_productsDropDown($language, $pageId);
             echo "</div></div>";
