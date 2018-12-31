@@ -12,7 +12,7 @@ if ($categories_id == '0') {
 echo '<h1>';
 echo t("products");
 if ($categories_id != "0"){
-    $query = "SELECT categories FROM categories WHERE cid=$categories_id";
+    $query = "SELECT category FROM categories WHERE cid=$categories_id";
     $res = (DB::doQuery($query))->fetch_all();
     echo ": ".t($res[0][0]);
 }

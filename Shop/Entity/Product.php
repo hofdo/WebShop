@@ -132,15 +132,18 @@ class Product
         }
     }
 
-    public static function renderProductList(){
+    public static function renderProductList()
+    {
         $result = self::getProductList();
         $products = $result->fetch_all();
         $counter = 1;
         echo "<tr><th>Select</th><th>ID</th><th>Name</th><th>Value</th><th>Category</th></tr>";
-        foreach ($products as $product){
+        foreach ($products as $product) {
             echo "<tr><td><input type='checkbox' id='adminProductCheckBox$counter'></td><td>$product[0]</td><td>$product[1]</td><td>$product[2]</td><td>$product[4]</td></tr>";
             $counter++;
         }
+    }
+
     public static function renderProduct($product)
     {
         $language = get_param('lang', 'de');
