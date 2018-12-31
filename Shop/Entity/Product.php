@@ -86,9 +86,15 @@ class Product
         return(DB::doQuery($query));
     }
 
-    public static function getProduct($name){
+    public static function getProductAndCategoryID($name){
         $query = "SELECT pid, name, value, picture, category FROM `products` As p INNER JOIN `categories` AS c ON p.categories_id = c.cid WHERE name = '$name'";
         return(DB::doQuery($query));
+    }
+
+    public static function getProduct($name)
+    {
+        $query = "SELECT * FROM products WHERE name='$name'";
+        return (DB::doQuery($query));
     }
 
     public static function getProductByCategories($categories_id)
@@ -152,11 +158,11 @@ class Product
         add_param($url, "id", 'product');
         add_param($url, "product", $product[1]);
 
-        echo    "<div class='product'>";
+        echo    "<div class='product' id='product'>";
         echo    '<a href='.$url.'><img src="data:picture/jpeg;base64,' .base64_encode( $product[4] ).'"height="120" width="120"/></a>';
-        echo    "<div class='productTitle'>".t($product[1])."</div>";
+        echo    "<div class='productTitle'>".$product[1]."</div>";
         echo    "<div class='productPrice'>$product[3] sfr</div>";
-        echo    "<div class='ProductAdd'><button class='buttonAdd' type='submit'>".t("addCart")."</button></div></div>";
+        echo    "<div class='ProductAdd'><button class='buttonAdd' type='submit' onclick='addToShoppingCart()'>".t("addCart")."</button></div></div>";
     }
 
 }

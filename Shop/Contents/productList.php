@@ -7,8 +7,6 @@ require_once "../Pages/Helper.php";
 
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="../js/AdminSection.js"></script>
-
 <h1>Admin</h1>
 <h2>Productlist</h2>
 
