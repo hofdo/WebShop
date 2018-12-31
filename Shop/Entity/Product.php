@@ -91,9 +91,16 @@ class Product
         return(DB::doQuery($query));
     }
 
-    public static function getProducts(){
+    public static function getProductByCategories($categories_id)
+    {
+        $query = "SELECT * FROM products WHERE categories_id ='$categories_id'";
+        return (DB::doQuery($query));
+    }
+
+    public static function getAllProducts()
+    {
         $query = "SELECT * FROM products";
-        return(DB::doQuery($query));
+        return (DB::doQuery($query));
     }
 
     public static function getProductList(){
@@ -134,6 +141,19 @@ class Product
             echo "<tr><td><input type='checkbox' id='adminProductCheckBox$counter'></td><td>$product[0]</td><td>$product[1]</td><td>$product[2]</td><td>$product[4]</td></tr>";
             $counter++;
         }
+    public static function renderProduct($product)
+    {
+        $language = get_param('lang', 'de');
+        $url = $_SERVER['PHP_SELF'];
+        add_param($url, "lang", $language);
+        add_param($url, "id", 'product');
+        add_param($url, "product", $product[1]);
+
+        echo    "<div class='product'>";
+        echo    '<a href='.$url.'><img src="data:picture/jpeg;base64,' .base64_encode( $product[4] ).'"height="120" width="120"/></a>';
+        echo    "<div class='productTitle'>".t($product[1])."</div>";
+        echo    "<div class='productPrice'>$product[3] sfr</div>";
+        echo    "<div class='ProductAdd'><button class='buttonAdd' type='submit'>".t("addCart")."</button></div></div>";
     }
 
 }
