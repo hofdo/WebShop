@@ -246,7 +246,7 @@ function addProduct() {
     var value = document.getElementById("adminSectionValue").value;
     var category = document.getElementById("adminSectionCategory").value;
 
-    var table = document.getElementById("productTable");
+    var table = document.getElementById("productListTable");
     for (var i = 1; i < (table.rows.length-1) ; i++) {
         if (table.rows[i].cells[0].childNodes[0].checked === true) {
             var oldName = table.rows[i].cells[2].innerHTML;
@@ -263,7 +263,7 @@ function addProduct() {
 
 
         if (!productExists) {
-            var table = document.getElementById("productTable");
+            var table = document.getElementById("productListTable");
             var row = table.insertRow(table.rows.length - 1);
             var checkboxCell = row.insertCell(0);
             var pidCell = row.insertCell(1);
@@ -297,7 +297,7 @@ function editProduct() {
     var value = document.getElementById("adminSectionValue").value;
     var category = document.getElementById("adminSectionCategory").value;
 
-    var table = document.getElementById("productTable");
+    var table = document.getElementById("productListTable");
     for (var i = 1; i < (table.rows.length-1) ; i++){
         var idName = "adminProductCheckBox"+i;
         if(document.getElementById(idName).checked === true){
@@ -311,7 +311,7 @@ function editProduct() {
         var productExists = request.responseText;
 
         if (!(productExists) || oldName === productName) {
-                var table = document.getElementById("productTable");
+                var table = document.getElementById("productListTable");
                 for (var i = 1; i < (table.rows.length - 1); i++) {
                     var idName = "adminProductCheckBox" + i;
                     if (document.getElementById(idName).checked === true) {
@@ -345,7 +345,7 @@ function showAddProductForm() {
 }
 
 function deleteProduct() {
-    var table = document.getElementById("productTable");
+    var table = document.getElementById("productListTable");
     var counter = 0;
     var rowNumber;
     for (var i = 1; i < (table.rows.length-1) ; i++){
@@ -374,7 +374,7 @@ function deleteProduct() {
 }
 
 function showEditProductForm() {
-    var table = document.getElementById("productTable");
+    var table = document.getElementById("productListTable");
     var counter = 0;
     for (var i = 1; i < (table.rows.length-1) ; i++){
         if(table.rows[i].cells[0].childNodes[0].checked === true){

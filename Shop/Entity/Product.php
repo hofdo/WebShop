@@ -158,11 +158,12 @@ class Product
         add_param($url, "id", 'product');
         add_param($url, "product", $product[1]);
 
-        echo    "<div class='product' id='product'>";
-        echo    '<a href='.$url.'><img src="data:picture/jpeg;base64,' .base64_encode( $product[4] ).'"height="120" width="120"/></a>';
-        echo    "<div class='productTitle'>".$product[1]."</div>";
-        echo    "<div class='productPrice'>$product[3] sfr</div>";
-        echo    "<div class='ProductAdd'><button class='buttonAdd' type='submit' onclick='addToShoppingCart()'>".t("addCart")."</button></div></div>";
+        echo    "<div class='product' id='product$product[0]'><table class='productTable'>";
+        echo    "<tr><td>ID:  $product[0] </td></tr>";
+        echo    '<tr><td><a href='.$url.'><img src="data:picture/jpeg;base64,' .base64_encode( $product[4] ).'"height="120" width="120"/></a></td></tr>';
+        echo    "<tr><td class='productTitle'>".$product[1]."</td></tr>";
+        echo    "<tr><td class='productPrice'>$product[3] sfr</td></tr>";
+        echo    "<tr><td class='ProductAdd'><button class='buttonAdd' type='submit' onclick='addToShoppingCart()'>".t("addCart")."</button></td></tr></table></div>";
     }
 
 }

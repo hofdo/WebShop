@@ -12,7 +12,7 @@ require_once "../Pages/Helper.php";
 
 <div class="productList">
     <input type="search" placeholder="Search..." onkeyup="adminSearchProduct()" id="adminProductSearch" class="adminProductSearch">
-    <table id="productTable">
+    <table id="productListTable">
         <?php
         Product::renderProductList();
         ?>

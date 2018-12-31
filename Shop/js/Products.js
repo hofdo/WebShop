@@ -1,4 +1,6 @@
 function addToShoppingCart() {
+
+    $product = div
     var request = new XMLHttpRequest();
     request.open("POST", "../Product/addToShoppingCart.php");
     request.onload = function () {
