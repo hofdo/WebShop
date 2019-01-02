@@ -1,4 +1,6 @@
 <?php
+require_once "../Entity/Cart.php";
+
 $submit = t("submit");
 $buy = t("buy");
 $cancel = t("cancel");

@@ -82,6 +82,22 @@ class Product
         return(DB::doQuery($query));
     }
 
+    public static function getOrderID($username){
+        $query = "SELECT name FROM `shoppingcart` INNER JOIN users ON users.uid = shoppingcart.user_id INNER JOIN orders ON orders.oid = shoppingcart.order_id WHERE users.username = '$username'";;
+        $result = DB::doQuery($query);
+        $rows = $result->fetch_all();
+        $firstRow = $rows[0];
+        $num = explode("_", $firstRow[0]);
+        foreach ($rows as $row) {
+            $temp = explode("_", $row[0]);
+            if ($num[2] < $temp[2]){
+                $firstRow = $row;
+            }
+        }
+        return $firstRow[0];
+    }
+
+
     public static function getCategories(){
         $query = "SELECT category FROM `categories`";
         return(DB::doQuery($query));
@@ -138,12 +154,16 @@ class Product
             $num = explode("_", $name);
 
             if ($open == 1) {
-                return "order_" . $uid . "_" . $num[2];
+                $orderID = "order_" . $uid . "_" . $num[2];
+                return $orderID;
             } else {
                 $orderID = "order_" . $uid . "_" . ($num[2]+1);
                 if (!(self::checkOrderExists($orderID))) {
                     $query2 = "INSERT INTO `orders` (`oid`, `name`, `open`) VALUES (NULL, '$orderID', '1')";
                     DB::doQuery($query2);
+                    return $orderID;
+                }
+                else{
                     return $orderID;
                 }
             }
@@ -161,7 +181,8 @@ class Product
             $open = $firstRow[5];
             $num = explode("_", $firstRow[3]);
             if ($open == 1) {
-                return "order_" . $uid . "_" . $num[2];
+                $orderID = "order_" . $uid . "_" . $num[2];
+                return $orderID;
             } else {
                 $orderID = "order_" . $uid . "_" . ($num[2] + 1);
                 if (!(self::checkOrderExists($orderID))) {
@@ -238,7 +259,9 @@ class Product
         echo    '<tr><td><a href='.$url.'><img src="data:picture/jpeg;base64,' .base64_encode( $product[4] ).'"height="120" width="120"/></a></td></tr>';
         echo    "<tr><td class='productTitle' id='productTitle_$product[0]'>".$product[1]."</td></tr>";
         echo    "<tr><td class='productPrice' id='productPrice_$product[0]'>$product[3] sfr</td></tr>";
+        if ($_SESSION["logged_in"]){
         printf("<tr><td class='ProductAdd'><button class='buttonAdd' type='submit' onclick='addToShoppingCart(\"%s\")'>".t("addCart")."</button></td></tr></table></div>", $product[0]);
+        }
     }
 
 }
