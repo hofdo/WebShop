@@ -6,3 +6,10 @@ TODO
 - DB-Credentials in XML-File abspeichern
 - Apache --> Security
 - Website online hosten
+
+- Profile Einkaufs verlauf
+- Mail bestätigung einkauf
+- bestätigunf addcart
+- besser URL
+- Translation
+- Cart fertig

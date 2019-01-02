@@ -1,7 +1,6 @@
 <?php
 
-require "../Entity/User.php";
-require "../Entity/DB.php";
+require_once "../autoloader.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 

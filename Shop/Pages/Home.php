@@ -1,8 +1,9 @@
 <?php
 
-require "Helper.php";
+require_once "Helper.php";
+require_once "../autoloader.php";
 require_once "../SQLDB/Session.php";
-require_once "../Entity/ShoppingCart.php";
+
 
 // Set language and page ID as global variables.
 $language = get_param('lang', 'de');

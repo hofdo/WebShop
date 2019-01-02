@@ -1,7 +1,7 @@
 <?php
+
+require_once "../autoloader.php";
 require_once "../SQLDB/Session.php";
-require_once "../Entity/User.php";
-require_once "../Entity/DB.php";
 require_once "../Pages/Helper.php";
 
 
@@ -9,7 +9,7 @@ require_once "../Pages/Helper.php";
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <h1>Admin</h1>
-<h2>Studentlist</h2>
+<h2>Userlist</h2>
 
 <div class="userList">
     <input type="search" placeholder="Search..." onkeyup="adminSearchUser()" id="adminSearch" class="adminSearch">

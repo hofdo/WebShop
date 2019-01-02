@@ -1,49 +1,46 @@
 <?php
 
-require "../Entity/DB.php";
-require "../Entity/User.php";
+require_once "../autoloader.php";
 
+$db = DB::getInstance();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    $username = mysqli_escape_string($db, $_REQUEST['username']);
+    $oldUsername = mysqli_escape_string($db, $_REQUEST['oldUsername']);
+    $password = mysqli_escape_string($db, $_REQUEST['password']);
+    $email = mysqli_escape_string($db, $_REQUEST['email']);
+    $firstName = mysqli_escape_string($db, $_REQUEST['firstname']);
+    $lastName = mysqli_escape_string($db, $_REQUEST['lastname']);
+    $uid = mysqli_escape_string($db, $_REQUEST['uid']);
 
-        $db = DB::getInstance();
-        if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $result = User::checkUserExists($username);
 
-            $username = mysqli_escape_string($db, $_REQUEST['username']);
-            $oldUsername = mysqli_escape_string($db, $_REQUEST['oldUsername']);
-            $password = mysqli_escape_string($db, $_REQUEST['password']);
-            $email = mysqli_escape_string($db, $_REQUEST['email']);
-            $firstName = mysqli_escape_string($db, $_REQUEST['firstname']);
-            $lastName = mysqli_escape_string($db, $_REQUEST['lastname']);
-            $uid = mysqli_escape_string($db, $_REQUEST['uid']);
+    if (!($result) || $oldUsername == $username) {
 
-            $result = User::checkUserExists($username);
-
-            if (!($result) || $oldUsername==$username) {
-
-                try {
-                    if (isset($username)) {
-                        User::updateUser($uid, "username", $username);
-                    }
-                    if (isset($password)) {
-                        User::updateUser($uid, "password", $password);
-                    }
-                    if (isset($email)) {
-                        User::updateUser($uid, "email", $email);
-                    }
-                    if (isset($firstName)) {
-                        User::updateUser($uid, "firstname", $firstName);
-                    }
-                    if (isset($lastName)) {
-                        User::updateUser($uid, "lastname", $lastName);
-                    }
-
-                } catch (Exception $exception) {
-
-                }
+        try {
+            if (isset($username)) {
+                User::updateUser($uid, "username", $username);
             }
-            echo $result;
-        }
+            if (isset($password)) {
+                User::updateUser($uid, "password", $password);
+            }
+            if (isset($email)) {
+                User::updateUser($uid, "email", $email);
+            }
+            if (isset($firstName)) {
+                User::updateUser($uid, "firstname", $firstName);
+            }
+            if (isset($lastName)) {
+                User::updateUser($uid, "lastname", $lastName);
+            }
 
-    DB::closeConnection();
+        } catch (Exception $exception) {
+
+        }
+    }
+    echo $result;
+}
+
+DB::closeConnection();
 
 ?>
