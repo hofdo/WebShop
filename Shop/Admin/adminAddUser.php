@@ -1,9 +1,6 @@
 <?php
 
-require "../Entity/DB.php";
-require "../Entity/User.php";
-
-
+require_once "../autoloader.php";
 
 $db = DB::getInstance();
 if($_SERVER["REQUEST_METHOD"] == "POST") {

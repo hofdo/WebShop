@@ -1,7 +1,7 @@
 <?php
+
+require_once "../autoloader.php";
 require_once "../SQLDB/Session.php";
-require_once "../Entity/Product.php";
-require_once "../Entity/DB.php";
 
 ?>
 

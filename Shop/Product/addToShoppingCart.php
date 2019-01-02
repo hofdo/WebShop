@@ -1,8 +1,6 @@
 <?php
 
-require_once "../Entity/DB.php";
-require_once "../Entity/ShoppingCart.php";
-require_once "../Entity/Product.php";
+require_once "../autoloader.php";
 
 
 $db = DB::getInstance();

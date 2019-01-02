@@ -1,7 +1,7 @@
 <?php
 
+require_once "../autoloader.php";
 require_once "../SQLDB/Session.php";
-require_once("../autoloader.php");
 
 $product = product::getProduct($_GET['product'])->fetch_all();
 $product = $product[0];
@@ -9,8 +9,15 @@ $product = $product[0];
 
 <section>
     <table>
-        <?php
-            Product::renderProduct($product);
-        ?>
+        <div class='product'>
+            <div> <?php
+                echo '<img src="data:picture/jpeg;base64,' . base64_encode($product[4]) . '"height="120" width="120"/>';
+                ?></div>
+            <div class='productTitle'><?php echo t($product[1]) ?></div>
+            <div class='productPrice'><?php echo $product[3] . " sfr" ?></div>
+            <div class='productDescription'><?php echo t($product[1] . 'Description') ?></div>
+            <?php printf("<tr><td class='ProductAdd'><button class='buttonAdd' type='submit' onclick='addToShoppingCart(\"%s\")'>".t("addCart")."</button></td></tr></table></div>", $product[0]);?>
+        </div>
     </table>
 </section>
+
