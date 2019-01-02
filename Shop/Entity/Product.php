@@ -1,6 +1,7 @@
 <?php
 
 require_once "../SQLDB/Session.php";
+require_once "User.php";
 require_once "DB.php";
 
 class Product
@@ -114,6 +115,82 @@ class Product
         return (DB::doQuery($query));
     }
 
+
+    public  static function generateOrder()
+    {
+        $username = $_SESSION["username"];
+        $uid = User::getUser($username)->fetch_row()[0];
+
+        $orderQuery = "SELECT user_id, product_id, oid, name, username, open FROM `shoppingcart` INNER JOIN users ON users.uid = shoppingcart.user_id INNER JOIN orders ON orders.oid = shoppingcart.order_id WHERE users.username = '$username'";
+        $result = DB::doQuery($orderQuery);
+        $rowCount = $result->num_rows;
+
+        if ($rowCount == 0) {
+            $orderID = "order_" . $uid . "_1";
+            $query = "INSERT INTO `orders` (`oid`, `name`, `open`) VALUES (NULL, '$orderID', '1')";
+            DB::doQuery($query);
+            return $orderID;
+
+        } elseif ($rowCount == 1) {
+            $row = $result->fetch_row();
+            $name = $row[3];
+            $open = $row[5];
+            $num = explode("_", $name);
+
+            if ($open == 1) {
+                return "order_" . $uid . "_" . $num[2];
+            } else {
+                $orderID = "order_" . $uid . "_" . ($num[2]+1);
+                if (!(self::checkOrderExists($orderID))) {
+                    $query2 = "INSERT INTO `orders` (`oid`, `name`, `open`) VALUES (NULL, '$orderID', '1')";
+                    DB::doQuery($query2);
+                    return $orderID;
+                }
+            }
+
+        } elseif ($rowCount > 1) {
+            $rows = $result->fetch_all();
+            $firstRow = $rows[0];
+            $num = explode("_", $firstRow[3]);
+            foreach ($rows as $row) {
+                $temp = explode("_", $row[3]);
+                if ($num[2] < $temp[2]){
+                    $firstRow = $row;
+                }
+            }
+            $open = $firstRow[5];
+            $num = explode("_", $firstRow[3]);
+            if ($open == 1) {
+                return "order_" . $uid . "_" . $num[2];
+            } else {
+                $orderID = "order_" . $uid . "_" . ($num[2] + 1);
+                if (!(self::checkOrderExists($orderID))) {
+                    $query3 = "INSERT INTO `orders` (`oid`, `name`, `open`) VALUES (NULL, '$orderID', '1')";
+                    DB::doQuery($query3);
+                    return $orderID;
+                }
+            }
+        }
+        else{
+             throw new Exception("Something went wrong");
+        }
+
+    }
+
+
+    public static function checkOrderExists($orderName){
+        $query = "SELECT * FROM `orders` WHERE name='$orderName'";
+        $result = DB::doQuery($query);
+        $count = $result->num_rows;
+        if ($count > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
     public static function checkProductExists($name){
         $query = "Select * FROM `products` WHERE name = '$name'";
         $result = DB::doQuery($query);
@@ -126,16 +203,15 @@ class Product
         }
     }
 
-    public static function checkCategoryExists($newCategory){
+    public static function checkCategoryExists($newCategory)
+    {
         $categories = self::getCategories();
-        foreach ($categories as $category){
-            if ($category == $newCategory){
+        foreach ($categories as $category) {
+            if ($category == $newCategory) {
                 return true;
             }
-            else{
-                return false;
-            }
         }
+        return false;
     }
 
     public static function renderProductList()
@@ -159,10 +235,10 @@ class Product
         add_param($url, "product", $product[1]);
 
         echo    "<div class='product' id='product$product[0]'><table class='productTable'>";
-        echo    "<tr><td>ID:  $product[0] </td></tr>";
+        echo    "<tr><td id='productID'>ID:  $product[0] </td></tr>";
         echo    '<tr><td><a href='.$url.'><img src="data:picture/jpeg;base64,' .base64_encode( $product[4] ).'"height="120" width="120"/></a></td></tr>';
-        echo    "<tr><td class='productTitle'>".$product[1]."</td></tr>";
-        echo    "<tr><td class='productPrice'>$product[3] sfr</td></tr>";
+        echo    "<tr><td class='productTitle' id='productTitle'>".$product[1]."</td></tr>";
+        echo    "<tr><td class='productPrice' id='productPrice'>$product[3] sfr</td></tr>";
         echo    "<tr><td class='ProductAdd'><button class='buttonAdd' type='submit' onclick='addToShoppingCart()'>".t("addCart")."</button></td></tr></table></div>";
     }
 

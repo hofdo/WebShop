@@ -1,6 +1,7 @@
 <?php
 
 require_once "../SQLDB/Session.php";
+require_once "DB.php";
 
 class User
 {
