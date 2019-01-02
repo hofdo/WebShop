@@ -1,3 +1,9 @@
 TODO
 - Responsive Web Design
 - Layout
+- Profile Einkaufs verlauf
+- Mail bestätigung einkauf
+- bestätigunf addcart
+- besser URL
+- Translation
+- Cart fertig
