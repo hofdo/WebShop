@@ -11,17 +11,32 @@ class Cart {
         $orderID = Product::generateOrder();
 
         $queryOrderID = "SELECT oid FROM `orders` WHERE name='$orderID'";
-        $oid = DB::doQuery($queryOrderID)->fetch_row();
+        $oid = DB::doQuery($queryOrderID)->fetch_row()[0];
 
-       $query = "INSERT INTO `shoppingcart` (`user_id`, `product_id`, `quantity`, `order_id`) VALUES ('$uid', '$pid', '$num', '$oid')";
-        DB::doQuery($query);
+        $queryProduct = "SELECT name, username, quantity, open FROM `shoppingcart` INNER JOIN users ON users.uid = shoppingcart.user_id INNER JOIN orders ON orders.oid = shoppingcart.order_id WHERE users.username = '$username' AND orders.name = '$orderID' AND product_id='$pid'";
+        $product = DB::doQuery($queryProduct);
+        $count = $product->num_rows;
+
+        if ($count >= 1){
+            $queryQuantity = "SELECT quantity FROM `shoppingcart` INNER JOIN orders ON orders.oid = shoppingcart.order_id WHERE name = '$orderID' AND product_id = '$pid'";
+            $quantityOld = DB::doQuery($queryQuantity)->fetch_row()[0];
+            $quantity = $num + $quantityOld;
+            $query = "UPDATE `shoppingcart` SET `quantity` = '$quantity' WHERE `shoppingcart`.`user_id` = '$uid' AND `shoppingcart`.`product_id` = '$pid'";
+            DB::doQuery($query);
+
+        }
+        else {
+            $query = "INSERT INTO `shoppingcart` (`user_id`, `product_id`, `quantity`, `order_id`) VALUES ('$uid', '$pid', '$num', '$oid')";
+            DB::doQuery($query);
+
+        }
     }
     public function removeItem($item, $num) {
 
     }
     public function getItems() {
         $query = "SELECT sid, name, value, quantity FROM `shoppingcart` INNER JOIN `users` ON shoppingcart.user_id = users.uid INNER JOIN `products` ON shoppingcart.product_id = products.pid";
-        return(DB::doQuery());
+        return(DB::doQuery($query));
 
     }
     public function isEmpty() {

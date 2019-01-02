@@ -3,6 +3,11 @@ require_once "../SQLDB/Session.php";
 require_once "../Entity/Product.php";
 require_once "../Entity/DB.php";
 
+?>
+
+<script src="../js/Products.js"></script>
+
+<?php
 $categories_id = get_param('categories', '0');
 if ($categories_id == '0') {
     $result = product::getAllProducts();
@@ -22,3 +27,5 @@ $products = $result->fetch_all();
 foreach ($products as $product) {
     Product::renderProduct($product);
 }
+
+?>

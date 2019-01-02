@@ -7,15 +7,13 @@ require_once "../Entity/Product.php";
 
 $db = DB::getInstance();
 
-$productName = mysqli_escape_string($db, $_REQUEST["productName"]);
-$productValue = mysqli_escape_string($db, $_REQUEST["productValue"]);
-$pid = mysqli_escape_string($db, $_REQUEST["pid"]);
+$productName = $_REQUEST["productName"];
+$productValue = $_REQUEST["productValue"];
+$pid = $_REQUEST["pid"];
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $product = Product::getProductAndCategoryID($productName)->fetch_row();
+    $product = Product::getProduct($productName)->fetch_row();
     Cart::addItem($product, 1);
-
 }
 DB::closeConnection();
 
