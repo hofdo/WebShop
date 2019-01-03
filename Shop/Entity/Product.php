@@ -259,7 +259,7 @@ class Product
 
     public static function renderProduct($product)
     {
-        if ($_SESSION["logged_in"]){
+
         $language = get_param('lang', 'de');
         $url = $_SERVER['PHP_SELF'];
         add_param($url, "lang", $language);
@@ -271,6 +271,7 @@ class Product
         echo    '<tr><td><a href='.$url.'><img src="data:picture/jpeg;base64,' .base64_encode( $product[4] ).'"height="120" width="120"/></a></td></tr>';
         echo    "<tr><td class='productTitle' id='productTitle_$product[0]'>".$product[1]."</td></tr>";
         echo    "<tr><td class='productPrice' id='productPrice_$product[0]'>$product[3] sfr</td></tr>";
+        if ($_SESSION["logged_in"]){
         printf("<tr><td class='ProductAdd'><button class='buttonAdd' type='submit' onclick='addToShoppingCart(\"%s\")'>".t("addCart")."</button></td></tr></table></div>", $product[0]);
         }
     }

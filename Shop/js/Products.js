@@ -33,6 +33,9 @@ function addToShoppingCart(pid) {
 
             var input = document.createElement("input");
             input.type = "text";
+            input.onkeyup = function() {
+              changeShoppingCartQuantity(sid, pid);
+            };
             input.value = quantity;
 
             var button = document.createElement("button");
@@ -47,7 +50,9 @@ function addToShoppingCart(pid) {
             cellArticleValue.innerHTML = productValue;
         }
         else{
-
+            var oldQuantity = parseInt(row.cells[3].childNodes[0].value);
+            oldQuantity += 1;
+            row.cells[3].childNodes[0].value = oldQuantity;
         }
 
         totalProductValue.innerText = totalValue.toString();

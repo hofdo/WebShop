@@ -16,7 +16,11 @@ $product = $product[0];
             <div class='productTitle'><?php echo t($product[1]) ?></div>
             <div class='productPrice'><?php echo $product[3] . " sfr" ?></div>
             <div class='productDescription'><?php echo t($product[1] . 'Description') ?></div>
-            <?php printf("<tr><td class='ProductAdd'><button class='buttonAdd' type='submit' onclick='addToShoppingCart(\"%s\")'>".t("addCart")."</button></td></tr></table></div>", $product[0]);?>
+            <?php
+            if ($_SESSION["logged_in"]) {
+                printf("<tr><td class='ProductAdd'><button class='buttonAdd' type='submit' onclick='addToShoppingCart(\"%s\")'>" . t("addCart") . "</button></td></tr></table></div>", $product[0]);
+            }
+            ?>
         </div>
     </table>
 </section>
