@@ -1,0 +1,9 @@
+#Comment
+# NC = non case sensitive, L = last rule this condition will match
+
+
+#Rewrite Enginr on
+RewriteEngine on
+
+#Test Rewrite for Home.php
+RewriteRule ^home pages/home.php [NC,L]
