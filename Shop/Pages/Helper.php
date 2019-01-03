@@ -32,26 +32,15 @@ function change_param($name, $value)
     }
 }
 
-// Adds a GET parameter to the url. The url is passed by reference.
-function add_param(&$url, $name, $value)
-{
-    $sep = strpos($url, '?') !== false ? '&' : '?';
-    $url .= $sep . $name . "=" . urlencode($value);
-    return $url;
-}
-
 // Renders the navigation for the passed language and page ID.
 function render_leftNav($language, $pageId)
 {
     $navigation = array("home", "products", "profile", "adminView");
-    $urlBase = $_SERVER['PHP_SELF'];
-    add_param($urlBase, "lang", $language);
     foreach ($navigation as $nav) {
-        $url = $urlBase;
-        add_param($url, "id", $nav);
+        $url ="/shop/".$language."/".$nav;
         $class = $pageId == $nav ? 'active' : 'inactive';
         if ($nav == 'home') {
-            echo "<li class=\"$class\"><a href=\"$url\"><img src='../Pictures/home.png' height='14' width='14'> "
+            echo "<li class=\"$class\"><a href=\"$url\"><img src='/shop/Pictures/home.png' height='14' width='14'> "
                 . t($nav) . "</a></li>";
         } elseif ($nav == 'profile') {
             if ($_SESSION["logged_in"] == true) {
@@ -80,10 +69,10 @@ function render_rightNav($language, $pageId)
     $dropDownNav = array("languageDropDown", "searchDropDown");
     foreach ($dropDownNav as $dropDown) {
         if ($dropDown == "languageDropDown") {
-            echo "<div class='searchDropDown'><button class='searchbtn'><img src='../Pictures/search.png' height='14' width='14'></button>";
+            echo "<div class='searchDropDown'><button class='searchbtn'><img src='/shop/Pictures/search.png' height='14' width='14'></button>";
             echo "<div class='search-content'><input type='text' placeholder=" . t('searchDefault') . "></div></div>";
         } elseif ($dropDown == "searchDropDown") {
-            echo "<div class='languageDropDown'><button class='languagebtn'><img src='../Pictures/translation.png' height='14' width='14'></button>";
+            echo "<div class='languageDropDown'><button class='languagebtn'><img src='/shop/Pictures/translation.png' height='14' width='14'></button>";
             echo "<div class='language-content'>";
             echo render_languages($language, $pageId) . "</div></div>";
         } else {
@@ -96,11 +85,8 @@ function render_rightNav($language, $pageId)
 function render_footer($language, $pageId)
 {
     $footerNav = array("impressum", "contact", "faq", "about");
-    $urlBase = $_SERVER['PHP_SELF'];
-    add_param($urlBase, "lang", $language);
     foreach ($footerNav as $foot) {
-        $url = $urlBase;
-        add_param($url, "id", $foot);
+        $url ="/shop/".$language."/".$foot;
         $class = $pageId == $foot ? 'active' : 'inactive';
         echo "<li><a class=\"$class\" href=\"$url\">" . t($foot) . "</a></li>";
     }
@@ -109,12 +95,9 @@ function render_footer($language, $pageId)
 
 function render_adminDropDown($language, $pageId)
 {
-    $urlBase = $_SERVER['PHP_SELF'];
-    add_param($urlBase, "lang", $language);
     $adminDropDownNav = array("userList", "productList");
     foreach ($adminDropDownNav as $adminNav) {
-        $url = $urlBase;
-        add_param($url, "id", $adminNav);
+        $url ="/shop/".$language."/".$adminNav;
         $class = $pageId == $adminNav ? 'active' : 'inactive';
         echo "<a class='$class' href=\"$url\">" . t($adminNav) . "</a>";
     };
@@ -122,29 +105,23 @@ function render_adminDropDown($language, $pageId)
 
 function render_productsDropDown($language, $pageId)
 {
-    $urlBase = $_SERVER['PHP_SELF'];
-    add_param($urlBase, "lang", $language);
-    $query = "SELECT cid FROM categories";
-    $productDropDownNav = (DB::doQuery($query))->fetch_all();
-    foreach ($productDropDownNav as $categories_id) {
-        $categories_id = $categories_id[0];
-        $query = "SELECT category FROM categories WHERE cid = $categories_id";
-        $name = (DB::doQuery($query))->fetch_all();
-        $url = $urlBase;
-        add_param($url, "id", 'products');
-        add_param($url, "categories", $categories_id);
-        $class = $pageId == $categories_id ? 'active' : 'inactive';
-        echo "<a class='$class' href=\"$url\">" . t($name[0][0]) . "</a>";
+    $productDropDownNav = Product::getCategories()->fetch_all();
+    foreach ($productDropDownNav as $name) {
+        $name = $name[0];
+        $url ="/shop/".$language."/products/".$name;
+        $class = $pageId == $name ? 'active' : 'inactive';
+        echo "<a class='$class' href=\"$url\">" . t($name) . "</a>";
     };
 }
 
 // Renders the language navigation.
-function render_languages($language, $pageId)
+function render_languages($language)
 {
     $languages = array('de', 'en');
     foreach ($languages as $lang) {
+        $url = "/shop/".$lang."/".get_param('id','home')."/".get_param('q',null);
         $class = $language == $lang ? 'active' : 'inactive';
-        echo "<a class=\"$class\" href=\"" . change_param('lang', $lang) . "\">" . strtoupper($lang) . "</a>";
+        echo "<a class=\"$class\" href=\"" . $url . "\">" . strtoupper($lang) . "</a>";
     }
 }
 
@@ -162,7 +139,7 @@ function render_sidebar($pageId)
             }
         } elseif ($sidebar == "logoutBtn") {
             if ($_SESSION["logged_in"] == true) {
-                echo "<li><form action='../SQLDB/Logout.php' method='post'><button type='submit' value='logout' id='logoutBtn' >" . t("logout") . "</button></form></li>";
+                echo "<li><form action='/Shop/SQLDB/Logout.php' method='post'><button type='submit' value='logout' id='logoutBtn' >" . t("logout") . "</button></form></li>";
             }
         } elseif ($sidebar == "shoppingCartBtn") {
             if ($_SESSION["logged_in"] == true) {

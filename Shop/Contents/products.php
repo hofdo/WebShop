@@ -8,18 +8,16 @@ require_once "../SQLDB/Session.php";
 <script src="../js/Products.js"></script>
 
 <?php
-$categories_id = get_param('categories', '0');
-if ($categories_id == '0') {
+$category = get_param('q', '0');
+if ($category== '0') {
     $result = product::getAllProducts();
 } else {
-    $result = Product::getProductByCategories($categories_id);
+    $result = Product::getProductByCategory($category);
 }
 echo '<h1>';
 echo t("products");
-if ($categories_id != "0"){
-    $query = "SELECT category FROM categories WHERE cid=$categories_id";
-    $res = (DB::doQuery($query))->fetch_all();
-    echo ": ".t($res[0][0]);
+if ($category != "0"){
+    echo ": ".t($category);
 }
 echo '</h1>';
 

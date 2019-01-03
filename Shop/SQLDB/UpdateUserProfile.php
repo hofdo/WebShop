@@ -1,6 +1,7 @@
 <?php
 
 require_once "../autoloader.php";
+require_once "../Pages/helper.php";
 
 $db = DB::getInstance();
 
@@ -38,10 +39,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }catch (Exception $exception){
 
     }
-    header("location: ../Pages/Home.php");
-
+    header("location: /Shop/".get_param('lang','de')."/home");
 }
 DB::closeConnection();
 
 
-?>
