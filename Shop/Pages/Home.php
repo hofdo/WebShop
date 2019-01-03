@@ -7,8 +7,8 @@ require_once "../Entity/Cart.php";
 
 
 // Set language and page ID as global variables.
-$language = get_param('lang', 'de');
-$pageId = get_param('id', "home");
+$language = get_param('lang','en');
+$pageId = get_param('id',"home");
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +18,8 @@ $pageId = get_param('id', "home");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WebShop</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="pages/style.css">
+    <link rel="stylesheet" type="text/css" href="../pages/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../js/AdminSection.js"></script>
     <script src="../js/Products.js"></script>

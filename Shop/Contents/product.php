@@ -1,5 +1,4 @@
 <?php
-
 require_once "../autoloader.php";
 require_once "../SQLDB/Session.php";
 

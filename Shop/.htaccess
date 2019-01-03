@@ -4,6 +4,12 @@
 
 #Rewrite Enginr on
 RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 
 #Test Rewrite for Home.php
-RewriteRule ^home pages/home.php [NC,L]
+RewriteRule ^(de|en)/?(\w*)$ pages/home.php?lang=$1&id=$2 [QSA,L]
+
+
+
+#Rewrite for all
