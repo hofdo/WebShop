@@ -165,7 +165,9 @@ function render_sidebar($pageId)
                 echo "<li><form action='../SQLDB/Logout.php' method='post'><button type='submit' value='logout' id='logoutBtn' >" . t("logout") . "</button></form></li>";
             }
         } elseif ($sidebar == "shoppingCartBtn") {
-            echo "<li><button id='shoppingCartBtn' class='shoppingCartBtn' onclick=document.getElementById('shoppingCart').style.display='block'>" . t("shoppingCart") . "</button></li>";
+            if ($_SESSION["logged_in"] == true) {
+                echo "<li><button id='shoppingCartBtn' class='shoppingCartBtn' onclick=document.getElementById('shoppingCart').style.display='block'>" . t("shoppingCart") . "</button></li>";
+            }
         } else {
             echo "<li><button id='$sidebar' class='sidebarComponent'>" . t('$sidebar') . "</button></li>";
         }

@@ -8,6 +8,81 @@ function addToShoppingCart(pid) {
         + productValue + "&productName=" + productName);
     request.onload = function(){
         var response = request.responseText;
+        var quantity = response.split("_")[0];
+        var sid = response.split("_")[1];
+        var counter = 0;
+        var table = document.getElementById("shoppingCartTable");
+
+        var totalProductValue = document.getElementById("totalProductValue");
+        var totalValue = parseInt(totalProductValue.innerText);
+        totalValue += parseInt(productValue);
+
+        for (var i = 1; i < (table.rows.length-1); i++){
+            if(table.rows[i].cells[0].innerHTML === pid){
+                counter++;
+                var row = table.rows[i];
+            }
+        }
+        if (counter === 0) {
+            var row = table.insertRow((table.rows.length - 1));
+            var cellArticleID = row.insertCell(0);
+            var cellArticleName = row.insertCell(1);
+            var cellArticleValue = row.insertCell(2);
+            var cellArticleQuantity = row.insertCell(3);
+            var cellArticleDelButton = row.insertCell(4);
+
+            var input = document.createElement("input");
+            input.type = "text";
+            input.value = quantity;
+
+            var button = document.createElement("button");
+            button.innerText = "X";
+            button.onclick = function () {
+                deleteFromShoppingCart(sid, pid)
+            };
+            cellArticleDelButton.appendChild(button);
+            cellArticleQuantity.appendChild(input);
+            cellArticleID.innerHTML = pid;
+            cellArticleName.innerHTML = productName;
+            cellArticleValue.innerHTML = productValue;
+        }
+        else{
+
+        }
+
+        totalProductValue.innerText = totalValue.toString();
+
+
     };
     request.send();
+}
+
+function deleteFromShoppingCart(sid, pid) {
+    var table = document.getElementById("shoppingCartTable");
+    for (var i = 1; i < (table.rows.length-1); i++){
+        if(table.rows[i].cells[0].innerHTML === pid){
+            table.deleteRow(i);
+        }
+    }
+    var request = new XMLHttpRequest();
+    request.open("POST", "../Product/deleteFromShoppingCart.php?sid=" + sid);
+    request.onload = function(){
+
+    };
+    request.send();
+
+}
+
+function changeShoppingCartQuantity(sid, pid) {
+    var table = document.getElementById("shoppingCartTable");
+    for (var i = 1; i < (table.rows.length-1); i++){
+        if(table.rows[i].cells[0].innerHTML === pid){
+            var quantity = table.rows[i].cells[3].childNodes[0].value;
+        }
+    }
+
+        var request = new XMLHttpRequest();
+        request.open("POST", "../Product/changeShoppingCartQuantity.php?sid=" + sid + "&quantity=" + quantity);
+        request.send();
+
 }
