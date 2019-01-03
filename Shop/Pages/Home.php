@@ -17,9 +17,7 @@ $pageId = get_param('id',"home");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WebShop</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="pages/style.css">
-    <link rel="stylesheet" type="text/css" href="../pages/style.css">
+    <link rel="stylesheet" type="text/css" href="/shop/pages/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../js/AdminSection.js"></script>
     <script src="../js/Products.js"></script>
@@ -30,7 +28,7 @@ $pageId = get_param('id',"home");
 <!--- Header --->
 
 <header>
-    <img src="../Pictures/shopping-bag.png" height="60" width="60">
+    <img src="/shop/Pictures/shopping-bag.png" height="60" width="60">
     <h1>Domotec.ch</h1>
 </header>
 

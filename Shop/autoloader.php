@@ -4,7 +4,7 @@ function __autoload($class_name)
 // Directories to look in
 // (relative to the current file)
     $dirs = [
-        "Entity/"
+        "/Entity/"
     ];
 // Try to load class
     foreach ($dirs as $dir) {

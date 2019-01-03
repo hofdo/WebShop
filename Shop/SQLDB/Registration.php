@@ -1,6 +1,7 @@
 <?php
 
 require_once "../autoloader.php";
+require_once "../Pages/helper.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -16,9 +17,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["email"] = $_POST["email"];
         $_SESSION["logged_in"] = true;
 
-        header("Location: ../Pages/Home.php");
+        header("location: /Shop/".get_param('lang','de')."/home");;
     } else {
-        echo "User already exists";
+        echo t("User_exist");
     }
 }
 
