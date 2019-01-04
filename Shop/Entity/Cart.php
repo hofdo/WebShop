@@ -41,7 +41,7 @@ class Cart {
         DB::doQuery($query);
     }
 
-    public function getItems() {
+    public static function getItems() {
         $username = $_SESSION["username"];
         $query = "SELECT sid, pid, p.name, o.name, quantity, value FROM `shoppingcart` INNER JOIN `users` ON shoppingcart.user_id = users.uid INNER JOIN `products` AS p ON shoppingcart.product_id = p.pid INNER JOIN `orders` AS o ON shoppingcart.order_id = o.oid WHERE username = '$username'";
         return(DB::doQuery($query));

@@ -5,8 +5,6 @@ require_once "../SQLDB/Session.php";
 
 ?>
 
-<script src="../js/Products.js"></script>
-
 <?php
 $categories_id = get_param('categories', '0');
 if ($categories_id == '0') {

@@ -24,12 +24,12 @@ function addToShoppingCart(pid) {
             }
         }
         if (counter === 0) {
-            var row = table.insertRow((table.rows.length - 1));
-            var cellArticleID = row.insertCell(0);
-            var cellArticleName = row.insertCell(1);
-            var cellArticleValue = row.insertCell(2);
-            var cellArticleQuantity = row.insertCell(3);
-            var cellArticleDelButton = row.insertCell(4);
+            var rowNew = table.insertRow((table.rows.length - 1));
+            var cellArticleID = rowNew.insertCell(0);
+            var cellArticleName = rowNew.insertCell(1);
+            var cellArticleValue = rowNew.insertCell(2);
+            var cellArticleQuantity = rowNew.insertCell(3);
+            var cellArticleDelButton = rowNew.insertCell(4);
 
             var input = document.createElement("input");
             input.type = "text";
