@@ -4,7 +4,6 @@ require_once "../autoloader.php";
 require_once "../SQLDB/Session.php";
 
 $product = product::getProduct($_GET['product'])->fetch_all();
-$product = $product[0];
 ?>
 
 <section>

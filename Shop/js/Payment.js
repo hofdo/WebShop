@@ -11,6 +11,29 @@ function closeclosePaymentDetails() {
     document.getElementById("paymentDetailsState").value = "";
 }
 
+function refreshShoppingCart() {
+    var tableCart = document.getElementById("shoppingCartTable");
+    var tablePayment = document.getElementById("paymentTable");
+    var tableLenghtCart = (tableCart.rows.length-1);
+    for (var i = 1; i < tableLenghtCart; i++){
+        tableCart.deleteRow(1);
+    }
+    var rowCart = tableCart.insertRow(1);
+    var cellCart = rowCart.insertCell(0);
+    cellCart.innerHTML = "Cart empty";
+
+    var tableLenghtPayment = (tablePayment.rows.length-1);
+    for (var j = 1; j < tableLenghtPayment; j++){
+        tablePayment.deleteRow(1);
+    }
+    var rowPayment = tablePayment.insertRow(1);
+    var cellPayment = rowPayment.insertCell(0);
+    cellPayment.innerHTML = "Cart empty";
+
+    document.getElementById("totalProductValue").innerText = "0";
+
+}
+
 function sendPayment() {
     var firstName = document.getElementById("paymentDetailsFirstName").value;
     var lastName = document.getElementById("paymentDetailsLastName").value;
@@ -43,7 +66,7 @@ function sendPayment() {
                                 request.open("POST", "../Product/finishOrder.php?firstName=" + firstName + "&lastName=" + lastName + "&email=" + email + "&address=" + address
                                     + "&plz=" + plz + "&state=" + state + "&country=" + country + "&paymentMethod=" + paymentMethod);
                                 request.onload = function(){
-                                    alert(request.responseText);
+                                    refreshShoppingCart();
                                 };
                                 request.send();
                             }
@@ -89,7 +112,7 @@ function sendPaymentCreditCard() {
         + "&plz=" + plz + "&state=" + state + "&country=" + country + "&paymentMethod=" + paymentMethod + "&holderName=" + creditCardHolderName
         + "&cardNumber=" + creditCardNumber + "&expireDate=" + creditCardExpireDate + "&cvv=" + creditCardCVV);
     request.onload = function(){
-        alert(request.responseText);
+        refreshShoppingCart()
     };
     request.send();
 

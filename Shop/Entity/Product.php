@@ -82,8 +82,11 @@ class Product
         return(DB::doQuery($query));
     }
 
-    public static function getOrderID($username){
-        $query = "SELECT name FROM `shoppingcart` INNER JOIN users ON users.uid = shoppingcart.user_id INNER JOIN orders ON orders.oid = shoppingcart.order_id WHERE users.username = '$username'";;
+    public static function getOrderID(){
+        $uid = $_SESSION["uid"];
+        $searchStr = "order_" . $uid . "_[0-9]+";
+        //$query = "SELECT name FROM `shoppingcart` INNER JOIN users ON users.uid = shoppingcart.user_id INNER JOIN orders ON orders.oid = shoppingcart.order_id WHERE users.username = '$username'";
+        $query = "SELECT name FROM orders WHERE name REGEXP '$searchStr'";
         $result = DB::doQuery($query);
         $count = $result->num_rows;
         $rows = $result->fetch_all();
@@ -102,6 +105,8 @@ class Product
             return 0;
         }
     }
+
+
 
 
     public static function getCategories(){
@@ -234,6 +239,18 @@ class Product
         }
     }
 
+    public static function checkOrderIsOpen(){
+        $username = $_SESSION["username"];
+        $orderID = self::getOrderID();
+        $query = "SELECT open FROM `shoppingcart` INNER JOIN orders ON orders.oid = shoppingcart.order_id INNER JOIN users ON users.uid = shoppingcart.user_id INNER JOIN products ON products.pid = shoppingcart.product_id WHERE orders.name = '$orderID' AND username = '$username' AND open = 1";
+        $result = DB::doQuery($query);
+        $count = $result->num_rows;
+        if ($count == 0){
+            return false;
+        }
+        return true;
+    }
+
     public static function checkCategoryExists($newCategory)
     {
         $categories = self::getCategories();
@@ -259,7 +276,6 @@ class Product
 
     public static function renderProduct($product)
     {
-
         $language = get_param('lang', 'de');
         $url = $_SERVER['PHP_SELF'];
         add_param($url, "lang", $language);
@@ -269,8 +285,8 @@ class Product
         echo    "<div class='product' id='product$product[0]'><table class='productTable'>";
         echo    "<tr><td class='productID' id='productID$product[0]'>ID:  $product[0] </td></tr>";
         echo    '<tr><td><a href='.$url.'><img src="data:picture/jpeg;base64,' .base64_encode( $product[4] ).'"height="120" width="120"/></a></td></tr>';
-        echo    "<tr><td class='productTitle' id='productTitle_$product[0]'>Name: $product[1]</td></tr>";
-        echo    "<tr></td><td class='productPrice' id='productPrice_$product[0]'>Price: $product[3] CHF</td></tr>";
+        echo    "<tr><td class='productTitle' id='productTitle_$product[0]'>$product[1]</td></tr>";
+        echo    "<tr></td><td class='productPrice' id='productPrice_$product[0]'>$product[3] CHF</td></tr>";
         if ($_SESSION["logged_in"]){
         printf("<tr><td class='ProductAdd'><button class='buttonAdd' type='submit' onclick='addToShoppingCart(\"%s\")'>".t("addCart")."</button></td></tr></table></div>", $product[0]);
         }

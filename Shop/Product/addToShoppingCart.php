@@ -11,12 +11,9 @@ $productValue = $_REQUEST["productValue"];
 $pid = $_REQUEST["pid"];
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
+    Cart::addItem(1, $pid);
 
-    $username = $_SESSION["username"];
-    $product = Product::getProduct($productName)->fetch_row();
-    Cart::addItem($product, 1);
-
-    $orderID = Product::getOrderID($username);
+    $orderID = Product::getOrderID();
 
     $query = "SELECT quantity, sid FROM shoppingcart INNER JOIN products AS p ON p.pid = shoppingcart.product_id INNER JOIN orders AS o ON o.oid = shoppingcart.order_id WHERE o.name = '$orderID' AND pid = '$pid'";
     $result = DB::doQuery($query);

@@ -13,14 +13,24 @@ require_once "../SQLDB/Session.php";
     <tr><th>Article-Id</th><th>Name</th><th>Value</th><th>Quantity</th></tr>
         <?php
         $totalValue = 0;
-        foreach (Cart::getItems()->fetch_all() as $item) {
-        $totalValue += $item[5];
-        echo "<tr><td>$item[1]</td><td>$item[2]</td><td>$item[5]</td><td>$item[4]</td><td>";
+        if (Product::checkOrderIsOpen()) {
+            $orderID = Product::getOrderID();
+            foreach (Cart::getItems()->fetch_all() as $item) {
+                $totalValue += $item[5];
+                echo "<tr><td>$item[1]</td><td>$item[2]</td><td>$item[5]</td><td>$item[4]</td><td>";
+            }
         }
         ?>
         <tr><td>Total: </td><td id='totalProductValue'><?php echo $totalValue . ' CHF' ?></td></tr>
         </table>
-    <button type="button" class="paymentTableBtn" onclick="showPaymentDetails()">Pay</button>
+    <?php
+    if (Product::checkOrderIsOpen()) {
+        echo "<button type='button' class='paymentTableBtn' onclick='showPaymentDetails()'>Pay</button>";
+    }
+    else{
+        echo "<label>You cannot pay when the Cart is empty!</label>";
+    }
+    ?>
 </div>
 <div class="PaymentDetails" id="PaymentDetails">
     <h2>Payment details</h2>

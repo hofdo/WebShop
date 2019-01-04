@@ -25,10 +25,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!Cart::isEmpty()){
             $orderID = Product::getOrderID($_SESSION["username"]);
-            $query = "";
+            $query = "UPDATE `orders` SET `open` = '0' WHERE name = '$orderID'";
+            DB::doQuery($query);
         }
-        echo $orderID;
         //echo $firstName . "_" . $lastName . "_" . $email . "_" . $address . "_" . $plz . "_" . $state . "_" . $country . "_" . $paymentMethod . "_" . $holderName . "_" . $cardNumber . "_" . $expireDate . "_" . $cvv;
+    }
+    else{
+        if (!Cart::isEmpty()){
+            $orderID = Product::getOrderID($_SESSION["username"]);
+            $query = "UPDATE `orders` SET `open` = '0' WHERE name = '$orderID'";
+            DB::doQuery($query);
+        }
     }
     //echo $firstName . "_" . $lastName . "_" . $email . "_" . $address . "_" . $plz . "_" . $state . "_" . $country . "_" . $paymentMethod;
 }

@@ -1,18 +1,16 @@
 <?php
 
-require_once "Product.php";
-require_once "DB.php";
+require_once "../autoloader.php";
+require_once "../SQLDB/Session.php";
 
 class Cart {
-    public static function addItem($item, $num) {
+    public static function addItem($num, $pid) {
         $username = $_SESSION["username"];
         $uid = User::getUser($username)->fetch_row()[0];
-        $pid = $item[0];
         $orderID = Product::generateOrder();
 
         $queryOrderID = "SELECT oid FROM `orders` WHERE name='$orderID'";
         $oid = DB::doQuery($queryOrderID)->fetch_row()[0];
-
         $queryProduct = "SELECT name, username, quantity, open FROM `shoppingcart` INNER JOIN users ON users.uid = shoppingcart.user_id INNER JOIN orders ON orders.oid = shoppingcart.order_id WHERE users.username = '$username' AND orders.name = '$orderID' AND product_id='$pid'";
         $product = DB::doQuery($queryProduct);
         $count = $product->num_rows;
@@ -43,12 +41,13 @@ class Cart {
 
     public static function getItems() {
         $username = $_SESSION["username"];
-        $query = "SELECT sid, pid, p.name, o.name, quantity, value FROM `shoppingcart` INNER JOIN `users` ON shoppingcart.user_id = users.uid INNER JOIN `products` AS p ON shoppingcart.product_id = p.pid INNER JOIN `orders` AS o ON shoppingcart.order_id = o.oid WHERE username = '$username'";
+        $orderID = Product::getOrderID();
+        $query = "SELECT sid, pid, p.name, o.name, quantity, value FROM `shoppingcart` INNER JOIN `users` ON shoppingcart.user_id = users.uid INNER JOIN `products` AS p ON shoppingcart.product_id = p.pid INNER JOIN `orders` AS o ON shoppingcart.order_id = o.oid WHERE username = '$username' AND o.name = '$orderID'";
         return(DB::doQuery($query));
     }
 
     public static function isEmpty() {
-        $orderID = Product::getOrderID($_SESSION["username"]);
+        $orderID = Product::getOrderID();
         $query = "SELECT * FROM `shoppingcart` INNER JOIN orders ON orders.oid = shoppingcart.order_id WHERE name = '$orderID'";
         $result = DB::doQuery($query);
         $count = $result->num_rows;
@@ -62,7 +61,7 @@ class Cart {
     }
     public function render() {
         $totalValue = 0;
-        if (self::isEmpty()) {
+        if (self::isEmpty() || !Product::checkOrderIsOpen()) {
             echo "<div class=\"cart empty\">The Cart is empty</div>";
         } else {
             echo "<div class=\"cart\"><table id='shoppingCartTable'>";

@@ -85,7 +85,6 @@ function changeShoppingCartQuantity(sid, pid) {
             var quantity = table.rows[i].cells[3].childNodes[0].value;
         }
     }
-
         var request = new XMLHttpRequest();
         request.open("POST", "../Product/changeShoppingCartQuantity.php?sid=" + sid + "&quantity=" + quantity);
         request.send();
