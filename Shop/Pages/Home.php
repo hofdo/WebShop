@@ -66,6 +66,8 @@ $pageId = get_param('id', "home");
 
 <?php include "../Templates/ShoppingCartList.php"?>
 
+<!-- Credit Card Information -->
+<?php include "../Templates/CreditCartForm.php"?>
 <!-- Content  -->
 
 <div class="content">

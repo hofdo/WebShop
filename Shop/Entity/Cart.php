@@ -47,7 +47,7 @@ class Cart {
         return(DB::doQuery($query));
     }
 
-    public function isEmpty() {
+    public static function isEmpty() {
         $orderID = Product::getOrderID($_SESSION["username"]);
         $query = "SELECT * FROM `shoppingcart` INNER JOIN orders ON orders.oid = shoppingcart.order_id WHERE name = '$orderID'";
         $result = DB::doQuery($query);
