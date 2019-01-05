@@ -58,6 +58,7 @@ function renderOrderList() {
 }
 
 function sendPayment() {
+    var gender = document.getElementById("paymentDetailsGender").value;
     var firstName = document.getElementById("paymentDetailsFirstName").value;
     var lastName = document.getElementById("paymentDetailsLastName").value;
     var email = document.getElementById("paymentDetailsEmail").value;
@@ -84,7 +85,7 @@ function sendPayment() {
                             }
                             else{
                                 var request = new XMLHttpRequest();
-                                request.open("POST", "../Product/finishOrder.php?firstName=" + firstName + "&lastName=" + lastName + "&email=" + email + "&address=" + address
+                                request.open("POST", "../Product/finishOrder.php?firstName=" + firstName + "&lastName=" + lastName + "&gender=" + gender + "&email=" + email + "&address=" + address
                                     + "&plz=" + plz + "&state=" + state + "&country=" + country + "&paymentMethod=" + paymentMethod);
                                 request.onload = function(){
 
@@ -95,6 +96,7 @@ function sendPayment() {
                                     document.getElementById("paymentHomeLinkBtn").style.display = "block";
                                     renderOrderList();
                                     refreshShoppingCart();
+                                    document.getElementById("paymentConfirmationGender").innerText = gender;
                                     document.getElementById("paymentConfirmationFirstName").innerText = firstName;
                                     document.getElementById("paymentConfirmationLastName").innerText = lastName;
                                     document.getElementById("paymentConfirmationEmail").innerText = email;
@@ -130,6 +132,7 @@ function sendPayment() {
 
 
 function sendPaymentCreditCard() {
+    var gender = document.getElementById("paymentDetailsGender").value;
     var firstName = document.getElementById("paymentDetailsFirstName").value;
     var lastName = document.getElementById("paymentDetailsLastName").value;
     var email = document.getElementById("paymentDetailsEmail").value;
@@ -147,7 +150,7 @@ function sendPaymentCreditCard() {
     var creditCardCVV = document.getElementById("creditCardCVV").value;
 
     var request = new XMLHttpRequest();
-    request.open("POST", "../Product/finishOrder.php?firstName=" + firstName + "&lastName=" + lastName + "&email=" + email + "&address=" + address
+    request.open("POST", "../Product/finishOrder.php?firstName=" + firstName + "&lastName=" + lastName + "&gender=" + gender + "&email=" + email + "&address=" + address
         + "&plz=" + plz + "&state=" + state + "&country=" + country + "&paymentMethod=" + paymentMethod + "&holderName=" + creditCardHolderName
         + "&cardNumber=" + creditCardNumber + "&expireDateMonth=" + creditCardExpireDateMonth + "&expireDateYear=" + creditCardExpireDateYear + "&cvv=" + creditCardCVV);
     request.onload = function(){
@@ -167,6 +170,7 @@ function sendPaymentCreditCard() {
                         document.getElementById("paymentHomeLinkBtn").style.display = "block";
                         renderOrderList();
                         refreshShoppingCart();
+                        document.getElementById("paymentConfirmationGender").innerText = gender;
                         document.getElementById("paymentConfirmationFirstName").innerText = firstName;
                         document.getElementById("paymentConfirmationLastName").innerText = lastName;
                         document.getElementById("paymentConfirmationEmail").innerText = email;

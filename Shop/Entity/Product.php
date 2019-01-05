@@ -88,7 +88,6 @@ class Product
     public static function getOrderID(){
         $uid = $_SESSION["uid"];
         $searchStr = "order_" . $uid . "_[0-9]+";
-        //$query = "SELECT name FROM `shoppingcart` INNER JOIN users ON users.uid = shoppingcart.user_id INNER JOIN orders ON orders.oid = shoppingcart.order_id WHERE users.username = '$username'";
         $query = "SELECT name FROM orders WHERE name REGEXP '$searchStr'";
         $result = DB::doQuery($query);
         $count = $result->num_rows;

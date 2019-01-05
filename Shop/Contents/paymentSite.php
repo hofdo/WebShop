@@ -36,6 +36,10 @@ require_once "../SQLDB/Session.php";
         <h2>Payment details</h2>
         <table>
             <tr><td><button onclick="closePaymentDetails()">X</button></td></tr>
+            <tr><td>Gender:</td><td><select id="paymentDetailsFirstName">
+                        <option>Man</option>
+                        <option>Women</option>
+                    </select></td></tr>
             <tr><td>Firstname:</td><td><input id="paymentDetailsFirstName" type="text" value=""></td></tr>
             <tr><td>lastname:</td><td><input id="paymentDetailsLastName" type="text" value="" ></td></tr>
             <tr><td>Email:</td><td><input id="paymentDetailsEmail" type="email" value="" ></td></tr>
@@ -66,6 +70,7 @@ require_once "../SQLDB/Session.php";
         <label>You will shortly receive an email with the details from the order.</label>
         <label>Below are the details of your order:</label>
         <table class="paymentDetailsTable" id="paymentDetailsTable">
+            <tr><td>Gender: </td><td id="paymentConfirmationGender"></td></tr>
             <tr><td>Firstname: </td><td id="paymentConfirmationFirstName"></td></tr>
             <tr><td>Lastname: </td><td id="paymentConfirmationLastName"></td></tr>
             <tr><td>Email: </td><td id="paymentConfirmationEmail" ></td></tr>
