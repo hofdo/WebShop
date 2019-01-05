@@ -460,7 +460,7 @@ Payment
     display: block;
 }
 
-.paymentConfirmation, .creditCardDetails, .PaymentDetails {
+.paymentConfirmation, .creditCardDetails, .PaymentDetails, .paymentHomeLinkBtn, .paymentOrder {
     display: none;
 }
 

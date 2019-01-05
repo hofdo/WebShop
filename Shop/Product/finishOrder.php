@@ -20,21 +20,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($paymentMethod == "Credit Card") {
         $holderName = $_REQUEST["holderName"];
         $cardNumber = $_REQUEST["cardNumber"];
-        $expireDate = $_REQUEST["expireDate"];
+        $expireDateMonth = $_REQUEST["expireDateMonth"];
+        $expireDateYear = $_REQUEST["expireDateYear"];
         $cvv = $_REQUEST["cvv"];
 
-        if (!Cart::isEmpty()){
-            $orderID = Product::getOrderID($_SESSION["username"]);
-            $query = "UPDATE `orders` SET `open` = '0' WHERE name = '$orderID'";
-            DB::doQuery($query);
-        }
     }
-    else{
-        if (!Cart::isEmpty()){
-            $orderID = Product::getOrderID($_SESSION["username"]);
-            $query = "UPDATE `orders` SET `open` = '0' WHERE name = '$orderID'";
-            DB::doQuery($query);
-        }
+    if (!Cart::isEmpty()){
+        $orderID = Product::getOrderID($_SESSION["username"]);
+        $query = "UPDATE `orders` SET `open` = '0' WHERE name = '$orderID'";
+        DB::doQuery($query);
     }
 }
 
