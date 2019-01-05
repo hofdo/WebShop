@@ -24,23 +24,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $expireDateMonth = $_REQUEST["expireDateMonth"];
         $expireDateYear = $_REQUEST["expireDateYear"];
         $cvv = $_REQUEST["cvv"];
-
-        if (!Cart::isEmpty()){
-            $orderID = Product::getOrderID($_SESSION["username"]);
-            $query = "UPDATE `orders` SET `open` = '0' WHERE name = '$orderID'";
-            DB::doQuery($query);
-        }
-
-        $str = "";
-        $totalValue = 0;
-        foreach (Cart::getItems()->fetch_all() as $item) {
-            $totalValue += $item[5];
-            $str .= "<tr><td>" . $item[1] . "</td><td> . $item[2] . </td><td> . $item[5] . </td><td> . $item[4]. </td><td>" . "\n";
-        }
+    }
 
 
+    $str = "";
+    $totalValue = 0;
+    foreach (Cart::getItems()->fetch_all() as $item) {
+        $totalValue += $item[5];
+        $str .= "<tr><td>" . $item[1] . "</td><td> . $item[2] . </td><td> . $item[5] . </td><td> . $item[4]. </td><td>" . "\n";
+    }
 
-        $mailtext = "<html>
+    $mailtext = "<html>
         <head>
             <title>Bestätigungsemail Bestellung</title>
         </head>
@@ -54,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <p>Sie haben folgende Produkte bestellt</p>
         <table border='1'>
             <tr><th>Article-Id</th><th>Name</th><th>Value</th><th>Quantity</th></tr>" .
-            $str .
+        $str .
         "</table>
             
         <h2>Zahlungsmittel: </h2>
@@ -85,33 +79,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         </html>";
 
 
-        $empfaenger = "du@example.com"; //Mailadresse
-        $absender   = "ich@example.com";
-        $betreff    = "Mail-Test - HTML-E-Mail mit PHP erstellen";
-        $antwortan  = "ICH@example.com";
+    $empfaenger = $email;
+    $absender   = "ehofmd@gmail.com";
+    $betreff    = "Bestätigungsemail - Bestellungen";
 
-        $header  = "MIME-Version: 1.0\r\n";
-        $header .= "Content-type: text/html; charset=utf-8\r\n";
+    $header  = "MIME-Version: 1.0\r\n";
+    $header .= "Content-type: text/html; charset=utf-8\r\n";
 
-        $header .= "From: $absender\r\n";
-        $header .= "Reply-To: $antwortan\r\n";
-        // $header .= "Cc: $cc\r\n";  // falls an CC gesendet werden soll
-        $header .= "X-Mailer: PHP ". phpversion();
+    $header .= "From: $absender\r\n";
+    $header .= "X-Mailer: PHP ". phpversion();
 
-        mail( $empfaenger,
+    /*
+
+    mail( $empfaenger,
         $betreff,
         $mailtext,
         $header);
 
-
-
-    }
-    else{
-        if (!Cart::isEmpty()){
-            $orderID = Product::getOrderID($_SESSION["username"]);
-            $query = "UPDATE `orders` SET `open` = '0' WHERE name = '$orderID'";
-            DB::doQuery($query);
-        }
+*/
+    if (!Cart::isEmpty()) {
+        $orderID = Product::getOrderID($_SESSION["username"]);
+        $query = "UPDATE `orders` SET `open` = '0' WHERE name = '$orderID'";
+        DB::doQuery($query);
     }
 }
 

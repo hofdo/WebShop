@@ -68,6 +68,7 @@ function sendPayment() {
     var country = document.getElementById("paymentDetailsCountry").value;
     var paymentMethod = document.getElementById("paymentDetailsPaymentMethod").value;
 
+
     if (!isEmpty(firstName)){
         document.getElementById("paymentDetailsFirstName").style.borderColor = "";
         if (!isEmpty(lastName)){
@@ -155,13 +156,14 @@ function sendPaymentCreditCard() {
         + "&cardNumber=" + creditCardNumber + "&expireDateMonth=" + creditCardExpireDateMonth + "&expireDateYear=" + creditCardExpireDateYear + "&cvv=" + creditCardCVV);
     request.onload = function(){
         if (!isEmpty(document.getElementById("creditCardHolderName").value)) {
-            alert("1");
-            if (!isEmpty(document.getElementById("creditCardNumber").value)) {
-                alert("2");
+            document.getElementById("creditCardHolderName").style.borderColor = "";
+            if (!isEmpty(document.getElementById("creditCardNumber").value && checkRegex("^(?:4[0-9]{12}(?:[0-9]{3})? | (?:5[1-5][0-9]{2} | 222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12} | 3[47][0-9]{13} | 3(?:0[0-5]|[68][0-9])[0-9]{11} | 6(?:011|5[0-9]{2})[0-9]{12} | (?:2131|1800|35\d{3})\d{11})$", creditCardNumber))) {
+                document.getElementById("creditCardNumber").style.borderColor = "";
                 if (!isEmpty(document.getElementById("creditCardExpireDateMonth").value) && !isEmpty(document.getElementById("creditCardExpireDateYear").value)) {
-                    alert("3");
-                    if (!isEmpty(document.getElementById("creditCardCVV").value )) {
-                        alert("4");
+                    document.getElementById("creditCardExpireDateMonth").style.borderColor = "";
+                    document.getElementById("creditCardExpireDateYear").style.borderColor = "";
+                    if (!isEmpty(document.getElementById("creditCardCVV").value && checkRegex("^[0-9]{3,4}$", creditCardCVV))) {
+                        document.getElementById("creditCardCVV").style.borderColor = "";
                         document.getElementById("cart").style.display = "none";
                         document.getElementById("PaymentDetails").style.display = "block";
                         document.getElementById("paymentConfirmation").style.display = "block";

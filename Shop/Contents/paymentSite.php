@@ -36,7 +36,7 @@ require_once "../SQLDB/Session.php";
         <h2>Payment details</h2>
         <table>
             <tr><td><button onclick="closePaymentDetails()">X</button></td></tr>
-            <tr><td>Gender:</td><td><select id="paymentDetailsFirstName">
+            <tr><td>Gender:</td><td><select id="paymentDetailsGender">
                         <option>Man</option>
                         <option>Women</option>
                     </select></td></tr>
