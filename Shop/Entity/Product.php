@@ -85,9 +85,11 @@ class Product
         return (DB::doQuery($query));
     }
 
-    public static function getOrderID($username)
-    {
-        $query = "SELECT name FROM `shoppingcart` INNER JOIN users ON users.uid = shoppingcart.user_id INNER JOIN orders ON orders.oid = shoppingcart.order_id WHERE users.username = '$username'";;
+    public static function getOrderID(){
+        $uid = $_SESSION["uid"];
+        $searchStr = "order_" . $uid . "_[0-9]+";
+        //$query = "SELECT name FROM `shoppingcart` INNER JOIN users ON users.uid = shoppingcart.user_id INNER JOIN orders ON orders.oid = shoppingcart.order_id WHERE users.username = '$username'";
+        $query = "SELECT name FROM orders WHERE name REGEXP '$searchStr'";
         $result = DB::doQuery($query);
         $count = $result->num_rows;
         $rows = $result->fetch_all();
@@ -107,8 +109,9 @@ class Product
     }
 
 
-    public static function getCategories()
-    {
+
+
+    public static function getCategories(){
         $query = "SELECT category FROM `categories`";
         return (DB::doQuery($query));
     }
@@ -137,8 +140,7 @@ class Product
         return (DB::doQuery($query));
     }
 
-    public static function getProductList()
-    {
+    public static function getProductList(){
         $query = "SELECT pid, name, value, picture, category FROM `products` As p INNER JOIN `categories` AS c ON p.categories_id = c.cid";
         return (DB::doQuery($query));
     }
@@ -235,6 +237,18 @@ class Product
         } else {
             return false;
         }
+    }
+
+    public static function checkOrderIsOpen(){
+        $username = $_SESSION["username"];
+        $orderID = self::getOrderID();
+        $query = "SELECT open FROM `shoppingcart` INNER JOIN orders ON orders.oid = shoppingcart.order_id INNER JOIN users ON users.uid = shoppingcart.user_id INNER JOIN products ON products.pid = shoppingcart.product_id WHERE orders.name = '$orderID' AND username = '$username' AND open = 1";
+        $result = DB::doQuery($query);
+        $count = $result->num_rows;
+        if ($count == 0){
+            return false;
+        }
+        return true;
     }
 
     public static function checkCategoryExists($newCategory)

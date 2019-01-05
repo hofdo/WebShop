@@ -10,6 +10,7 @@ function addToShoppingCart(pid) {
         var response = request.responseText;
         var quantity = response.split("_")[0];
         var sid = response.split("_")[1];
+        var isEmpty = response.split("_")[2];
         var counter = 0;
         var table = document.getElementById("shoppingCartTable");
 
@@ -23,13 +24,16 @@ function addToShoppingCart(pid) {
                 var row = table.rows[i];
             }
         }
+        if (isEmpty === "1"){
+            document.getElementById("cartIsEmpty").style.display = "none";
+        }
         if (counter === 0) {
-            var row = table.insertRow((table.rows.length - 1));
-            var cellArticleID = row.insertCell(0);
-            var cellArticleName = row.insertCell(1);
-            var cellArticleValue = row.insertCell(2);
-            var cellArticleQuantity = row.insertCell(3);
-            var cellArticleDelButton = row.insertCell(4);
+            var rowNew = table.insertRow((table.rows.length - 1));
+            var cellArticleID = rowNew.insertCell(0);
+            var cellArticleName = rowNew.insertCell(1);
+            var cellArticleValue = rowNew.insertCell(2);
+            var cellArticleQuantity = rowNew.insertCell(3);
+            var cellArticleDelButton = rowNew.insertCell(4);
 
             var input = document.createElement("input");
             input.type = "text";
@@ -85,7 +89,6 @@ function changeShoppingCartQuantity(sid, pid) {
             var quantity = table.rows[i].cells[3].childNodes[0].value;
         }
     }
-
         var request = new XMLHttpRequest();
         request.open("POST", "../Product/changeShoppingCartQuantity.php?sid=" + sid + "&quantity=" + quantity);
         request.send();

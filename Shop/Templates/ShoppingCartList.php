@@ -1,8 +1,8 @@
 <?php
 require_once "../Entity/Cart.php";
+require_once "../Pages/Helper.php";
 
 $submit = t("submit");
-$buy = t("buy");
 $cancel = t("cancel");
 ?>
 
@@ -11,7 +11,7 @@ $cancel = t("cancel");
         <div class="Item_Container">
             <?php Cart::render();?>
         </div>
-        <button type="submit"><?php echo $buy ?></button>
+            <?php proceedPaymentSite($language) ?>
         <button type="button" onclick="document.getElementById('shoppingCart').style.display='none'" class="cancel_Btn">
             <?php echo $cancel ?>
         </button>

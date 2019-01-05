@@ -85,7 +85,7 @@ Navigation
 Profile & Admin
  */
 
-.profileView button, .profileEdit button, .userEdit table tr td button, .userList table tr td button, .productList table tr td button, .profileEdit table tr td button {
+.profileView button, .profileEdit button, .userEdit table tr td button, .userList table tr td button, .productList table tr td button, .profileEdit table tr td button, .PaymentDetails table tr td button, .paymentTableBtn {
     font-size: 16px;
     border: none;
     outline: none;
@@ -96,20 +96,20 @@ Profile & Admin
     margin: 0;
 }
 
-.profileView table tr td, .userList table tr td, .productList table tr td {
+.profileView table tr td, .userList table tr td, .productList table tr td, .paymentTable tr td {
     padding: 8px;
 }
 
-.profileView table tr th, .userList table tr th, .productList table tr th {
+.profileView table tr th, .userList table tr th, .productList table tr th, .paymentTable tr th{
     padding: 8px;
     text-align: left;
 }
 
-.profileView button:hover, .userEdit button:hover, .userList button:hover, .productList button:hover, .profileEdit button:hover{
+.profileView button:hover, .userEdit button:hover, .userList button:hover, .List button:hover, .profileEdit button:hover, .PaymentDetails button:hover, .paymentTable tr td button:hover{
     background-color: #3498db;
 }
 
-.profileEdit, .userEdit, .productEdit{
+.profileEdit, .userEdit, .productEdit, .PaymentDetails{
     margin-top: 10px;
     display: none;
 }
@@ -371,11 +371,33 @@ Content of the Site
     color: #ecf0f1;
 }
 
+.product {
+    display: inline-block;
+    margin: 5px 5px;
+    padding: 2px;
+}
+
+.productID {
+    display: none;
+}
+
+.buttonAdd {
+    border: none;
+    cursor: pointer;
+    background-color: #05c46b;
+    padding: 10px 8px;
+    color: #ecf0f1;
+}
+
+.buttonAdd:hover{
+    opacity: 0.8;
+}
+
 /*
 Login-form, Registration-form
  */
 
-.login_container, .registration_container{
+.login_container, .registration_container, .creditCard_container{
     display: none;
     position: fixed;
     z-index: 1;
@@ -389,7 +411,7 @@ Login-form, Registration-form
 }
 
 
-.login_Form input[type=text], .login_Form input[type=password], .registration_Form input[type=text], .registration_Form input[type=password], .registration_Form input[type=email] {
+.login_Form input[type=text], .login_Form input[type=password], .registration_Form input[type=text], .registration_Form input[type=password], .registration_Form input[type=email], .creditCard_content input[type=text], .creditCard_content input[type=email] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -397,14 +419,14 @@ Login-form, Registration-form
     box-sizing: border-box;
 }
 
-.login_Form label, .registration_Form label{
+.login_Form label, .registration_Form label, .creditCard_content label{
     font-size: 20px;
     font-style: normal;
     font-family: Arial, serif;
     color: #576574;
 }
 
-.login_Form button, .registration_Form button{
+.login_Form button, .registration_Form button, .creditCard_content button{
     background-color: #0be881;
     color: #576574;
     padding: 14px 20px;
@@ -414,7 +436,7 @@ Login-form, Registration-form
     width: 100%;
 }
 
-.login_Form button:hover, .registration_Form button:hover {
+.login_Form button:hover, .registration_Form button:hover, .creditCard_content button:hover{
     opacity: 0.8;
 }
 
@@ -423,11 +445,23 @@ Login-form, Registration-form
     padding: 10px 18px;
 }
 
-.login_Form, .registration_Form{
+.login_Form, .registration_Form, .creditCard_content{
     background-color: #dfe4ea;
     margin: 10% auto 15% auto;
     width: 40%;
     padding: 10px;
+}
+
+/*
+Payment
+ */
+
+.cart {
+    display: block;
+}
+
+.paymentConfirmation, .creditCardDetails, .PaymentDetails, .paymentHomeLinkBtn, .paymentOrder {
+    display: none;
 }
 
 /*

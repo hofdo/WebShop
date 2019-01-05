@@ -152,6 +152,14 @@ function render_sidebar($pageId)
 }
 
 
+function proceedPaymentSite($language){
+    $url = $_SERVER['PHP_SELF'];
+    add_param($urlBase, "lang", $language);
+    $url = $urlBase;
+    add_param($url, "id", "paymentSite");
+    echo "<a href='$url'><button type='submit'>" . t('buy') ."</button></a>";
+}
+
 // The translation function.
 function t($key)
 {

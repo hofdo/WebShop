@@ -21,6 +21,7 @@ $pageId = get_param('id',"home");
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../js/AdminSection.js"></script>
     <script src="../js/Products.js"></script>
+    <script src="../js/Payment.js"></script>
 </head>
 
 <body>
@@ -65,6 +66,8 @@ $pageId = get_param('id',"home");
 
 <?php include "../Templates/ShoppingCartList.php"?>
 
+<!-- Credit Card Information -->
+<?php include "../Templates/CreditCartForm.php"?>
 <!-- Content  -->
 
 <div class="content">

@@ -2,8 +2,7 @@
 require_once "../autoloader.php";
 require_once "../SQLDB/Session.php";
 
-$product = product::getProduct($_GET['q'])->fetch_all();
-$product = $product[0];
+$product = product::getProduct($_GET['product'])->fetch_all();
 ?>
 
 <section>
