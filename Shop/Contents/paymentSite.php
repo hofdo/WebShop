@@ -7,7 +7,7 @@ require_once "../SQLDB/Session.php";
 
 ?>
 
-<div class=\"cart\">
+<div class="cart" id="cart">
     <h2>Shopping Cart</h2>
     <table id='paymentTable' class="paymentTable">
     <tr><th>Article-Id</th><th>Name</th><th>Value</th><th>Quantity</th></tr>
@@ -41,7 +41,7 @@ require_once "../SQLDB/Session.php";
         <tr><td>Email:</td><td><input id="paymentDetailsEmail" type="email" value="" ></td></tr>
         <tr><td>Address:</td><td><input id="paymentDetailsAddress" type="text" value="" ></td></tr>
         <tr><td>PLZ:</td><td><input id="paymentDetailsPLZ" type="text" value="" ></td></tr>
-        <tr><td>State:</td><td><input id="paymentDetailsState" type="text" value="" ></td></tr>
+        <tr><td>City:</td><td><input id="paymentDetailsState" type="text" value="" ></td></tr>
         <tr><td>Country:</td><td>
                 <select id="paymentDetailsCountry">
                 <option>Switzerland</option>
@@ -59,7 +59,33 @@ require_once "../SQLDB/Session.php";
         </tr>
         <tr><td><button type='submit' id="paymentDetailsBtn" class="paymentDetailsBtn" onclick="sendPayment()">Pay</button></td></tr>
     </table
-
+</div>
+<div  class="paymentConfirmation" id="paymentConfirmation">
+    <h1>Order Confirmation</h1>
+    <label>Your order has been successfully confirmed.</label>
+    <label>You will shortly receive an email with the details from the order.</label>
+    <label>Below are the details of your order:</label>
+    <table class="paymentDetailsTable" id="paymentDetailsTable">
+        <tr><td>Firstname: </td><td id="paymentConfirmationFirstName"></td></tr>
+        <tr><td>Lastname: </td><td id="paymentConfirmationLastName"></td></tr>
+        <tr><td>Email: </td><td id="paymentConfirmationEmail" ></td></tr>
+        <tr><td>Address: </td><td id="paymentConfirmationAddress"></td></tr>
+        <tr><td>PLZ: </td><td id="paymentConfirmationPLZ"></td></tr>
+        <tr><td>City: </td><td id="paymentConfirmationCity"></td></tr>
+        <tr><td>Country: </td><td id="paymentConfirmationCountry"></td></tr>
+        <tr><td>Paymentmethod: </td><td id="paymentConfirmationPaymentMethod"></td></tr>
+    </table>
+</div>
+<div class="creditCardDetails" id="creditCardDetails" >
+    <table>
+        <tr><td>Creditcard Holder: </td><td id="paymentConfirmationHolderName"></td></tr>
+        <tr><td>Creditcard number: </td><td id="paymentConfirmationNumber"></td></tr>
+        <tr><td>Expiry date: </td><td id="paymentConfirmationExpiryDate" ></td></tr>
+        <tr><td>CVV: </td><td id="paymentConfirmationCVV"></td></tr>
+    </table>
+    <table class="paymentOrderTable" id="paymentOrderTable">
+        <tr><th>Article-Id</th><th>Name</th><th>Value</th><th>Quantity</th></tr>
+    </table>
 </div>
 
 

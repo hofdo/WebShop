@@ -28,7 +28,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $query = "UPDATE `orders` SET `open` = '0' WHERE name = '$orderID'";
             DB::doQuery($query);
         }
-        //echo $firstName . "_" . $lastName . "_" . $email . "_" . $address . "_" . $plz . "_" . $state . "_" . $country . "_" . $paymentMethod . "_" . $holderName . "_" . $cardNumber . "_" . $expireDate . "_" . $cvv;
     }
     else{
         if (!Cart::isEmpty()){
@@ -37,7 +36,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             DB::doQuery($query);
         }
     }
-    //echo $firstName . "_" . $lastName . "_" . $email . "_" . $address . "_" . $plz . "_" . $state . "_" . $country . "_" . $paymentMethod;
 }
 
 

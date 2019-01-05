@@ -10,6 +10,7 @@ function addToShoppingCart(pid) {
         var response = request.responseText;
         var quantity = response.split("_")[0];
         var sid = response.split("_")[1];
+        var isEmpty = response.split("_")[2];
         var counter = 0;
         var table = document.getElementById("shoppingCartTable");
 
@@ -22,6 +23,9 @@ function addToShoppingCart(pid) {
                 counter++;
                 var row = table.rows[i];
             }
+        }
+        if (isEmpty === "1"){
+            document.getElementById("cartIsEmpty").style.display = "none";
         }
         if (counter === 0) {
             var rowNew = table.insertRow((table.rows.length - 1));

@@ -453,6 +453,18 @@ Login-form, Registration-form
 }
 
 /*
+Payment
+ */
+
+.cart {
+    display: block;
+}
+
+.paymentConfirmation, .creditCardDetails, .PaymentDetails {
+    display: none;
+}
+
+/*
 Shopping Cart
  */
 

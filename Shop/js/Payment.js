@@ -13,7 +13,6 @@ function closeclosePaymentDetails() {
 
 function refreshShoppingCart() {
     var tableCart = document.getElementById("shoppingCartTable");
-    var tablePayment = document.getElementById("paymentTable");
     var tableLenghtCart = (tableCart.rows.length-1);
     for (var i = 1; i < tableLenghtCart; i++){
         tableCart.deleteRow(1);
@@ -22,6 +21,8 @@ function refreshShoppingCart() {
     var cellCart = rowCart.insertCell(0);
     cellCart.innerHTML = "Cart empty";
 
+    /*
+
     var tableLenghtPayment = (tablePayment.rows.length-1);
     for (var j = 1; j < tableLenghtPayment; j++){
         tablePayment.deleteRow(1);
@@ -29,6 +30,8 @@ function refreshShoppingCart() {
     var rowPayment = tablePayment.insertRow(1);
     var cellPayment = rowPayment.insertCell(0);
     cellPayment.innerHTML = "Cart empty";
+
+    */
 
     document.getElementById("totalProductValue").innerText = "0";
 
@@ -66,7 +69,18 @@ function sendPayment() {
                                 request.open("POST", "../Product/finishOrder.php?firstName=" + firstName + "&lastName=" + lastName + "&email=" + email + "&address=" + address
                                     + "&plz=" + plz + "&state=" + state + "&country=" + country + "&paymentMethod=" + paymentMethod);
                                 request.onload = function(){
+                                    document.getElementById("PaymentDetails").style.display = "none";
+                                    document.getElementById("cart").style.display = "none";                                    document.getElementById("paymentConfirmation").style.display = "block";
+                                    document.getElementById("paymentConfirmation").style.display = "block";
                                     refreshShoppingCart();
+                                    document.getElementById("paymentConfirmationFirstName").innerText = firstName;
+                                    document.getElementById("paymentConfirmationLastName").innerText = lastName;
+                                    document.getElementById("paymentConfirmationEmail").innerText = email;
+                                    document.getElementById("paymentConfirmationAddress").innerText = address;
+                                    document.getElementById("paymentConfirmationPLZ").innerText = plz;
+                                    document.getElementById("paymentConfirmationCity").innerText = state;
+                                    document.getElementById("paymentConfirmationCountry").innerText = country;
+                                    document.getElementById("paymentConfirmationPaymentMethod").innerText = paymentMethod;
                                 };
                                 request.send();
                             }
@@ -112,7 +126,42 @@ function sendPaymentCreditCard() {
         + "&plz=" + plz + "&state=" + state + "&country=" + country + "&paymentMethod=" + paymentMethod + "&holderName=" + creditCardHolderName
         + "&cardNumber=" + creditCardNumber + "&expireDate=" + creditCardExpireDate + "&cvv=" + creditCardCVV);
     request.onload = function(){
-        refreshShoppingCart()
+
+        if (!isEmpty(document.getElementById("creditCardHolderName").value)) {
+            if (!isEmpty(document.getElementById("creditCardNumber").value)) {
+                if (!isEmpty(document.getElementById("creditCardExpireDate").value)) {
+                    if (!isEmpty(document.getElementById("creditCardCVV").value)) {
+                        document.getElementById("PaymentDetails").style.display = "none";
+                        document.getElementById("cart").style.display = "none";
+                        document.getElementById("paymentConfirmation").style.display = "block";
+                        refreshShoppingCart();
+                        document.getElementById("paymentConfirmationFirstName").innerText = firstName;
+                        document.getElementById("paymentConfirmationLastName").innerText = lastName;
+                        document.getElementById("paymentConfirmationEmail").innerText = email;
+                        document.getElementById("paymentConfirmationAddress").innerText = address;
+                        document.getElementById("paymentConfirmationPLZ").innerText = plz;
+                        document.getElementById("paymentConfirmationCity").innerText = state;
+                        document.getElementById("paymentConfirmationCountry").innerText = country;
+                        document.getElementById("paymentConfirmationPaymentMethod").innerText = paymentMethod;
+
+                        document.getElementById("paymentConfirmationHolderName").innerText = document.getElementById("creditCardHolderName").value;
+                        document.getElementById("paymentConfirmationNumber").innerText = document.getElementById("creditCardNumber").value;
+                        document.getElementById("paymentConfirmationExpiryDate").innerText = document.getElementById("creditCardExpireDate").value;
+                        document.getElementById("paymentConfirmationCVV").value = innerText.getElementById("creditCardCVV").value;
+
+                    }else{
+                        document.getElementById("creditCardCVV").style.borderColor = "#ee5253";
+                    }
+                }else{
+                    document.getElementById("creditCardExpireDate").style.borderColor = "#ee5253";
+                }
+            }else{
+                document.getElementById("creditCardNumber").style.borderColor = "#ee5253";
+            }
+        }else{
+            document.getElementById("creditCardHolderName").style.borderColor = "#ee5253";
+        }
+
     };
     request.send();
 
