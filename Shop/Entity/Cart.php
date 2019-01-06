@@ -60,7 +60,7 @@ class Cart {
         }
     }
 
-    public function render() {
+    public static function render() {
         $totalValue = 0;
         if (self::isEmpty() || !Product::checkOrderIsOpen()) {
             echo "<div class=\"cart empty\"><table id='shoppingCartTable'><tr><th>Article-Id</th><th>Name</th><th>Value</th><th>Quantity</th></tr><tr><td>Total: </td><td id='totalProductValue'>$totalValue</td></tr></table><div id='cartIsEmpty'>Cart is empty</div></div>";
