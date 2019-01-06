@@ -22,6 +22,7 @@ $pageId = get_param('id',"home");
     <script src="../js/AdminSection.js"></script>
     <script src="../js/Products.js"></script>
     <script src="../js/Payment.js"></script>
+    <script src="../js/Profile.js"></script>
 </head>
 
 <body>
