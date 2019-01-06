@@ -4,9 +4,10 @@ function addToShoppingCart(pid) {
     var productName = document.getElementById(productTitle).innerHTML;
     var productValue = document.getElementById(productPrice).innerHTML.split(" ")[0];
     var request = new XMLHttpRequest();
-    request.open("POST", "../Product/addToShoppingCart.php?pid=" + pid + "&productValue="
+    request.open("POST", "/Shop/Product/addToShoppingCart.php?pid=" + pid + "&productValue="
         + productValue + "&productName=" + productName);
     request.onload = function(){
+        alert(request.responseText);
         var response = request.responseText;
         var quantity = response.split("_")[0];
         var sid = response.split("_")[1];
@@ -74,7 +75,7 @@ function deleteFromShoppingCart(sid, pid) {
         }
     }
     var request = new XMLHttpRequest();
-    request.open("POST", "../Product/deleteFromShoppingCart.php?sid=" + sid);
+    request.open("POST", "/Shop/Product/deleteFromShoppingCart.php?sid=" + sid);
     request.onload = function(){
 
     };
@@ -90,7 +91,7 @@ function changeShoppingCartQuantity(sid, pid) {
         }
     }
         var request = new XMLHttpRequest();
-        request.open("POST", "../Product/changeShoppingCartQuantity.php?sid=" + sid + "&quantity=" + quantity);
+        request.open("POST", "/Shop/Product/changeShoppingCartQuantity.php?sid=" + sid + "&quantity=" + quantity);
         request.send();
 
 }

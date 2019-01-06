@@ -44,7 +44,10 @@ function render_leftNav($language, $pageId)
                 . t($nav) . "</a></li>";
         } elseif ($nav == 'profile') {
             if ($_SESSION["logged_in"] == true) {
-                echo "<li class='$class'><a href=\"$url\">" . t($nav) . "</a></li>";
+                echo "<div class='profileViewDropDown'><button class='profileViewBtn'>" . t("profileView") . "</button>";
+                echo "<div class='profileView-content'>";
+                render_profileDropDown($language, $pageId);
+                echo "</div></div>";
             }
         } elseif ($nav == "adminView") {
             if (User::isAdmin($_SESSION["username"])) {
@@ -100,6 +103,16 @@ function render_adminDropDown($language, $pageId)
         $url ="/shop/".$language."/".$adminNav;
         $class = $pageId == $adminNav ? 'active' : 'inactive';
         echo "<a class='$class' href=\"$url\">" . t($adminNav) . "</a>";
+    };
+}
+
+function render_profileDropDown($language, $pageId)
+{
+    $profileDropDownNav = array("profile", "orders");
+    foreach ($profileDropDownNav as $profileNav) {
+        $url ="/shop/".$language."/".$profileNav;
+        $class = $pageId == $profileNav ? 'active' : 'inactive';
+        echo "<a class='$class' href=\"$url\">" . t($profileNav) . "</a>";
     };
 }
 

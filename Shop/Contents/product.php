@@ -1,9 +1,11 @@
 <?php
+
 require_once "../autoloader.php";
 require_once "../SQLDB/Session.php";
 
-$product = product::getProduct($_GET['q'])->fetch_all();
-$product = $product[0];
+$url = $_SERVER["REQUEST_URI"];
+$productName = explode("/", $url)[4];
+$product = Product::getProduct($productName)->fetch_row();
 ?>
 
 <section>
@@ -14,7 +16,7 @@ $product = $product[0];
                 ?></div>
             <div class='productTitle'><?php echo t($product[1]) ?></div>
             <div class='productPrice'><?php echo $product[3] . " sfr" ?></div>
-            <div class='productDescription'><?php echo t($product[1]."_Description") ?></div>
+            <div class='productDescription'><?php echo t($product[1] . 'Description') ?></div>
             <?php
             if ($_SESSION["logged_in"]) {
                 printf("<tr><td class='ProductAdd'><button class='buttonAdd' type='submit' onclick='addToShoppingCart(\"%s\")'>" . t("addCart") . "</button></td></tr></table></div>", $product[0]);

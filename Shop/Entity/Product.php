@@ -107,7 +107,16 @@ class Product
         }
     }
 
+    public static function getOrderIDs(){
+        $uid = $_SESSION["uid"];
+        $query = "SELECT DISTINCT name FROM `shoppingcart` INNER JOIN orders ON orders.oid = shoppingcart.order_id WHERE user_id = '$uid' AND open = false";
+        return DB::doQuery($query);
+    }
 
+    public static function getOrderIDsByUsername($username){
+        $query = "SELECT DISTINCT name FROM `shoppingcart` INNER JOIN orders ON orders.oid = shoppingcart.order_id INNER JOIN users ON users.uid = shoppingcart.user_id WHERE username = '$username' AND open = false";
+        return DB::doQuery($query);
+    }
 
 
     public static function getCategories(){

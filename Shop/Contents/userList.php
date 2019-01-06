@@ -17,7 +17,7 @@ require_once "../Pages/Helper.php";
         <?php
             User::renderUserList();
         ?>
-        <tr><td><button onclick="showEditUserForm()">Change User</button></td><td><button onclick="deleteUser()">Delete User</button></td><td><button onclick="showAddUserForm()">Add User</button></td></tr>
+        <tr><td><button onclick="showEditUserForm()">Change User</button></td><td><button onclick="deleteUser()">Delete User</button></td><td><button onclick="showAddUserForm()">Add User</button><td><button onclick="showEditOrderForm()">Orders</button></td></tr>
     </table>
     <label id="adminUserAddLabel"></label>
     <div id="userEdit" class="userEdit">
@@ -33,5 +33,13 @@ require_once "../Pages/Helper.php";
                 <tr><td><button type='submit' id="adminChangeUser" class="adminChangeUser" onclick="editUser()">Edit User</button></td><td><button type='submit' id="adminAddUser" class="adminAddUser" onclick="addUser()">Add user</button></td></tr>
             </table
     </div>
-
 </div>
+<div id="adminOrderEdit" class="adminOrderEdit">
+    <h2>Orders</h2>
+    <table class="adminOrderTable" id="adminOrderTable">
+        <tr><td><button onclick="closeEditOrderForm()">X</button></td></tr>
+        <tr><th>Order</th></tr>
+    </table>
+    <label id="adminOrderEditLabel"></label>
+</div>
+

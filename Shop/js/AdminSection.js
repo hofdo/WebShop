@@ -21,7 +21,7 @@ function editUser() {
         if (checkRegex("^([A-Za-z0-9\-_.?!]){1,30}", password)) {
             if (checkRegex("^[A-Za-z0-9.,!?:;\-_]+[@]{1}[A-Za-z0-9]+\.{1}[A-Za-z]{2,5}", email)) {
                 var request = new XMLHttpRequest();
-                request.open("POST", "../Admin/adminEditUser.php?uid=" + uid + "&username=" + userName + "&oldUsername=" + oldUserName + "&password="
+                request.open("POST", "/Shop/Admin/adminEditUser.php?uid=" + uid + "&username=" + userName + "&oldUsername=" + oldUserName + "&password="
                     + password + "&email=" + email + "&firstname=" + firstName + "&lastname=" + lastName);
                 request.onload = function () {
                     var userExists = request.responseText;
@@ -70,7 +70,7 @@ function addUser() {
             if (checkRegex("^[A-Za-z0-9.,!?:;\-_]+[@]{1}[A-Za-z0-9]+\.{1}[A-Za-z]{2,5}", email)) {
                 if (firstName !== "" && lastName !== "") {
                     var request = new XMLHttpRequest();
-                    request.open("POST", "../Admin/adminAddUser.php?username=" + userName + "&password="
+                    request.open("POST", "/Shop/Admin/adminAddUser.php?username=" + userName + "&password="
                         + password + "&email=" + email + "&firstname=" + firstName + "&lastname=" + lastName);
                     request.onload = function () {
 
@@ -143,7 +143,7 @@ function deleteUser() {
     if (counter === 1){
         var username = row.cells[2].innerHTML;
         var request = new XMLHttpRequest();
-        request.open("POST", "../Admin/adminDeleteUser.php?username=" + username);
+        request.open("POST", "/Shop/Admin/adminDeleteUser.php?username=" + username);
         request.onload = function(){
             table.deleteRow(rowNumber);
         };
@@ -170,7 +170,7 @@ function showEditUserForm() {
     if (counter === 1 && document.getElementById('adminAddUser').style.display !== "block"){
         var username = row.cells[2].innerHTML;
         var request = new XMLHttpRequest();
-        request.open("GET", "../Admin/adminGetUser.php?username=" + username);
+        request.open("GET", "/Shop/Admin/adminGetUser.php?username=" + username);
         request.onload = function(){
             var data = request.responseText;
             var array = data.split(";");
@@ -218,6 +218,97 @@ function showAddUserForm() {
 
 }
 
+function showEditOrderForm() {
+
+    var table = document.getElementById("userTable");
+    var counter = 0;
+    for (var i = 1; i < (table.rows.length-1) ; i++){
+        if(table.rows[i].cells[0].childNodes[0].checked === true){
+            counter++;
+            var row = table.rows[i];
+        }
+    }
+    if (counter === 1){
+        document.getElementById('adminOrderEdit').style.display='block';
+        var orderTable = document.getElementById("adminOrderTable");
+        var username = row.cells[2].innerHTML;
+        var request = new XMLHttpRequest();
+        request.open("GET", "/Shop/Admin/adminGetOrders.php?username=" + username);
+        request.onload = function(){
+            var data = request.responseText;
+            var array = data.split("|");
+            if (array[1] !== "0") {
+                document.getElementById("adminOrderEditLabel").innerText = "";
+                document.getElementById("adminOrderTable").style.display="block";
+                for (var i = 1; i < array.length; i++) {
+                    var orderID = array[i].split(":")[0];
+                    var products = array[i].split(":")[1];
+                    var productArray = products.split(";");
+
+                    var totalValue = 0;
+
+                    var titleRow = orderTable.insertRow(-1);
+                    var cellOrderIDName = titleRow.insertCell(0);
+                    var cellOrderID = titleRow.insertCell(1);
+
+                    cellOrderIDName.innerHTML = "OrderID: ";
+                    cellOrderID.innerHTML = orderID;
+
+                    for (var j = 0; j < (productArray.length-1); j++) {
+                        var pid = productArray[j].split(",")[0];
+                        var name = productArray[j].split(",")[1];
+                        var value = productArray[j].split(",")[2];
+                        var quantity = productArray[j].split(",")[3];
+
+                        totalValue += (parseInt(value) * parseInt(quantity));
+
+                        var row = orderTable.insertRow(-1);
+                        var cellPID = row.insertCell(0);
+                        var cellProductName = row.insertCell(1);
+                        var cellProductValue = row.insertCell(2);
+                        var cellProductQuantity = row.insertCell(3);
+
+                        cellPID.innerHTML = pid;
+                        cellProductName.innerHTML = name;
+                        cellProductValue.innerHTML = value;
+                        cellProductQuantity.innerHTML = quantity;
+                    }
+                    var rowTotal = orderTable.insertRow(-1);
+                    var cellTotalValueName = rowTotal.insertCell(0);
+                    var cellTotalValue = rowTotal.insertCell(1);
+
+                    cellTotalValueName.innerHTML = "Total: ";
+                    cellTotalValue.innerHTML = totalValue.toString();
+                }
+            }
+            else{
+                document.getElementById("adminOrderEditLabel").innerText = array[0];
+            }
+
+        };
+        request.send();
+        document.getElementById("adminUserAddLabel").innerText = "";
+    }
+    else if (counter > 1){
+        document.getElementById("adminUserAddLabel").innerText = "Please Select only one user";
+    }
+    else{
+        document.getElementById("adminUserAddLabel").innerText = "Please select one user";
+    }
+}
+
+function closeEditOrderForm() {
+    document.getElementById('adminOrderEdit').style.display='none';
+    var orderTable = document.getElementById("adminOrderTable");
+    var lenght = orderTable.rows.length;
+
+    for (var i = 1; i < lenght; i++) {
+        orderTable.deleteRow(1);
+        alert(lenght);
+    }
+
+}
+
 function adminSearchUser() {
     var input = document.getElementById("adminSearch");
     var filter = input.value.toUpperCase();
@@ -254,7 +345,7 @@ function addProduct() {
     }
 
     var request = new XMLHttpRequest();
-    request.open("POST", "../Admin/adminAddProduct.php?productName=" + productName + "&value="
+    request.open("POST", "/Shop/Admin/adminAddProduct.php?productName=" + productName + "&value="
         + value + "&category=" + category);
     request.onload = function () {
         var response = request.responseText.split(";");
@@ -305,7 +396,7 @@ function editProduct() {
         }
     }
     var request = new XMLHttpRequest();
-    request.open("POST", "../Admin/adminEditProduct.php?pid=" + pid + "&productName=" + productName + "&value="
+    request.open("POST", "/Shop/Admin/adminEditProduct.php?pid=" + pid + "&productName=" + productName + "&value="
         + value + "&category=" + category + "&oldName=" + oldName);
     request.onload = function () {
         var productExists = request.responseText;
@@ -358,7 +449,7 @@ function deleteProduct() {
     if (counter === 1){
         var productName = row.cells[2].innerHTML;
         var request = new XMLHttpRequest();
-        request.open("POST", "../Admin/adminDeleteProduct.php?name=" + productName);
+        request.open("POST", "/Shop/Admin/adminDeleteProduct.php?name=" + productName);
         request.onload = function(){
             table.deleteRow(rowNumber);
         };
@@ -385,7 +476,7 @@ function showEditProductForm() {
     if (counter === 1 && document.getElementById('adminAddProduct').style.display !== "block"){
         var productName = row.cells[2].innerHTML;
         var request = new XMLHttpRequest();
-        request.open("GET", "../Admin/adminGetProduct.php?name=" + productName);
+        request.open("GET", "/Shop/Admin/adminGetProduct.php?name=" + productName);
         request.onload = function(){
             var data = request.responseText;
             var array = data.split(";");

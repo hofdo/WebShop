@@ -39,6 +39,11 @@ class Cart {
         DB::doQuery($query);
     }
 
+    public static function getItemsByOrderID($orderID){
+        $query = "SELECT pid, p.name, value, quantity FROM `shoppingcart` INNER JOIN orders AS o ON o.oid = shoppingcart.order_id INNER JOIN products as p ON p.pid = shoppingcart.product_id WHERE o.name = '$orderID[0]' AND open = false";
+        return DB::doQuery($query);
+    }
+
     public static function getItems() {
         $username = $_SESSION["username"];
         $orderID = Product::getOrderID();
@@ -60,7 +65,7 @@ class Cart {
         }
     }
 
-    public function render() {
+    public static function render() {
         $totalValue = 0;
         if (self::isEmpty() || !Product::checkOrderIsOpen()) {
             echo "<div class=\"cart empty\"><table id='shoppingCartTable'><tr><th>Article-Id</th><th>Name</th><th>Value</th><th>Quantity</th></tr><tr><td>Total: </td><td id='totalProductValue'>$totalValue</td></tr></table><div id='cartIsEmpty'>Cart is empty</div></div>";
