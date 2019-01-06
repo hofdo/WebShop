@@ -107,6 +107,12 @@ class Product
         }
     }
 
+    public static function getOrderIDs(){
+        $uid = $_SESSION["uid"];
+        $query = "SELECT DISTINCT name FROM `shoppingcart` INNER JOIN orders ON orders.oid = shoppingcart.order_id WHERE user_id = '$uid'";
+        return DB::doQuery($query);
+    }
+
 
 
 

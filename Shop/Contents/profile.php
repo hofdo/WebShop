@@ -12,7 +12,7 @@ $user = new User($username, mysqli_fetch_row(User::getUser($username))[2], $firs
 <h1>Profile</h1>
 
 <div class="profileView">
-    <table id="profileTable">
+    <table id="profileTable" class="profileTable">
         <tr><td>Username:</td><td id="profileUsername"><?php echo $user->getUsername() ?></td></tr>
         <tr><td>Email:</td><td id="profileEmail"><?php echo $user->getEmail() ?></td></tr>
         <tr><td>Firstname:</td><td id="profileFirstName"><?php echo $user->getFirstName() ?></td></tr>
@@ -22,8 +22,8 @@ $user = new User($username, mysqli_fetch_row(User::getUser($username))[2], $firs
     <label id="profileLabel"></label>
     <div id="profileEdit" class="profileEdit">
             <h2>Edit profile</h2>
-            <table id="profileEditTable">
-                <tr><td><button onclick="closeProfileEdit()">X</button></td></tr>
+            <table id="profileEditTable" class="profileEditTable">
+                <tr><td><button onclick="document.getElementById('profileEdit').style.display='none'">X</button</td></tr>
                 <tr><td>Username:</td><td><input type="text" id="profileEditUID" readonly></td></tr>
                 <tr><td>Username:</td><td><input type="text" id="profileEditUsername"></td></tr>
                 <tr><td>Password:</td><td><input type="password" id="profileEditPassword"></td></tr>

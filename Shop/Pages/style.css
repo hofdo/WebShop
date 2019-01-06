@@ -96,11 +96,11 @@ Profile & Admin
     margin: 0;
 }
 
-.profileView table tr td, .userList table tr td, .productList table tr td, .paymentTable tr td {
+.profileView table tr td, .userList table tr td, .productList table tr td, .paymentTable tr td, .orderTable tr td {
     padding: 8px;
 }
 
-.profileView table tr th, .userList table tr th, .productList table tr th, .paymentTable tr th{
+.profileView table tr th, .userList table tr th, .productList table tr th, .paymentTable tr th, .orderTable tr th{
     padding: 8px;
     text-align: left;
 }
@@ -120,6 +120,10 @@ Profile & Admin
 
 .adminSearch, .adminProductSearch {
     padding: 6px 8px;
+}
+
+.orderTable, .paymentTable {
+    width: 100%;
 }
 
 
@@ -221,6 +225,58 @@ Dropdown Products
 .productDropDown:hover .product-content {
     display: block;
 }
+
+/*
+DropDown Profile
+ */
+
+.profileViewDropDown {
+    float: left;
+    overflow: hidden;
+}
+
+.profileViewDropDown .profileViewBtn{
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: #ecf0f1;
+    padding: 14px 16px;
+    background-color: #485460;
+    font-family: inherit;
+    margin: 0;
+}
+
+.profileViewDropDown:hover .profileViewBtn {
+    background-color: #3498db;
+}
+
+.profileView-content {
+    display: none;
+    position: absolute;
+    background-color: #485460;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.profileView-content a {
+    float: none;
+    color: #ecf0f1;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.profileView-content a:hover {
+    background-color: #3498db;
+}
+
+.profileViewDropDown:hover .profileView-content {
+    display: block;
+}
+
+
 /*
 DropDown Language
  */
