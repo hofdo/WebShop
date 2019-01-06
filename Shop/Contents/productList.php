@@ -38,5 +38,5 @@ require_once "../Pages/Helper.php";
             <tr><td><button type='submit' id="adminChangeProduct" class="adminChangeProduct" onclick="editProduct()">Edit User</button></td><td><button type='submit' id="adminAddProduct" class="adminAddProduct" onclick="addProduct()">Add user</button></td></tr>
         </table
     </div>
-
 </div>
+

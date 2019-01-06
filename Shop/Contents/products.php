@@ -1,13 +1,10 @@
 <?php
 
 require_once "../autoloader.php";
-require_once "../SQLDB/Session.php";
-
 ?>
-
 <?php
 $category = get_param('q', '0');
-if ($category== '0') {
+if ($category == '0') {
     $result = product::getAllProducts();
 } else {
     $result = Product::getProductByCategory($category);

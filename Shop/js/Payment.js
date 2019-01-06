@@ -86,7 +86,7 @@ function sendPayment() {
                             }
                             else{
                                 var request = new XMLHttpRequest();
-                                request.open("POST", "../Product/finishOrder.php?firstName=" + firstName + "&lastName=" + lastName + "&gender=" + gender + "&email=" + email + "&address=" + address
+                                request.open("POST", "/Shop/Product/finishOrder.php?firstName=" + firstName + "&lastName=" + lastName + "&gender=" + gender + "&email=" + email + "&address=" + address
                                     + "&plz=" + plz + "&state=" + state + "&country=" + country + "&paymentMethod=" + paymentMethod);
                                 request.onload = function(){
 
@@ -151,7 +151,7 @@ function sendPaymentCreditCard() {
     var creditCardCVV = document.getElementById("creditCardCVV").value;
 
     var request = new XMLHttpRequest();
-    request.open("POST", "../Product/finishOrder.php?firstName=" + firstName + "&lastName=" + lastName + "&gender=" + gender + "&email=" + email + "&address=" + address
+    request.open("POST", "/Shop/Product/finishOrder.php?firstName=" + firstName + "&lastName=" + lastName + "&gender=" + gender + "&email=" + email + "&address=" + address
         + "&plz=" + plz + "&state=" + state + "&country=" + country + "&paymentMethod=" + paymentMethod + "&holderName=" + creditCardHolderName
         + "&cardNumber=" + creditCardNumber + "&expireDateMonth=" + creditCardExpireDateMonth + "&expireDateYear=" + creditCardExpireDateYear + "&cvv=" + creditCardCVV);
     request.onload = function(){

@@ -14,7 +14,7 @@ function editProfileUser() {
         if (checkRegex("^([A-Za-z0-9\-_.?!]){1,30}", password)) {
             if (checkRegex("^[A-Za-z0-9.,!?:;\-_]+[@]{1}[A-Za-z0-9]+\.{1}[A-Za-z]{2,5}", email)) {
                 var request = new XMLHttpRequest();
-                request.open("POST", "../Profile/profileEditUser.php?uid=" + uid + "&username=" + userName + "&oldUsername=" + oldUserName + "&password="
+                request.open("POST", "/Shop/Profile/profileEditUser.php?uid=" + uid + "&username=" + userName + "&oldUsername=" + oldUserName + "&password="
                     + password + "&email=" + email + "&firstname=" + firstName + "&lastname=" + lastName);
                 request.onload = function () {
                     var userExists = request.responseText;
@@ -48,7 +48,7 @@ function showProfileEdit() {
     document.getElementById("profileEdit").style.display = "block";
     var username = document.getElementById("profileUsername").innerText;
     var request = new XMLHttpRequest();
-    request.open("GET", "../Admin/adminGetUser.php?username=" + username);
+    request.open("GET", "/Shop/Admin/adminGetUser.php?username=" + username);
     request.onload = function(){
         var data = request.responseText;
         var array = data.split(";");

@@ -85,7 +85,7 @@ Navigation
 Profile & Admin
  */
 
-.profileView button, .profileEdit button, .userEdit table tr td button, .userList table tr td button, .productList table tr td button, .profileEdit table tr td button, .PaymentDetails table tr td button, .paymentTableBtn {
+.profileView button, .profileEdit button, .userEdit table tr td button, .userList table tr td button, .productList table tr td button, .profileEdit table tr td button, .PaymentDetails table tr td button, .adminOrderEdit table tr tr button, .paymentTableBtn {
     font-size: 16px;
     border: none;
     outline: none;
@@ -96,25 +96,25 @@ Profile & Admin
     margin: 0;
 }
 
-.profileView table tr td, .userList table tr td, .productList table tr td, .paymentTable tr td, .orderTable tr td {
+.profileView table tr td, .userList table tr td, .productList table tr td, .paymentTable tr td, .orderTable tr td, .adminOrderEdit table tr td {
     padding: 8px;
 }
 
-.profileView table tr th, .userList table tr th, .productList table tr th, .paymentTable tr th, .orderTable tr th{
+.profileView table tr th, .userList table tr th, .productList table tr th, .paymentTable tr th, .orderTable tr th, .adminOrderTable tr th{
     padding: 8px;
     text-align: left;
 }
 
-.profileView button:hover, .userEdit button:hover, .userList button:hover, .List button:hover, .profileEdit button:hover, .PaymentDetails button:hover, .paymentTable tr td button:hover{
+.profileView button:hover, .userEdit button:hover, .userList button:hover, .List button:hover, .profileEdit button:hover, .PaymentDetails button:hover, .paymentTable tr td button:hover, .adminOrderTable tr td button:hover{
     background-color: #3498db;
 }
 
-.profileEdit, .userEdit, .productEdit, .PaymentDetails{
+.profileEdit, .userEdit, .productEdit, .PaymentDetails, .adminOrderEdit{
     margin-top: 10px;
     display: none;
 }
 
-.adminChangeUser, .adminAddUser, .adminAddProduct, .adminChangeProduct {
+.adminChangeUser, .adminAddUser, .adminAddProduct, .adminChangeProduct, .adminOrderTable {
     display: none;
 }
 

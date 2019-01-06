@@ -39,6 +39,11 @@ class Cart {
         DB::doQuery($query);
     }
 
+    public static function getItemsByOrderID($orderID){
+        $query = "SELECT pid, p.name, value, quantity FROM `shoppingcart` INNER JOIN orders AS o ON o.oid = shoppingcart.order_id INNER JOIN products as p ON p.pid = shoppingcart.product_id WHERE o.name = '$orderID[0]' AND open = false";
+        return DB::doQuery($query);
+    }
+
     public static function getItems() {
         $username = $_SESSION["username"];
         $orderID = Product::getOrderID();

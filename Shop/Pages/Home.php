@@ -19,10 +19,10 @@ $pageId = get_param('id',"home");
     <title>WebShop</title>
     <link rel="stylesheet" type="text/css" href="/shop/pages/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="../js/AdminSection.js"></script>
-    <script src="../js/Products.js"></script>
-    <script src="../js/Payment.js"></script>
-    <script src="../js/Profile.js"></script>
+    <script src="/Shop/js/AdminSection.js" type="text/javascript"></script>
+    <script src="/Shop/js/Products.js" type="text/javascript"></script>
+    <script src="/Shop/js/Payment.js" type="text/javascript"></script>
+    <script src="/Shop/js/Profile.js" type="text/javascript"></script>
 </head>
 
 <body>
