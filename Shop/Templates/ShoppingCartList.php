@@ -9,7 +9,7 @@ $cancel = t("cancel");
 <div id="shoppingCart" class="shoppingCart_Container">
     <div class="shoppingCart_Content">
         <div class="Item_Container">
-            <?php Cart::render();?>
+            <?php (new Cart)->render();?>
         </div>
             <?php proceedPaymentSite($language) ?>
         <button type="button" onclick="document.getElementById('shoppingCart').style.display='none'" class="cancel_Btn">
