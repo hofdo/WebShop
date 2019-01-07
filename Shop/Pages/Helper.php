@@ -44,20 +44,21 @@ function render_leftNav($language, $pageId)
                 . t($nav) . "</a></li>";
         } elseif ($nav == 'profile') {
             if ($_SESSION["logged_in"] == true) {
-                echo "<div class='profileViewDropDown'><button class='profileViewBtn'>" . t("profileView") . "</button>";
+                echo "<li class='$class'><a href=\"$url\">" . t($nav) . "</a></li>";
+                echo "<div class='profileViewDropDown'><li class='profileViewBtn'>" . t("profileView") . "</li>";
                 echo "<div class='profileView-content'>";
                 render_profileDropDown($language, $pageId);
                 echo "</div></div>";
             }
         } elseif ($nav == "adminView") {
             if (User::isAdmin($_SESSION["username"])) {
-                echo "<div class='adminViewDropDown'><button class='adminViewBtn'>" . t("adminView") . "</button>";
+                echo "<div class='adminViewDropDown'><li class='adminViewBtn'>" . t("adminView") . "</li>";
                 echo "<div class='adminView-content'>";
                 render_adminDropDown($language, $pageId);
                 echo "</div></div>";
             }
         } elseif ($nav == "products") {
-            echo "<div class='productDropDown'><button class='productViewBtn'><a href=\"$url\">" . t($nav) . "</a></button>";
+            echo "<div class='productDropDown'><li class='productViewBtn'><a href=\"$url\">" . t($nav) . "</a></li>";
             echo "<div class='product-content'>";
             render_productsDropDown($language, $pageId);
             echo "</div></div>";
@@ -72,7 +73,7 @@ function render_rightNav($language, $pageId)
     $dropDownNav = array("languageDropDown", "searchDropDown");
     foreach ($dropDownNav as $dropDown) {
         if ($dropDown == "languageDropDown") {
-            echo "<div class='searchDropDown'><button class='searchbtn'><img src='/shop/Pictures/search.png' height='14' width='14'></button>";
+            echo "<div class='searchDropDown'><li class='searchbtn'><img src='/shop/Pictures/search.png' height='14' width='14'></li>";
             echo "<div class='search-content'><input type='text' placeholder=" . t('searchDefault') . "></div></div>";
         } elseif ($dropDown == "searchDropDown") {
             echo "<div class='languageDropDown'><button class='languagebtn'><img src='/shop/Pictures/translation.png' height='14' width='14'></button>";

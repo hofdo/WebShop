@@ -1,6 +1,6 @@
 html, body {
     height: 100%;
-    margin: 0px;
+    margin: 0;
     background-color: #ecf0f1;
 }
 
@@ -157,6 +157,7 @@ DropDown AdminView
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    top: 47px
 }
 
 .adminView-content a {
@@ -207,6 +208,7 @@ Dropdown Products
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    top: 47px
 }
 
 .product-content a {
@@ -257,6 +259,7 @@ DropDown Profile
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    top: 47px;
 }
 
 .profileView-content a {
