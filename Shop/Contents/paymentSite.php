@@ -25,10 +25,10 @@ require_once "../SQLDB/Session.php";
             </table>
         <?php
         if (Product::checkOrderIsOpen()) {
-            echo "<button type='button' class='paymentTableBtn' onclick='showPaymentDetails()'>Pay</button>";
+            echo "<button type='button' class='paymentTableBtn' onclick='showPaymentDetails()'>".t("pay")."</button>";
         }
         else{
-            echo "<label>You cannot pay when the Cart is empty!</label>";
+            echo "<label>".t("carEmpty")."</label>";
         }
         ?>
     </div>
@@ -36,28 +36,28 @@ require_once "../SQLDB/Session.php";
         <h2>Payment details</h2>
         <table>
             <tr><td><button onclick="closePaymentDetails()">X</button></td></tr>
-            <tr><td>Gender:</td><td><select id="paymentDetailsGender">
-                        <option>Man</option>
-                        <option>Women</option>
+            <tr><td><?php echo t("gender")?>:</td><td><select id="paymentDetailsGender">
+                        <option><?php echo t("man")?></option>
+                        <option><?php echo t("woman")?></option>
                     </select></td></tr>
-            <tr><td>Firstname:</td><td><input id="paymentDetailsFirstName" type="text" value=""></td></tr>
-            <tr><td>lastname:</td><td><input id="paymentDetailsLastName" type="text" value="" ></td></tr>
+            <tr><td><?php echo t("firstName")?>:</td><td><input id="paymentDetailsFirstName" type="text" value=""></td></tr>
+            <tr><td><?php echo t("lastName")?>:</td><td><input id="paymentDetailsLastName" type="text" value="" ></td></tr>
             <tr><td>Email:</td><td><input id="paymentDetailsEmail" type="email" value="" ></td></tr>
-            <tr><td>Address:</td><td><input id="paymentDetailsAddress" type="text" value="" ></td></tr>
-            <tr><td>PLZ:</td><td><input id="paymentDetailsPLZ" type="text" value="" ></td></tr>
-            <tr><td>City:</td><td><input id="paymentDetailsState" type="text" value="" ></td></tr>
-            <tr><td>Country:</td><td>
+            <tr><td><?php echo t("address")?>:</td><td><input id="paymentDetailsAddress" type="text" value="" ></td></tr>
+            <tr><td>PLZ: </td><td><input id="paymentDetailsPLZ" type="text" value="" ></td></tr>
+            <tr><td><?php echo t("city")?>:</td><td><input id="paymentDetailsState" type="text" value="" ></td></tr>
+            <tr><td><?php echo t("country")?>:</td><td>
                     <select id="paymentDetailsCountry">
-                    <option>Switzerland</option>
-                    <option>Germany</option>
-                    <option>Somalia</option>
+                    <option><?php echo t("switzerland") ?></option>
+                    <option><?php echo t("germany") ?></option>
+                    <option><?php echo t("somalia") ?></option>
                     </select>
                 </td>
-            </tr><tr><td>Payment method:</td><td>
+            </tr><tr><td><?php echo t("paymentMethod")?>:</td><td>
                     <select id="paymentDetailsPaymentMethod">Payment method
-                    <option>Cash</option>
-                    <option>Bill</option>
-                    <option>Credit Card</option>
+                    <option><?php echo t("cash")?></option>
+                    <option><?php echo t("bill")?></option>
+                    <option><?php echo t("credit")?></option>
                     </select>
                 </td>
             </tr>
@@ -65,36 +65,33 @@ require_once "../SQLDB/Session.php";
         </table>
     </div>
     <div  class="paymentConfirmation" id="paymentConfirmation">
-        <h1>Order Confirmation</h1>
-        <label>Your order has been successfully confirmed.</label>
-        <label>You will shortly receive an email with the details from the order.</label>
-        <label>Below are the details of your order:</label>
+        <h1><?php echo t("orderConformation")?>:</h1>
+        <label><?php echo t("orderOK")?>:</label>
         <table class="paymentDetailsTable" id="paymentDetailsTable">
-            <tr><td>Gender: </td><td id="paymentConfirmationGender"></td></tr>
-            <tr><td>Firstname: </td><td id="paymentConfirmationFirstName"></td></tr>
-            <tr><td>Lastname: </td><td id="paymentConfirmationLastName"></td></tr>
+            <tr><td><?php echo t("gender")?>:</td><td id="paymentConfirmationGender"></td></tr>
+            <tr><td><?php echo t("firstName")?>:</td><td id="paymentConfirmationFirstName"></td></tr>
+            <tr><td><?php echo t("lastName")?>:</td><td id="paymentConfirmationLastName"></td></tr>
             <tr><td>Email: </td><td id="paymentConfirmationEmail" ></td></tr>
-            <tr><td>Address: </td><td id="paymentConfirmationAddress"></td></tr>
+            <tr><td><?php echo t("address")?>:</td><td id="paymentConfirmationAddress"></td></tr>
             <tr><td>PLZ: </td><td id="paymentConfirmationPLZ"></td></tr>
-            <tr><td>City: </td><td id="paymentConfirmationCity"></td></tr>
-            <tr><td>Country: </td><td id="paymentConfirmationCountry"></td></tr>
-            <tr><td>Paymentmethod: </td><td id="paymentConfirmationPaymentMethod"></td></tr>
+            <tr><td><?php echo t("city")?>: </td><td id="paymentConfirmationCity"></td></tr>
+            <tr><td><?php echo t("address")?>country: </td><td id="paymentConfirmationCountry"></td></tr>
+            <tr><td><?php echo t("paymentMethod")?>: </td><td id="paymentConfirmationPaymentMethod"></td></tr>
         </table>
     </div>
     <div class="creditCardDetails" id="creditCardDetails">
-        <label>Creditcard Details:</label>
+        <label><?php echo t("CCDetails")?>:</label>
         <table>
-            <tr><td>Creditcard Holder: </td><td id="paymentConfirmationHolderName"></td></tr>
-            <tr><td>Creditcard number: </td><td id="paymentConfirmationNumber"></td></tr>
-            <tr><td>Expiry date: </td><td id="paymentConfirmationExpiryDateMonth" ></td><td id="paymentConfirmationExpiryDateYear"></td>
+            <tr><td><?php echo t("CCHolder")?>: </td><td id="paymentConfirmationHolderName"></td></tr>
+            <tr><td><?php echo t("CCNumber")?>: </td><td id="paymentConfirmationNumber"></td></tr>
+            <tr><td><?php echo t("CCDate")?>: </td><td id="paymentConfirmationExpiryDateMonth" ></td><td id="paymentConfirmationExpiryDateYear"></td>
         </table>
     </div>
     <div id="paymentOrder" class="paymentOrder">
-        <label>Order details:</label>
+        <label><?php echo t("orderDetails")?>:</label>
         <table class="paymentOrderTable" id="paymentOrderTable">
-            <tr><th>Article-Id</th><th>Name</th><th>Value</th><th>Quantity</th></tr>
+            <tr><th><?php echo t("articleId")?></th><th>Name</th><th><?php echo t("value")?></th><th><?php echo t("quantity")?></th></tr>
         </table>
     </div>
-    <a href="../Pages/Home.php" class="paymentHomeLinkBtn" id="paymentHomeLinkBtn"><button>Homepage</button></a>
+    <a href="/Shop/<?php get_param('lang','de') ?>/home" class="paymentHomeLinkBtn" id="paymentHomeLinkBtn"><button>Homepage</button></a>
 </div>
-

@@ -37,7 +37,7 @@ function render_leftNav($language, $pageId)
 {
     $navigation = array("home", "products", "profile", "adminView");
     foreach ($navigation as $nav) {
-        $url ="/shop/".$language."/".$nav;
+        $url = "/shop/" . $language . "/" . $nav;
         $class = $pageId == $nav ? 'active' : 'inactive';
         if ($nav == 'home') {
             echo "<li class=\"$class\"><a href=\"$url\"><img src='/shop/Pictures/home.png' height='14' width='14'> "
@@ -90,7 +90,7 @@ function render_footer($language, $pageId)
 {
     $footerNav = array("impressum", "contact", "faq", "about");
     foreach ($footerNav as $foot) {
-        $url ="/shop/".$language."/".$foot;
+        $url = "/shop/" . $language . "/" . $foot;
         $class = $pageId == $foot ? 'active' : 'inactive';
         echo "<li><a class=\"$class\" href=\"$url\">" . t($foot) . "</a></li>";
     }
@@ -101,7 +101,7 @@ function render_adminDropDown($language, $pageId)
 {
     $adminDropDownNav = array("userList", "productList");
     foreach ($adminDropDownNav as $adminNav) {
-        $url ="/shop/".$language."/".$adminNav;
+        $url = "/shop/" . $language . "/" . $adminNav;
         $class = $pageId == $adminNav ? 'active' : 'inactive';
         echo "<a class='$class' href=\"$url\">" . t($adminNav) . "</a>";
     };
@@ -122,7 +122,7 @@ function render_productsDropDown($language, $pageId)
     $productDropDownNav = Product::getCategories()->fetch_all();
     foreach ($productDropDownNav as $name) {
         $name = $name[0];
-        $url ="/shop/".$language."/products/".$name;
+        $url = "/shop/" . $language . "/products/" . $name;
         $class = $pageId == $name ? 'active' : 'inactive';
         echo "<a class='$class' href=\"$url\">" . t($name) . "</a>";
     };
@@ -133,7 +133,10 @@ function render_languages($language)
 {
     $languages = array('de', 'en');
     foreach ($languages as $lang) {
-        $url = "/shop/".$lang."/".get_param('id','home')."/".get_param('q',null);
+        $url = "/shop/" . $lang . "/" . get_param('id', 'home');
+        if (isset($_GET['q'])) {
+            $url = $url . "/" . get_param('q', null);
+        }
         $class = $language == $lang ? 'active' : 'inactive';
         echo "<a class=\"$class\" href=\"" . $url . "\">" . strtoupper($lang) . "</a>";
     }
