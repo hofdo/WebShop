@@ -44,7 +44,6 @@ function render_leftNav($language, $pageId)
                 . t($nav) . "</a></li>";
         } elseif ($nav == 'profile') {
             if ($_SESSION["logged_in"] == true) {
-                echo "<li class='$class'><a href=\"$url\">" . t($nav) . "</a></li>";
                 echo "<div class='profileViewDropDown'><li class='profileViewBtn'>" . t("profileView") . "</li>";
                 echo "<div class='profileView-content'>";
                 render_profileDropDown($language, $pageId);
@@ -78,7 +77,7 @@ function render_rightNav($language, $pageId)
         } elseif ($dropDown == "searchDropDown") {
             echo "<div class='languageDropDown'><button class='languagebtn'><img src='/shop/Pictures/translation.png' height='14' width='14'></button>";
             echo "<div class='language-content'>";
-            echo render_languages($language, $pageId) . "</div></div>";
+            echo render_languages($language) . "</div></div>";
         } else {
             echo "<button></button>";
         }

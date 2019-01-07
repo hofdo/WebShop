@@ -41,10 +41,6 @@ $user = new User($username, mysqli_fetch_row(User::getUser($username))[2], $firs
             <table>
                 <tr><td><button onclick="document.getElementById('profileEdit').style.display='none'">X</button</td></tr>
                 <tr>
-                    <td><?php echo t("PicUpload") . ":" ?></td>
-                    <td><input type="file" name="image"/></td>
-                </tr>
-                <tr>
                     <td><?php echo t("username") . ":" ?></td>
                     <td><input type="text" name="username" value="<?php echo $user->getUsername() ?>"
                                pattern="^([A-Za-z0-9\-_.?!]){3,20}"
