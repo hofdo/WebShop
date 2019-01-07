@@ -22,6 +22,7 @@ if (preg_match("^([A-Za-z0-9\-_.?!]){3,20}", $username)){
         }
     }
 }
+echo $str;
 
 
 ?>
