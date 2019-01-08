@@ -45,15 +45,14 @@ function editUser() {
                 document.getElementById("adminUserAddLabel").innerText = "";
 
             }
-            else{
+            else {
                 document.getElementById("adminUserAddLabel").innerText = "Email-address should only contain letters, numbers and the following characters: {.,!?:;-_}";
             }
         }
-        else{
-            document.getElementById("adminUserAddLabel").innerText = "Password should only contain letters, numbers, the following characters: {-_.?!} and must not be longer than 20";
+        else {
+            document.getElementById("adminUserAddLabel").innerText = "Password should only contain letters, numbers, the following characters: {-_.?!} and must not be longer than 30";
         }
-    }
-    else{
+    }else {
         document.getElementById("adminUserAddLabel").innerText = "Username should only contain letters, numbers, the following characters: {-_.?!} and must not be longer than 20";
     }
 }
@@ -65,67 +64,61 @@ function addUser() {
     var firstName = document.getElementById("adminSectionFirstName").value;
     var lastName = document.getElementById("adminSectionLastName").value;
 
-    if (checkRegex("^([A-Za-z0-9\-_.?!]){3,20}", userName)) {
-        if (checkRegex("^([A-Za-z0-9\-_.?!]){1,30}", password)) {
-            if (checkRegex("^[A-Za-z0-9.,!?:;\-_]+[@]{1}[A-Za-z0-9]+\.{1}[A-Za-z]{2,5}", email)) {
-                if (firstName !== "" && lastName !== "") {
-                    var request = new XMLHttpRequest();
-                    request.open("POST", "/Shop/Admin/adminAddUser.php?username=" + userName + "&password="
-                        + password + "&email=" + email + "&firstname=" + firstName + "&lastname=" + lastName);
-                    request.onload = function () {
 
-                        var response = request.responseText.split(";");
-                        var uid = response[0];
-                        var userExists = response[1];
+            if (checkRegex("^([A-Za-z0-9\-_.?!]){3,20}", userName)) {
+                if (checkRegex("^([A-Za-z0-9\-_.?!]){1,30}", password)) {
+                    if (checkRegex("^[A-Za-z0-9.,!?:;\-_]+[@]{1}[A-Za-z0-9]+\.{1}[A-Za-z]{2,5}", email)) {
+                        var request = new XMLHttpRequest();
+                        request.open("POST", "/Shop/Admin/adminAddUser.php?username=" + userName + "&password="
+                            + password + "&email=" + email + "&firstname=" + firstName + "&lastname=" + lastName);
+                        request.onload = function () {
 
-                        if (!userExists) {
+                            var response = request.responseText.split(";");
+                            var uid = response[0];
+                            var userExists = response[1];
 
-                            var table = document.getElementById("userTable");
-                            var row = table.insertRow(table.rows.length - 1);
-                            var checkboxCell = row.insertCell(0);
-                            var uidCell = row.insertCell(1);
-                            var usernameCell = row.insertCell(2);
-                            var firstnameCell = row.insertCell(3);
-                            var lastNameCell = row.insertCell(4);
-                            var emailCell = row.insertCell(5);
+                            if (!userExists) {
 
-                            var checkbox = document.createElement("input");
-                            checkbox.type = "checkbox";
-                            checkbox.id = "adminCheckBox" + (table.rows.length - 2);
-                            checkboxCell.appendChild(checkbox);
+                                var table = document.getElementById("userTable");
+                                var row = table.insertRow(table.rows.length - 1);
+                                var checkboxCell = row.insertCell(0);
+                                var uidCell = row.insertCell(1);
+                                var usernameCell = row.insertCell(2);
+                                var firstnameCell = row.insertCell(3);
+                                var lastNameCell = row.insertCell(4);
+                                var emailCell = row.insertCell(5);
 
-                            uidCell.innerHTML = uid;
-                            usernameCell.innerHTML = userName;
-                            firstnameCell.innerHTML = firstName;
-                            lastNameCell.innerHTML = lastName;
-                            emailCell.innerHTML = email;
-                        }
-                        else{
-                            document.getElementById("adminUserAddLabel").innerText = "User already exists";
+                                var checkbox = document.createElement("input");
+                                checkbox.type = "checkbox";
+                                checkbox.id = "adminCheckBox" + (table.rows.length - 2);
+                                checkboxCell.appendChild(checkbox);
 
-                        }
+                                uidCell.innerHTML = uid;
+                                usernameCell.innerHTML = userName;
+                                firstnameCell.innerHTML = firstName;
+                                lastNameCell.innerHTML = lastName;
+                                emailCell.innerHTML = email;
+                            }
+                            else {
+                                document.getElementById("adminUserAddLabel").innerText = "User already exists";
 
-                    };
-                    request.send();
-                    document.getElementById("adminUserAddLabel").innerText = "";
+                            }
 
+                        };
+                        request.send();
+                        document.getElementById("adminUserAddLabel").innerText = "";
+
+                    }
+                    else {
+                        document.getElementById("adminUserAddLabel").innerText = "Email-address should only contain letters, numbers and the following characters: {.,!?:;-_}";
+                    }
                 }
                 else {
-                    document.getElementById("adminUserAddLabel").innerText = "Firstname or Lastname cannot be empty";
+                    document.getElementById("adminUserAddLabel").innerText = "Password should only contain letters, numbers, the following characters: {-_.?!} and must not be longer than 30";
                 }
+            }else {
+                document.getElementById("adminUserAddLabel").innerText = "Username should only contain letters, numbers, the following characters: {-_.?!} and must not be longer than 20";
             }
-            else{
-                document.getElementById("adminUserAddLabel").innerText = "Email-address should only contain letters, numbers and the following characters: {.,!?:;-_}";
-            }
-        }
-        else{
-            document.getElementById("adminUserAddLabel").innerText = "Password should only contain letters, numbers, the following characters: {-_.?!} and must not be longer than 20";
-        }
-    }
-    else{
-        document.getElementById("adminUserAddLabel").innerText = "Username should only contain letters, numbers, the following characters: {-_.?!} and must not be longer than 20";
-    }
-
 
 }
 

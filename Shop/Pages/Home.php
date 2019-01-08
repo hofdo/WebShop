@@ -57,18 +57,18 @@ $pageId = get_param('id',"home");
 
 <!-- Registration  -->
 
-<?php include "../Templates/RegistrationForm.php"?>
+<?php include "../Templates/RegistrationForm.php" ?>
 
 <!-- Login  -->
 
-<?php include "../Templates/LoginForm.php"?>
+<?php include "../Templates/LoginForm.php" ?>
 
 <!-- Shopping Cart  -->
 
-<?php include "../Templates/ShoppingCartList.php"?>
+<?php include "../Templates/ShoppingCartList.php" ?>
 
 <!-- Credit Card Information -->
-<?php include "../Templates/CreditCartForm.php"?>
+<?php include "../Templates/CreditCartForm.php" ?>
 <!-- Content  -->
 
 <div class="content">
@@ -77,7 +77,7 @@ $pageId = get_param('id',"home");
         include "../Contents/$pageId.php";
     }
     else {
-        echo "Not yet implemented";
+        echo "Not yet implemented arara";
     }
     ?>
 </div>

@@ -185,6 +185,6 @@ function t($key)
             return "NEED TRANSLATION $key";
         }
     } else {
-        return "Not yet implemented.";
+        return "Not yet implemented lang".$language."|";
     }
 }
