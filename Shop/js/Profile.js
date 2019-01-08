@@ -23,11 +23,14 @@ function editProfileUser() {
                     + password + "&email=" + email + "&firstname=" + firstName + "&lastname=" + lastName);
                 request.onload = function () {
                     var userExists = request.responseText;
-                    if (!(userExists) || oldUserName !== userName) {
+                    alert(userExists);
+                    if (userExists !== "1") {
+                        if (oldUserName !== userName){
                                 document.getElementById("profileUsername").innerText = userName;
                                 document.getElementById("profileEmail").innerText = email;
                                 document.getElementById("profileFirstName").innerText = firstName;
                                 document.getElementById("profileLastName").innerText = lastName;
+                        }
                     }
                     else if(userExists === "1"){
                         document.getElementById("profileLabel").style.display = "block";
@@ -49,6 +52,7 @@ function editProfileUser() {
         document.getElementById("usernameVal").style.display = "block";
         document.getElementById("profileEditUsername").style.display = "#ee5253";
     }
+    document.getElementById("profileLabel").style.display = "none";
 }
 
 function showProfileEdit() {

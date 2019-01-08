@@ -31,7 +31,7 @@ $user = new User($username, mysqli_fetch_row(User::getUser($username))[2], $firs
         </tr>
         <tr>
             <td>
-                <button onclick=document.getElementById('profileEdit').style.display='block'>Edit profile</button>
+                <button onclick=showProfileEdit()>Edit profile</button>
             </td>
         </tr>
     </table>
