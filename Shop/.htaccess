@@ -20,5 +20,3 @@ RewriteRule ^(de|en)/?(\w*)$ /shop/pages/home.php?lang=$1&id=$2 [L]
 #Rule for lang/id/info
 RewriteRule ^(de|en)/?(\w*)/?(\w*)$ /shop/pages/home.php?lang=$1&id=$2&q=$3 [L]
 
-
-

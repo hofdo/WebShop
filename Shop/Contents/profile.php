@@ -37,9 +37,9 @@ $user = new User($username, mysqli_fetch_row(User::getUser($username))[2], $firs
     </table>
     <div id="profileEdit" class="profileEdit">
             <h2>Edit profile</h2>
-            <label id="profileLabel" class="profileValLabel"><?php echo t("userExists") ?></label>
+            <label id="profileLabel" class="profileLabel"><?php echo t("userExists") ?></label>
             <table>
-                <tr><td><button onclick="close()">X</button</td></tr>
+                <tr><td><button onclick="closeProfileEdit()">X</button</td></tr>
                 <tr>
                     <td><?php echo t("username") . ":" ?></td>
                     <td>

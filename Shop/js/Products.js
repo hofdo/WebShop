@@ -83,14 +83,22 @@ function deleteFromShoppingCart(sid, pid) {
 }
 
 function changeShoppingCartQuantity(sid, pid) {
+    document.getElementById("quantityLabel").style.display = "none";
     var table = document.getElementById("shoppingCartTable");
     for (var i = 1; i < (table.rows.length-1); i++){
         if(table.rows[i].cells[0].innerHTML === pid){
             var quantity = table.rows[i].cells[3].childNodes[0].value;
         }
     }
+    alert(quantity);
+    var reg = new RegExp("^[0-9]+^");
+    if (reg.test(quantity)) {
         var request = new XMLHttpRequest();
         request.open("POST", "/Shop/Product/changeShoppingCartQuantity.php?sid=" + sid + "&quantity=" + quantity);
         request.send();
+    }
+    else{
+        document.getElementById("quantityLabel").style.display = "block";
+    }
 
 }

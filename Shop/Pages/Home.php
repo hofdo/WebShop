@@ -30,7 +30,7 @@ $pageId = get_param('id',"home");
 <!--- Header --->
 
 <header>
-    <img src="/shop/Pictures/shopping-bag.png" height="60" width="60">
+    <img src="/shop/Pictures/shopping-bag.png">
     <h1>Domospot.ch</h1>
 </header>
 

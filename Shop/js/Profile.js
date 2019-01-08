@@ -23,13 +23,14 @@ function editProfileUser() {
                     + password + "&email=" + email + "&firstname=" + firstName + "&lastname=" + lastName);
                 request.onload = function () {
                     var userExists = request.responseText;
-                    if (!(userExists) || oldUserName === userName) {
+                    if (!(userExists) || oldUserName !== userName) {
                                 document.getElementById("profileUsername").innerText = userName;
                                 document.getElementById("profileEmail").innerText = email;
                                 document.getElementById("profileFirstName").innerText = firstName;
                                 document.getElementById("profileLastName").innerText = lastName;
                     }
-                    else{
+                    else if(userExists === "1"){
+                        document.getElementById("profileLabel").style.display = "block";
                     }
                 };
                 request.send();
@@ -37,13 +38,16 @@ function editProfileUser() {
             }
             else{
                 document.getElementById("emailVal").style.display = "block";
+                document.getElementById("profileEditEmail").style.borderColor = "#ee5253";
             }
         }else{
             document.getElementById("passwordVal").style.display = "block";
+            document.getElementById("profileEditPassword").style.borderColor = "#ee5253";
         }
     }
     else{
         document.getElementById("usernameVal").style.display = "block";
+        document.getElementById("profileEditUsername").style.display = "#ee5253";
     }
 }
 
@@ -65,8 +69,13 @@ function showProfileEdit() {
     request.send();
 }
 
-function f() {
-    
+function closeProfileEdit() {
+    document.getElementById("profileEdit").style.display = "none";
+    document.getElementById("profileLabel").style.display = "none";
+    var vals = document.getElementsByClassName("profileValLabel");
+    for (var i = 0; i < vals.length; i++){
+        vals.item(i).style.display="none";
+    }
 }
 
 function checkRegex(regex, object) {

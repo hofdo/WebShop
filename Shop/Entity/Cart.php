@@ -70,7 +70,7 @@ class Cart {
         if (self::isEmpty() || !Product::checkOrderIsOpen()) {
             echo "<div class=\"cart empty\"><table id='shoppingCartTable'><tr><th>Article-Id</th><th>Name</th><th>Value</th><th>Quantity</th></tr><tr><td>Total: </td><td id='totalProductValue'>$totalValue</td></tr></table><div id='cartIsEmpty'>" . t("cart_empty") . "</div></div>";
         } else {
-            echo "<div class=\"cart\"><table id='shoppingCartTable'>";
+            echo "<div class=\"cart\"><table id='shoppingCartTable' class='shoppingCartTable' align='center'>";
             echo "<tr><th>Article-Id</th><th>Name</th><th>Value</th><th>Quantity</th></tr>";
             foreach (self::getItems()->fetch_all() as $item) {
                 $totalValue += $item[5];

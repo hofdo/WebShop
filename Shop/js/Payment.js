@@ -18,19 +18,7 @@ function refreshShoppingCart() {
         tableCart.deleteRow(1);
     }
     var rowCart = tableCart.insertRow(1);
-    var cellCart = rowCart.insertCell(0);
 
-    /*
-
-    var tableLenghtPayment = (tablePayment.rows.length-1);
-    for (var j = 1; j < tableLenghtPayment; j++){
-        tablePayment.deleteRow(1);
-    }
-    var rowPayment = tablePayment.insertRow(1);
-    var cellPayment = rowPayment.insertCell(0);
-    cellPayment.innerHTML = "Cart empty";
-
-    */
 
     document.getElementById("totalProductValue").innerText = "0";
 

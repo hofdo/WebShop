@@ -15,10 +15,11 @@ if ($category != "0"){
     echo ": ".t($category);
 }
 echo '</h1>';
-
+echo "<div class='products'>";
 $products = $result->fetch_all();
 foreach ($products as $product) {
     Product::renderProduct($product);
 }
+echo "</div>";
 
 ?>

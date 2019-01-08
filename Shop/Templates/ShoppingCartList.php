@@ -10,6 +10,7 @@ $cancel = t("cancel");
     <div class="shoppingCart_Content">
         <div class="Item_Container">
             <?php (new Cart)->render();?>
+            <label id="quantityLabel" class="quantityLabel"><?php echo t("quantityVal") ?></label>
         </div>
             <?php proceedPaymentSite($language) ?>
         <button type="button" onclick="document.getElementById('shoppingCart').style.display='none'" class="cancel_Btn">

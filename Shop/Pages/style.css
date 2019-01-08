@@ -14,11 +14,42 @@ header {
     margin: 0;
 }
 
+@media screen and (min-width: 768px) {
+    header h1{
+        font-size: 75px;
+    }
+    header img{
+        height: 58px;
+        width: 58px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header h1{
+        font-size: 50px;
+    }
+    header img{
+        height: 48px;
+        width: 48px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    header h1{
+        font-size: 30px;
+    }
+    header img{
+        height: 28px;
+        width: 28px;
+    }
+}
+
+
+
 header h1 {
     margin: 0;
     display: inline-block;
     vertical-align: middle;
-    font-size: 80px;
     font-family: Arial, serif;
     color: #222f3e
 }
@@ -114,7 +145,7 @@ Profile & Admin
     display: none;
 }
 
-.adminChangeUser, .adminAddUser, .adminAddProduct, .adminChangeProduct, .adminOrderTable {
+.adminChangeUser, .adminAddUser, .adminAddProduct, .adminChangeProduct, .adminOrderTable, .quantityLabel {
     display: none;
 }
 
@@ -126,7 +157,7 @@ Profile & Admin
     width: 100%;
 }
 
-.profileValLabel {
+.profileValLabel, .profileLabel {
     display: none;
 }
 
@@ -342,10 +373,40 @@ Content-Container
 Sidebar right
  */
 
+@media screen and (max-width: 768px) {
+    .sideBar {
+        width: 100%;
+        float: none;
+    }
+
+    .sideBar button {
+       margin-left: 25%;
+        margin-right: 25%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .sideBar {
+        width: 25%;
+        float: right;
+    }
+
+    .sideBar button {
+        width: 80%;
+    }
+}
+
 .sideBar {
-    width: 25%;
-    float: right;
     background-color: #576574;
+}
+
+.sideBar ul li button {
+    border: none;
+    cursor: pointer;
+    background-color: #05c46b;
+    padding: 14px;
+    margin: 10px;
+    color: #ecf0f1;
 }
 
 .sideBar ul{
@@ -371,13 +432,28 @@ Sidebar right
 Content of the Site
  */
 
+@media screen and (max-width: 768px) {
+    .content {
+        margin-bottom: 8%;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .content {
+        margin-right: 25%;
+        margin-left: 5%;
+        margin-bottom: 5%;
+    }
+}
+
 .content {
     padding: 5px 10px;
-    margin-right: 25%;
-    margin-left: 5%;
-    margin-bottom: 5%;
     background-color: #ecf0f1;
     color: #222f3e;
+}
+
+.products {
+    align-content: space-evenly;
 }
 
 .product {
@@ -509,15 +585,36 @@ Shopping Cart
     padding: 10px 18px;
 }
 
+@media screen and (max-width: 768px){
+    .shoppingCart_Content{
+        width: 80%;
+        margin: 1% auto 3% auto
+    }
+}
+
+@media screen and (min-width: 768px){
+    .shoppingCart_Content{
+        width: 60%;
+        margin: 5% auto 10% auto;
+    }
+}
 .shoppingCart_Content {
     background-color: #dfe4ea;
-    margin: 10% auto 15% auto;
-    width: 40%;
     padding: 10px;
+}
+
+.shoppingCartTable {
+    width: 100%;
+}
+
+.shoppingCartTable button {
+    padding: 8px;
+
 }
 
 .Item_Container {
     margin: 2px;
+    overflow-x: auto;
     background-color: white;
 }
 
