@@ -90,14 +90,13 @@ function changeShoppingCartQuantity(sid, pid) {
             var quantity = table.rows[i].cells[3].childNodes[0].value;
         }
     }
-    alert(quantity);
-    var reg = new RegExp("^[0-9]+^");
+    var reg = new RegExp("^[0-9]+$");
     if (reg.test(quantity)) {
         var request = new XMLHttpRequest();
         request.open("POST", "/Shop/Product/changeShoppingCartQuantity.php?sid=" + sid + "&quantity=" + quantity);
         request.send();
     }
-    else{
+    else {
         document.getElementById("quantityLabel").style.display = "block";
     }
 

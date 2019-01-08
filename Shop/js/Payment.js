@@ -56,7 +56,6 @@ function sendPayment() {
     var country = document.getElementById("paymentDetailsCountry").value;
     var paymentMethod = document.getElementById("paymentDetailsPaymentMethod").value;
 
-
     if (!isEmpty(firstName)){
         document.getElementById("paymentDetailsFirstName").style.borderColor = "";
         if (!isEmpty(lastName)){
@@ -69,7 +68,7 @@ function sendPayment() {
                         document.getElementById("paymentDetailsPLZ").style.borderColor = "";
                         if (!isEmpty(state)){
                             document.getElementById("paymentDetailsState").style.borderColor = "";
-                            if (paymentMethod === "Credit Card"){
+                            if (paymentMethod === "Credit card" || paymentMethod === "Kreditkarte"){
                                 document.getElementById("creditCard_container").style.display = "block";
                             }
                             else{

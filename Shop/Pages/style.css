@@ -1,6 +1,7 @@
 html, body {
     height: 100%;
     margin: 0;
+    min-width: 350px;
     background-color: #808e9b;
 }
 
@@ -21,6 +22,7 @@ header {
     header img{
         height: 58px;
         width: 58px;
+        margin-left: 25%;
     }
 }
 
@@ -31,16 +33,18 @@ header {
     header img{
         height: 48px;
         width: 48px;
+        margin-left: 20%;
     }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
     header h1{
         font-size: 30px;
     }
     header img{
         height: 28px;
         width: 28px;
+        margin-left: 15%;
     }
 }
 
@@ -57,12 +61,8 @@ header h1 {
 header img {
     display: inline-block;
     vertical-align: middle;
-    margin-left: 25%;
     padding-right: 20px;
 }
-
-
-
 
 /*
 Navigation
@@ -84,6 +84,7 @@ Navigation
 .navigation ul li {
     list-style-type: none;
 }
+
 
 .navigation ul li{
     float: left;
@@ -116,12 +117,24 @@ Navigation
 Profile & Admin
  */
 
+@media screen and (min-width: 768px) {
+    .profileView button, .profileEdit button, .userEdit table tr td button, .userList table tr td button, .productList table tr td button, .profileEdit table tr td button, .PaymentDetails table tr td button, .adminOrderEdit table tr tr button, .paymentTableBtn {
+        font-size: 16px;
+        padding: 5px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .profileView button, .profileEdit button, .userEdit table tr td button, .userList table tr td button, .productList table tr td button, .profileEdit table tr td button, .PaymentDetails table tr td button, .adminOrderEdit table tr tr button, .paymentTableBtn {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+}
+
 .profileView button, .profileEdit button, .userEdit table tr td button, .userList table tr td button, .productList table tr td button, .profileEdit table tr td button, .PaymentDetails table tr td button, .adminOrderEdit table tr tr button, .paymentTableBtn {
-    font-size: 16px;
     border: none;
     outline: none;
     color: #ecf0f1;
-    padding: 10px 12px;
     background-color: #485460;
     font-family: inherit;
     margin: 0;
@@ -153,8 +166,10 @@ Profile & Admin
     padding: 6px 8px;
 }
 
-.orderTable, .paymentTable {
+.orderTable, .paymentTable, .userList, .userEdit, .productList, .productEdit {
     width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
 }
 
 .profileValLabel, .profileLabel {
@@ -379,9 +394,12 @@ Sidebar right
         float: none;
     }
 
-    .sideBar button {
-       margin-left: 25%;
-        margin-right: 25%;
+    .sideBar ul li {
+        margin-left: 10%;
+    }
+
+    .shoppingCartBtn, .registrationBtn, .loginBtn, .logoutBtn {
+        width: 70%;
     }
 }
 
@@ -391,7 +409,7 @@ Sidebar right
         float: right;
     }
 
-    .sideBar button {
+    .shoppingCartBtn, .registrationBtn, .loginBtn, .logoutBtn {
         width: 80%;
     }
 }
@@ -411,16 +429,6 @@ Sidebar right
 
 .sideBar ul{
     list-style-type: none;
-}
-
-.sideBar ul li button {
-    border: none;
-    cursor: pointer;
-    background-color: #05c46b;
-    width: 80%;
-    padding: 14px;
-    margin: 10px;
-    color: #ecf0f1;
 }
 
 .sideBar ul li button:hover {

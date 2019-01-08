@@ -144,15 +144,15 @@ function render_sidebar($pageId)
     foreach ($sidebarNav as $sidebar) {
         if ($sidebar == "loginBtn") {
             if ($_SESSION["logged_in"] == false) {
-                echo "<li><button id='loginBtn' onclick=document.getElementById('login').style.display='block'>" . t('login') . "</button></li>";
+                echo "<li><button id='loginBtn' class='loginBtn' onclick=document.getElementById('login').style.display='block'>" . t('login') . "</button></li>";
             }
         } elseif ($sidebar == "registrationBtn") {
             if ($_SESSION["logged_in"] == false) {
-                echo "<li><button id='registrationBtn' onclick=document.getElementById('registration').style.display='block'>" . t('registration') . "</button></li>";
+                echo "<li><button id='registrationBtn' class='registrationBtn' onclick=document.getElementById('registration').style.display='block'>" . t('registration') . "</button></li>";
             }
         } elseif ($sidebar == "logoutBtn") {
             if ($_SESSION["logged_in"] == true) {
-                echo "<li><form action='/Shop/SQLDB/Logout.php' method='post'><button type='submit' value='logout' id='logoutBtn' >" . t("logout") . "</button></form></li>";
+                echo "<li><form action='/Shop/SQLDB/Logout.php' method='post'><button type='submit' value='logout' id='logoutBtn' class='logoutBtn' >" . t("logout") . "</button></form></li>";
             }
         } elseif ($sidebar == "shoppingCartBtn") {
             if ($_SESSION["logged_in"] == true) {
