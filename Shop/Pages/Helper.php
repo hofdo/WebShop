@@ -69,12 +69,9 @@ function render_leftNav($language, $pageId)
 
 function render_rightNav($language, $pageId)
 {
-    $dropDownNav = array("languageDropDown", "searchDropDown");
+    $dropDownNav = array("languageDropDown");
     foreach ($dropDownNav as $dropDown) {
-        if ($dropDown == "languageDropDown") {
-            echo "<div class='searchDropDown'><li class='searchbtn'><img src='/shop/Pictures/search.png' height='14' width='14'></li>";
-            echo "<div class='search-content'><input type='text' placeholder=" . t('searchDefault') . "></div></div>";
-        } elseif ($dropDown == "searchDropDown") {
+         if ($dropDown == "languageDropDown") {
             echo "<div class='languageDropDown'><button class='languagebtn'><img src='/shop/Pictures/translation.png' height='14' width='14'></button>";
             echo "<div class='language-content'>";
             echo render_languages($language) . "</div></div>";

@@ -15,7 +15,7 @@ $user = new User($username, mysqli_fetch_row(User::getUser($username))[2], $firs
     <table>
         <tr>
             <td><?php echo t("username") . ":" ?></td>
-            <td><?php echo $user->getUsername() ?></td>
+            <td id="profileUsername"><?php echo $user->getUsername() ?></td>
         </tr>
         <tr>
             <td>Email:</td>
@@ -36,45 +36,50 @@ $user = new User($username, mysqli_fetch_row(User::getUser($username))[2], $firs
         </tr>
     </table>
     <div id="profileEdit" class="profileEdit">
-        <form method="post" action="/Shop/SQLDB/UpdateUserProfile.php">
             <h2>Edit profile</h2>
+            <label id="profileLabel" class="profileValLabel"><?php echo t("userExists") ?></label>
             <table>
-                <tr><td><button onclick="document.getElementById('profileEdit').style.display='none'">X</button</td></tr>
+                <tr><td><button onclick="close()">X</button</td></tr>
                 <tr>
                     <td><?php echo t("username") . ":" ?></td>
-                    <td><input type="text" name="username" value="<?php echo $user->getUsername() ?>"
-                               pattern="^([A-Za-z0-9\-_.?!]){3,20}"
-                               title="Username should only contain letters, numbers, the following characters: {-_.?!} and must not be longer than 20\"
-                               required></td>
+                    <td>
+                        <input type="text" name="id" id="profileEditUID" value="<?php echo User::getUser($user->getUsername())->fetch_row()[0] ?>" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td><?php echo t("username") . ":" ?></td>
+                    <td>
+                        <input type="text" name="username" id="profileEditUsername" value="<?php echo $user->getUsername() ?>">
+                    </td>
+                    <td id="usernameVal" class="profileValLabel"><?php echo t("usernameVal")?></td>
                 </tr>
                 <tr>
                     <td><?php echo t('password') . ":" ?></td>
-                    <td><input type="password" name="password" value="<?php echo $user->getPassword() ?>"
-                               pattern="^([A-Za-z0-9\-_.?!]){1,30}"
-                               title="Password should only contain letters, numbers, the following characters: {-_.?!} and must not be longer than 20"
-                               required></td>
+                    <td>
+                        <input type="password" name="password" id="profileEditPassword" value="<?php echo $user->getPassword() ?>">
+                    </td>
+                    <td id="passwordVal" class="profileValLabel"><?php echo t("passwordVal")?></td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><input type="email" name="email" value="<?php echo $user->getEmail() ?>"
-                               pattern="^[A-Za-z0-9.,!?:;\-_]+[@]{1}[A-Za-z0-9]+\.{1}[A-Za-z]{2,5}"
-                               title="Email-address should only contain letters, numbers and the following characters: {.,!?:;\-_}"
-                               required></td>
+                    <td>
+                        <input type="email" name="email" id="profileEditEmail" value="<?php echo $user->getEmail() ?>">
+                    </td>
+                    <td id="emailVal" class="profileValLabel"><?php echo t("emailVal")?></td>
                 </tr>
                 <tr>
                     <td><?php echo t("firstName") . ":" ?></td>
-                    <td><input type="text" name="firstname" value="<?php echo $user->getFirstName() ?>"></td>
+                    <td><input type="text" name="firstname" id="profileEditFirstName" value="<?php echo $user->getFirstName() ?>"></td>
                 </tr>
                 <tr>
                     <td><?php echo t("lastName") . ":" ?></td>
-                    <td><input type="text" name="lastname" value="<?php echo $user->getLastName() ?>"></td>
+                    <td><input type="text" name="lastname" id="profileEditLastName" value="<?php echo $user->getLastName() ?>"></td>
                 </tr>
                 <tr>
                     <td>
-                        <button type='submit'>Update</button>
+                        <button type='submit' onclick="editProfileUser()">Update</button>
                     </td>
                 </tr>
             </table
-        </form>
     </div>
 </div>

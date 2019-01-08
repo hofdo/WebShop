@@ -7,7 +7,6 @@ function addToShoppingCart(pid) {
     request.open("POST", "/Shop/Product/addToShoppingCart.php?pid=" + pid + "&productValue="
         + productValue + "&productName=" + productName);
     request.onload = function(){
-        alert(request.responseText);
         var response = request.responseText;
         var quantity = response.split("_")[0];
         var sid = response.split("_")[1];

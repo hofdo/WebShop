@@ -1,7 +1,7 @@
 html, body {
     height: 100%;
     margin: 0;
-    background-color: #ecf0f1;
+    background-color: #808e9b;
 }
 
 /*
@@ -62,7 +62,7 @@ Navigation
 
 }
 
-.navigation ul li a, .adminViewBtn, .productViewBtn a {
+.navigation ul li a, .adminViewBtn a, .productViewBtn a {
     color: #ecf0f1;
     text-decoration: none;
     font-family: Arial, serif;
@@ -126,6 +126,10 @@ Profile & Admin
     width: 100%;
 }
 
+.profileValLabel {
+    display: none;
+}
+
 
 /*
 DropDown AdminView
@@ -142,7 +146,7 @@ DropDown AdminView
     color: #ecf0f1;
     padding: 14px 16px;
     background-color: #485460;
-    font-family: inherit;
+    font-family: Arial, serif;
     margin: 0;
 }
 
@@ -157,7 +161,7 @@ DropDown AdminView
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    top: 47px
+    top: 46px;
 }
 
 .adminView-content a {
@@ -208,7 +212,7 @@ Dropdown Products
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    top: 47px
+    top: 46px;
 }
 
 .product-content a {
@@ -244,7 +248,7 @@ DropDown Profile
     color: #ecf0f1;
     padding: 14px 16px;
     background-color: #485460;
-    font-family: inherit;
+    font-family: Arial, serif;
     margin: 0;
 }
 
@@ -259,7 +263,7 @@ DropDown Profile
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    top: 47px;
+    top: 46px;
 }
 
 .profileView-content a {
@@ -331,60 +335,6 @@ DropDown Language
 }
 
 /*
-DropDown Searchbar
- */
-
-.searchDropDown {
-    float: right;
-    overflow: hidden;
-}
-
-.searchDropDown .searchbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: #ecf0f1;
-    padding: 14px 16px;
-    background-color: #485460;
-    font-family: inherit;
-    margin: 0;
-}
-
-.searchbtn a:hover, .searchDropDown:hover .searchbtn {
-    background-color: #3498db;
-}
-
-.search-content {
-    display: none;
-    right: 0;
-    position: absolute;
-    background-color: #485460;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.search-content input {
-    padding: 14px 16px;
-    min-width: 100px;
-}
-
-.search-content a {
-    float: none;
-    color: #ecf0f1;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-.search-content a:hover {
-    background-color: #3498db;
-}
-
-.searchDropDown:hover .search-content {
-    display: block;
-}
-
-/*
 Content-Container
  */
 
@@ -395,7 +345,7 @@ Sidebar right
 .sideBar {
     width: 25%;
     float: right;
-    background-color: #808e9b;
+    background-color: #576574;
 }
 
 .sideBar ul{
@@ -424,10 +374,10 @@ Content of the Site
 .content {
     padding: 5px 10px;
     margin-right: 25%;
-    margin-left: 10%;
+    margin-left: 5%;
     margin-bottom: 5%;
-    background-color: #808e9b;
-    color: #ecf0f1;
+    background-color: #ecf0f1;
+    color: #222f3e;
 }
 
 .product {

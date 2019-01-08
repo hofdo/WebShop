@@ -10,6 +10,11 @@ function editProfileUser() {
     var firstName = document.getElementById("profileEditFirstName").value;
     var lastName = document.getElementById("profileEditLastName").value;
 
+    var vals = document.getElementsByClassName("profileValLabel");
+    for (var i = 0; i < vals.length; i++){
+        vals.item(i).style.display="none";
+    }
+
     if (checkRegex("^([A-Za-z0-9\-_.?!]){3,20}", userName)) {
         if (checkRegex("^([A-Za-z0-9\-_.?!]){1,30}", password)) {
             if (checkRegex("^[A-Za-z0-9.,!?:;\-_]+[@]{1}[A-Za-z0-9]+\.{1}[A-Za-z]{2,5}", email)) {
@@ -25,22 +30,20 @@ function editProfileUser() {
                                 document.getElementById("profileLastName").innerText = lastName;
                     }
                     else{
-                        document.getElementById("profileLabel").innerText = "User already exists";
                     }
                 };
                 request.send();
-                document.getElementById("profileLabel").innerText = "";
 
             }
             else{
-                document.getElementById("profileLabel").innerText = "Email-address should only contain letters, numbers and the following characters: {.,!?:;-_}";
+                document.getElementById("emailVal").style.display = "block";
             }
         }else{
-            document.getElementById("profileLabel").innerText = "Password should only contain letters, numbers, the following characters: {-_.?!} and must not be longer than 20";
+            document.getElementById("passwordVal").style.display = "block";
         }
     }
     else{
-        document.getElementById("profileLabel").innerText = "Username should only contain letters, numbers, the following characters: {-_.?!} and must not be longer than 20";
+        document.getElementById("usernameVal").style.display = "block";
     }
 }
 
@@ -60,6 +63,10 @@ function showProfileEdit() {
         document.getElementById("profileEditLastName").value = array[4];
     };
     request.send();
+}
+
+function f() {
+    
 }
 
 function checkRegex(regex, object) {
