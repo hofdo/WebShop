@@ -20,8 +20,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["logged_in"] = true;
 
 
-        header("Location: /Shop/" . get_param('lang', 'de') . "/home");;
+        header("Location: /Shop/" . get_param('lang', 'de') . "/home");
     } else {
-        echo t("Userexist");
+        header("Location: /Shop/" . get_param('lang', 'de') . "/home");
     }
 }

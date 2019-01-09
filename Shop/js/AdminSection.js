@@ -25,7 +25,6 @@ function editUser() {
                     + password + "&email=" + email + "&firstname=" + firstName + "&lastname=" + lastName);
                 request.onload = function () {
                     var userExists = request.responseText;
-                    alert(oldUserName);
                     if (!(userExists) || oldUserName === userName) {
                         var table = document.getElementById("userTable");
                         for (var i = 1; i < (table.rows.length - 1); i++) {
@@ -297,7 +296,6 @@ function closeEditOrderForm() {
 
     for (var i = 1; i < lenght; i++) {
         orderTable.deleteRow(1);
-        alert(lenght);
     }
 
 }
@@ -460,17 +458,17 @@ function deleteProduct() {
 function showEditProductForm() {
     var table = document.getElementById("productListTable");
     var counter = 0;
-    for (var i = 1; i < (table.rows.length-1) ; i++){
-        if(table.rows[i].cells[0].childNodes[0].checked === true){
+    for (var i = 1; i < (table.rows.length - 1); i++) {
+        if (table.rows[i].cells[0].childNodes[0].checked === true) {
             counter++;
             var row = table.rows[i];
         }
     }
-    if (counter === 1 && document.getElementById('adminAddProduct').style.display !== "block"){
+    if (counter === 1 && document.getElementById('adminAddProduct').style.display !== "block") {
         var productName = row.cells[2].innerHTML;
         var request = new XMLHttpRequest();
         request.open("GET", "/Shop/Admin/adminGetProduct.php?name=" + productName);
-        request.onload = function(){
+        request.onload = function () {
             var data = request.responseText;
             var array = data.split(";");
             document.getElementById("adminSectionProductID").value = array[0];
@@ -481,8 +479,8 @@ function showEditProductForm() {
 
             var categories = document.getElementById("adminSectionCategory");
 
-            for (var i = 0; i < categories.length; i++){
-                if (categories[i].innerHTML === category){
+            for (var i = 0; i < categories.length; i++) {
+                if (categories[i].innerHTML === category) {
                     categories[i].selected = true;
                 }
             }
@@ -490,28 +488,24 @@ function showEditProductForm() {
         request.send();
 
         document.getElementById("adminProductAddLabel").innerText = "";
-        document.getElementById('productEdit').style.display='block';
+        document.getElementById('productEdit').style.display = 'block';
 
         if (document.getElementById('adminAddProduct').style.display !== "block") {
             document.getElementById('adminChangeProduct').style.display = 'block';
         }
-        else{
+        else {
             document.getElementById("adminProductAddLabel").innerText = "Cannot edit while adding a product";
         }
     }
-    else if (counter > 1){
+    else if (counter > 1) {
         document.getElementById("adminProductAddLabel").innerText = "Please Select only one product";
     }
-    else if (document.getElementById('adminAddProduct').style.display === "block"){
+    else if (document.getElementById('adminAddProduct').style.display === "block") {
         document.getElementById("adminProductAddLabel").innerText = "Please close the add product interface first!";
     }
-    else{
+    else {
         document.getElementById("adminProductAddLabel").innerText = "Please select one product";
     }
-}
-
-function adminSearchProduct() {
-    
 }
 
 /*

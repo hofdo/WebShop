@@ -85,12 +85,28 @@ Navigation
     list-style-type: none;
 }
 
+@media screen and (max-width: 450px){
+    .navigation ul li {
+        padding: 14px 12px;
+    }
+    .navigation ul li a, .adminViewBtn a, .productViewBtn a {
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 450px){
+    .navigation ul li {
+        padding: 14px 16px;
+    }
+    .navigation ul li a, .adminViewBtn a, .productViewBtn a {
+        font-size: 16px;
+    }
+}
 
 .navigation ul li{
     float: left;
     display: block;
     text-align: center;
-    padding: 14px 16px;
 
 }
 
@@ -98,7 +114,6 @@ Navigation
     color: #ecf0f1;
     text-decoration: none;
     font-family: Arial, serif;
-    font-size: 16px;
 }
 
 .navigation ul li a img {
@@ -185,7 +200,7 @@ DropDown AdminView
     overflow: hidden;
 }
 
-.adminViewDropDown .adminViewBtn, .productViewBtn {
+.adminViewDropDown .adminViewBtn, .productViewBtn, .paymentHomeLinkBtn {
     font-size: 16px;
     border: none;
     outline: none;
@@ -196,7 +211,7 @@ DropDown AdminView
     margin: 0;
 }
 
-.adminViewDropDown:hover .adminViewBtn {
+.adminViewDropDown:hover .adminViewBtn:hover, .paymentHomeLinkBtn:hover {
     background-color: #3498db;
 }
 

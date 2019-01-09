@@ -23,7 +23,6 @@ function editProfileUser() {
                     + password + "&email=" + email + "&firstname=" + firstName + "&lastname=" + lastName);
                 request.onload = function () {
                     var userExists = request.responseText;
-                    alert(userExists);
                     if (userExists !== "1") {
                         if (oldUserName !== userName){
                                 document.getElementById("profileUsername").innerText = userName;

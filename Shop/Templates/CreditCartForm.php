@@ -4,14 +4,15 @@ require_once "../Pages/Helper.php";
 
 $submit = t("submit");
 $cancel = t("cancel");
+
 ?>
 <div id="creditCard_container" class="creditCard_container">
     <div id="creditCard_content" class="creditCard_content">
-        <label><b>Name</b></label>
+        <label><b><?php echo t("CCHolder") ?></b></label>
         <input type="text" id="creditCardHolderName">
-        <label><b>Card Number</b></label>
+        <label><b><?php echo t("CCNumber") ?></b></label>
         <input type="text" id="creditCardNumber">
-        <label><b>Card Expiry Date</b></label>
+        <label><b><?php echo t("CCDate") ?></b></label>
         <div>
             <select id="creditCardExpireDateMonth">
                 <option>1</option>

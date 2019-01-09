@@ -11,8 +11,7 @@ require_once "../Pages/Helper.php";
 <h2>Productlist</h2>
 
 <div class="productList">
-    <input type="search" placeholder="Search..." onkeyup="adminSearchProduct()" id="adminProductSearch" class="adminProductSearch">
-    <table id="productListTable">
+    <table id="productListTable" class="productListTable">
         <?php
         Product::renderProductList();
         ?>

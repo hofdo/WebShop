@@ -31,7 +31,7 @@ $pageId = get_param('id',"home");
 
 <header>
     <img src="/shop/Pictures/shopping-bag.png">
-    <h1>Domospot.ch</h1>
+    <h1>Colortec.ch</h1>
 </header>
 
 <!-- Navigation  -->
