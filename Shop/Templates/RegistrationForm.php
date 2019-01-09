@@ -7,7 +7,7 @@ $submit = t("submit");
 $cancel = t("cancel");
 ?>
 <div id="registration" class="registration_container">
-    <form class="registration_Form" action="../SQLDB/Registration.php" method="post">
+    <form class="registration_Form" action="/shop/SQLDB/Registration.php" method="post">
 
         <label><b><?php echo $user ?></b></label>
         <input type="text" placeholder="<?php echo $user ?>" id="registrationUsername" name="username" pattern="^([A-Za-z0-9\-_.?!]){3,20}" title="<?php echo t("usernameVal") ?>" required>
