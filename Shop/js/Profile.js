@@ -76,6 +76,12 @@ function showProfileEdit() {
 function closeProfileEdit() {
     document.getElementById("profileEdit").style.display = "none";
     document.getElementById("profileLabel").style.display = "none";
+    document.getElementById("profileEditEmail").style.borderColor = "";
+    document.getElementById("profileEditUsername").style.display = "";
+    document.getElementById("profileEditPassword").style.borderColor = "";
+
+
+
     var vals = document.getElementsByClassName("profileValLabel");
     for (var i = 0; i < vals.length; i++){
         vals.item(i).style.display="none";

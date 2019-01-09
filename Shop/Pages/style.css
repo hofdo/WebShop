@@ -470,6 +470,11 @@ Content of the Site
     padding: 2px;
 }
 
+.product_chosen {
+    margin-left: 40%;
+    padding: 5px;
+}
+
 .productID {
     display: none;
 }

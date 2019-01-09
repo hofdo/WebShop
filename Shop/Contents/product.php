@@ -9,7 +9,7 @@ $product = $product[0];
 
 <section>
     <table>
-        <div class='product'>
+        <div class='product_chosen'>
             <div> <?php
                 echo '<img src="data:picture/jpeg;base64,' . base64_encode($product[4]) . '"height="120" width="120"/>';
                 ?></div>

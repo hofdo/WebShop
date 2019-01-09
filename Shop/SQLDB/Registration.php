@@ -22,6 +22,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         header("Location: /Shop/" . get_param('lang', 'de') . "/home");;
     } else {
-        echo t("User_exist");
+        echo t("Userexist");
     }
 }

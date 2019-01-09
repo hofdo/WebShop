@@ -73,7 +73,7 @@ class Cart {
             echo "<div class=\"cart\"><table id='shoppingCartTable' class='shoppingCartTable' align='center'>";
             echo "<tr><th>Article-Id</th><th>Name</th><th>Value</th><th>Quantity</th></tr>";
             foreach (self::getItems()->fetch_all() as $item) {
-                $totalValue += $item[5];
+                $totalValue += ($item[5] * $item[4]);
                 printf("<tr><td>$item[1]</td><td>$item[2]</td><td>$item[5]</td><td><input type='text' onkeypress='changeShoppingCartQuantity(\"%s\", \"%s\")' value='$item[4] '></td><td><button onclick='deleteFromShoppingCart(\"%s\", \"%s\")'>X</button></td></tr>",  $item[0], $item[1], $item[0], $item[1]);
             }
             echo "<tr><td>Total: </td><td id='totalProductValue'>$totalValue</td></tr>";

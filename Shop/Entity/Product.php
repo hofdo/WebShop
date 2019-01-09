@@ -293,7 +293,8 @@ class Product
         echo "<tr><td class='productTitle' id='productTitle_$product[0]'>" . t($product[1]) . "</td></tr>";
         echo "<tr><td class='productPrice' id='productPrice_$product[0]'>$product[3] sfr</td></tr>";
         if ($_SESSION["logged_in"]) {
-            printf("<tr><td class='ProductAdd'><button class='buttonAdd' type='submit' onclick='addToShoppingCart(\"%s\")'>" . t("addCart") . "</button></td></tr></table></div>", $product[0]);
+            printf("<tr><td class='ProductAdd'><button class='buttonAdd' type='submit' onclick='addToShoppingCart(\"%s\")'>" . t("addCart") . "</button>", $product[0]);
         }
+        echo "</td></tr></table></div>";
     }
 }

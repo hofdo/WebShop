@@ -16,7 +16,7 @@ require_once "../SQLDB/Session.php";
             if (Product::checkOrderIsOpen()) {
                 $orderID = Product::getOrderID();
                 foreach (Cart::getItems()->fetch_all() as $item) {
-                    $totalValue += $item[5];
+                    $totalValue += ($item[5] * $item[4]);
                     echo "<tr><td>$item[1]</td><td>$item[2]</td><td>$item[5]</td><td>$item[4]</td><td>";
                 }
             }
@@ -61,7 +61,7 @@ require_once "../SQLDB/Session.php";
                     </select>
                 </td>
             </tr>
-            <tr><td><button type='submit' id="paymentDetailsBtn" class="paymentDetailsBtn" onclick="sendPayment()">Pay</button></td></tr>
+            <tr><td><button type='submit' id="paymentDetailsBtn" class="paymentDetailsBtn" onclick="sendPayment()"><?php echo t("pay"); ?></button></td></tr>
         </table>
     </div>
     <div  class="paymentConfirmation" id="paymentConfirmation">
