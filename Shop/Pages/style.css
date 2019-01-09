@@ -492,6 +492,10 @@ Content of the Site
     padding: 2px;
 }
 
+.productID {
+    display: none;
+}
+
 .product_chosen {
     margin-left: 40%;
     padding: 5px;
