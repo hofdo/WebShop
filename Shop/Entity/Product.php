@@ -289,7 +289,7 @@ class Product
 
         echo "<div class='product' id='product$product[0]'><table class='productTable'>";
         echo "<tr><td id='productID$product[0]'>ID:  $product[0] </td></tr>";
-        echo '<tr><td><a href=' . $url . '><img src="data:picture/jpeg;base64,' . base64_encode($product[4]) . '"height="120" width="120"/></a></td></tr>';
+        echo "<tr><td><a href=$url><img src=$product[4] height=120 width=120></a></td></tr>";
         echo "<tr><td class='productTitle' id='productTitle_$product[0]'>" . t($product[1]) . "</td></tr>";
         echo "<tr><td class='productPrice' id='productPrice_$product[0]'>$product[3] sfr</td></tr>";
         if ($_SESSION["logged_in"]) {

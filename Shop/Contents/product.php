@@ -11,7 +11,7 @@ $product = $product[0];
     <table>
             <tr><td>
                 <?php
-                echo '<img src="data:picture/jpeg;base64,' . base64_encode($product[4]) . '"height="120" width="120"/>';
+                echo "<img src=$product[4] height=120 width=120>";
                 ?></td></tr>
             <tr class="productID"><td <?php echo "id='productID$product[0]'" ?> ><?php echo t($product[0]) ?> </td></tr>
             <tr class='productTitle'><td <?php echo "id='productTitle_$product[0]'" ?> ><?php echo t($product[1]) ?></td></tr>
