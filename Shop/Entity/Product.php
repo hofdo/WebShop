@@ -263,11 +263,16 @@ class Product
     {
         $categories = self::getCategories();
         foreach ($categories as $category) {
-            if ($category == $newCategory) {
+            if ($category === $newCategory) {
                 return true;
             }
         }
         return false;
+    }
+
+    public static function createCategory($name){
+        $query = "INSERT INTO `categories` (`cid`, `category`) VALUES (NULL, '$name')";
+        DB::doQuery($query);
     }
 
     public static function renderProductList()

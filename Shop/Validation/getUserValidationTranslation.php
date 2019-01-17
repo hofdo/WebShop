@@ -7,8 +7,8 @@ $email = $_REQUEST["email"];
 $lang = $_REQUEST["lang"];
 
 $usernameTrans = t("usernameVal");
-$passwordTrans = t("passwordVal", $lang);
-$emailTrans = t("emailVal", $lang);
+$passwordTrans = t("passwordVal");
+$emailTrans = t("emailVal");
 
 echo $str = "";
 

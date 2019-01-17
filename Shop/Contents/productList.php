@@ -15,11 +15,11 @@ require_once "../Pages/Helper.php";
         <?php
         Product::renderProductList();
         ?>
-        <tr><td><button onclick="showEditProductForm()">Change Product</button></td><td><button onclick="deleteProduct()">Delete Product</button></td><td><button onclick="showAddProductForm()">Add Product</button></button></td></tr>
+        <tr><td><button onclick="showEditProductForm()">Change Product</button></td><td><button onclick="deleteProduct()">Delete Product</button></td><td><button onclick="showAddProductForm()">Add Product</button></button></td><td><button onclick="showAddCategoryForm()">Add category</button></button></td></tr>
     </table>
     <label id="adminProductAddLabel"></label>
     <div id="productEdit" class="productEdit">
-        <h2>Edit user</h2>
+        <h2>Edit product</h2>
         <table>
             <tr><td><button onclick="closeProductEdit()">X</button></td></tr>
             <tr><td>ID:</td><td><input id="adminSectionProductID" class="adminSectionID" name="ID" readonly></td></tr>
@@ -34,8 +34,14 @@ require_once "../Pages/Helper.php";
 
                         ?>
                     </select></td></tr>
-            <tr><td><button type='submit' id="adminChangeProduct" class="adminChangeProduct" onclick="editProduct()">Edit User</button></td><td><button type='submit' id="adminAddProduct" class="adminAddProduct" onclick="addProduct()">Add user</button></td></tr>
-        </table
+            <tr><td><button type='submit' id="adminChangeProduct" class="adminChangeProduct" onclick="editProduct()">Edit product</button></td><td><button type='submit' id="adminAddProduct" class="adminAddProduct" onclick="addProduct()">Add product</button></td></tr>
+        </table>
+    </div>
+    <div id="categoryAdd" class="categoryAdd">
+        <table>
+            <tr><td><button onclick="closeCategoryAdd()">X</button></td></tr>
+            <tr><td>Name:</td><td><input id="adminSectionCategoryName" type="text" value=""></td></tr>
+            <tr><td><button type='submit' id="adminAddCategory" class="adminAddCategory" onclick="addCategory()">Add category</button></td></tr>
+        </table>
     </div>
 </div>
-

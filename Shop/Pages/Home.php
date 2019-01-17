@@ -46,15 +46,13 @@ $pageId = get_param('id',"home");
 </nav>
 
 <!-- Sidebar  -->
-
-<div class="sideBar">
+    <div class="sideBar_content">
         <ul>
             <?php
              render_sidebar($pageId);
             ?>
         </ul>
-</div>
-
+    </div>
 <!-- Registration  -->
 
 <?php include "../Templates/RegistrationForm.php" ?>

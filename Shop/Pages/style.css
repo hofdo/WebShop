@@ -168,7 +168,7 @@ Profile & Admin
     background-color: #3498db;
 }
 
-.profileEdit, .userEdit, .productEdit, .PaymentDetails, .adminOrderEdit{
+.profileEdit, .userEdit, .productEdit, .PaymentDetails, .adminOrderEdit, .categoryAdd{
     margin-top: 10px;
     display: none;
 }
@@ -404,12 +404,12 @@ Sidebar right
  */
 
 @media screen and (max-width: 768px) {
-    .sideBar {
+    .sideBar_content {
         width: 100%;
         float: none;
     }
 
-    .sideBar ul li {
+    .sideBar_content ul li {
         margin-left: 10%;
     }
 
@@ -419,8 +419,9 @@ Sidebar right
 }
 
 @media screen and (min-width: 768px) {
-    .sideBar {
+    .sideBar_content {
         width: 25%;
+        height: 100%;
         float: right;
     }
 
@@ -429,11 +430,11 @@ Sidebar right
     }
 }
 
-.sideBar {
+.sideBar_content {
     background-color: #576574;
 }
 
-.sideBar ul li button {
+.sideBar_content ul li button {
     border: none;
     cursor: pointer;
     background-color: #05c46b;
@@ -442,14 +443,13 @@ Sidebar right
     color: #ecf0f1;
 }
 
-.sideBar ul{
+.sideBar_content ul{
     list-style-type: none;
 }
 
-.sideBar ul li button:hover {
+.sideBar_content ul li button:hover {
     opacity: 0.8;
 }
-
 
 /*
 Content of the Site

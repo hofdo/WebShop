@@ -508,6 +508,36 @@ function showEditProductForm() {
     }
 }
 
+
+function showAddCategoryForm() {
+    document.getElementById("adminProductAddLabel").innerText = "";
+    document.getElementById("categoryAdd").style.display = "block";
+    document.getElementById("productEdit").style.display = "none";
+}
+
+function closeCategoryAdd() {
+    document.getElementById("adminProductAddLabel").innerText = "";
+    document.getElementById("categoryAdd").style.display = "none";
+    document.getElementById("adminAddCategory").innerText = "";
+}
+
+function addCategory() {
+    document.getElementById("adminProductAddLabel").innerText = "";
+    var category = document.getElementById("adminSectionCategoryName").value;
+    alert(category);
+    var request = new XMLHttpRequest();
+    request.open("GET", "/Shop/Admin/adminAddCategory.php?name=" + category);
+    request.onload = function() {
+        var alreadyExists = request.responseText;
+        alert(alreadyExists);
+        if(alreadyExists){
+            document.getElementById("adminProductAddLabel").innerText = "Category already exists";
+        }
+    };
+    request.send();
+}
+
+
 /*
 Common methods
  */
