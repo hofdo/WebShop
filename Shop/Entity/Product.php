@@ -261,13 +261,16 @@ class Product
 
     public static function checkCategoryExists($newCategory)
     {
-        $categories = self::getCategories();
-        foreach ($categories as $category) {
-            if ($category === $newCategory) {
-                return true;
-            }
+        $query = "SELECT category FROM `categories` WHERE category = '$newCategory' ";
+        $result = DB::doQuery($query);
+        $count = mysqli_num_rows($result);
+
+        if ($count > 0){
+            return true;
         }
-        return false;
+        else{
+            return false;
+        }
     }
 
     public static function createCategory($name){
