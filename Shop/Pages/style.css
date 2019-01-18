@@ -562,7 +562,7 @@ Login-form, Registration-form
 }
 
 .login_Form label, .registration_Form label, .creditCard_content label {
-    font-size: 20px;
+    font-size: 18px;
     font-style: normal;
     font-family: Arial, serif;
     color: #576574;

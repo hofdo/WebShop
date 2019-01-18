@@ -7,6 +7,15 @@ $db = DB::getInstance();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    //Delete existing cookie
+    unset($_COOKIE["username"]);
+    setcookie("username", "", -1, "/");
+
+    if (isset($_POST["cookieCheckbox"])){
+        //create new cookie
+        setcookie("username", $_POST["username"], time() + (86400 * 30), "/");
+    }
+
     $username = mysqli_escape_string($db, $_POST['username']);
     $password = mysqli_escape_string($db, $_POST['password']);
 

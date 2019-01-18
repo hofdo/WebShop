@@ -24,6 +24,9 @@ $cancel = t("cancel");
         <label><b><?php echo $last_name ?></b></label>
         <input type="text" placeholder="<?php echo $last_name ?>" id="registrationLastName" name="lastName">
 
+        <label class="cookieLabel"><?php echo t("useCookie")?></label>
+        <input type="checkbox" name="cookieCheckbox">
+
         <button type="submit" value="submit"><?php echo $submit ?></button>
         <button type="button" onclick="document.getElementById('registration').style.display='none'" class="cancel_Btn">
             <?php echo $cancel ?>

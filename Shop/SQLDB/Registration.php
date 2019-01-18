@@ -5,6 +5,14 @@ require_once "../Pages/helper.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    //Delete existing cookie
+    unset($_COOKIE["username"]);
+    setcookie("username", "", -1, "/");
+
+    if (isset($_POST["cookieCheckbox"])){
+        //create new cookie
+        setcookie("username", $_POST["username"], time() + (86400 * 30), "/");
+    }
 
     $user = new User(strtolower($_POST["username"]), $_POST["password"], $_POST["firstName"], $_POST["lastName"], $_POST["email"]);
     $username = $_POST["username"];
