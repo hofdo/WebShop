@@ -7,6 +7,3 @@ $db = DB::getInstance();
 $username = $_REQUEST["username"];
 User::deleteUser($username);
 DB::closeConnection();
-
-
-?>

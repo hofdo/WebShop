@@ -10,7 +10,7 @@ $productName = $_REQUEST["productName"];
 $productValue = $_REQUEST["productValue"];
 $pid = $_REQUEST["pid"];
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Cart::addItem(1, $pid);
 
     $orderID = Product::getOrderID();
@@ -22,11 +22,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($count != 0) {
         $str = $result->fetch_row();
         echo $str[0] . "_" . $str[1] . "_" . $isEmpty;
-        }
-    else{
+    } else {
         echo 0;
     }
 }
 DB::closeConnection();
-
-?>

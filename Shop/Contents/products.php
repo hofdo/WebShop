@@ -1,8 +1,7 @@
 <?php
 
 require_once "../autoloader.php";
-?>
-<?php
+
 $category = get_param('q', '0');
 if ($category == '0') {
     $result = product::getAllProducts();
@@ -11,8 +10,8 @@ if ($category == '0') {
 }
 echo '<h1>';
 echo t("products");
-if ($category != "0"){
-    echo ": ".t($category);
+if ($category != "0") {
+    echo ": " . t($category);
 }
 echo '</h1>';
 echo "<div class='products'>";
@@ -21,5 +20,3 @@ foreach ($products as $product) {
     Product::renderProduct($product);
 }
 echo "</div>";
-
-?>

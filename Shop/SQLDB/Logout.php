@@ -8,4 +8,4 @@ $_SESSION = array();
 
 session_destroy();
 
-header("Location: /Shop/".get_param('lang','de')."/home");
+header("Location: /Shop/" . get_param('lang', 'de') . "/home");

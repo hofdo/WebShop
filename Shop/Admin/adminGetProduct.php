@@ -6,9 +6,6 @@ $db = DB::getInstance();
 
 $productName = $_REQUEST["name"];
 $row = Product::getProductAndCategoryID($productName)->fetch_row();
-echo $row[0] . ";" . $row[1] . ";" . $row[2] .  ";" . $row[4];
+echo $row[0] . ";" . $row[1] . ";" . $row[2] . ";" . $row[4];
 
 DB::closeConnection();
-
-
-?>

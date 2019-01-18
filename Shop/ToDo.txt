@@ -1,15 +1,2 @@
 TODO
-- Responsive Web Design
-- Layout
-- Produkte fertig mache
-- Bestellungen
-- DB-Credentials in XML-File abspeichern
-- Apache --> Security
-- Website online hosten
-
-- Profile Einkaufs verlauf
-- Mail bestätigung einkauf
-- bestätigunf addcart
-- besser URL
-- Translation
-- Cart fertig
+- Make Banana great again

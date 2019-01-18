@@ -85,7 +85,8 @@ class Product
         return (DB::doQuery($query));
     }
 
-    public static function getOrderID(){
+    public static function getOrderID()
+    {
         $uid = $_SESSION["uid"];
         $searchStr = "order_" . $uid . "_[0-9]+";
         $query = "SELECT name FROM orders WHERE name REGEXP '$searchStr'";
@@ -107,19 +108,22 @@ class Product
         }
     }
 
-    public static function getOrderIDs(){
+    public static function getOrderIDs()
+    {
         $uid = $_SESSION["uid"];
         $query = "SELECT DISTINCT name FROM `shoppingcart` INNER JOIN orders ON orders.oid = shoppingcart.order_id WHERE user_id = '$uid' AND open = false";
         return DB::doQuery($query);
     }
 
-    public static function getOrderIDsByUsername($username){
+    public static function getOrderIDsByUsername($username)
+    {
         $query = "SELECT DISTINCT name FROM `shoppingcart` INNER JOIN orders ON orders.oid = shoppingcart.order_id INNER JOIN users ON users.uid = shoppingcart.user_id WHERE username = '$username' AND open = false";
         return DB::doQuery($query);
     }
 
 
-    public static function getCategories(){
+    public static function getCategories()
+    {
         $query = "SELECT category FROM `categories`";
         return (DB::doQuery($query));
     }
@@ -148,7 +152,8 @@ class Product
         return (DB::doQuery($query));
     }
 
-    public static function getProductList(){
+    public static function getProductList()
+    {
         $query = "SELECT pid, name, value, picture, category FROM `products` As p INNER JOIN `categories` AS c ON p.categories_id = c.cid";
         return (DB::doQuery($query));
     }
@@ -247,13 +252,14 @@ class Product
         }
     }
 
-    public static function checkOrderIsOpen(){
+    public static function checkOrderIsOpen()
+    {
         $username = $_SESSION["username"];
         $orderID = self::getOrderID();
         $query = "SELECT open FROM `shoppingcart` INNER JOIN orders ON orders.oid = shoppingcart.order_id INNER JOIN users ON users.uid = shoppingcart.user_id INNER JOIN products ON products.pid = shoppingcart.product_id WHERE orders.name = '$orderID' AND username = '$username' AND open = 1";
         $result = DB::doQuery($query);
         $count = $result->num_rows;
-        if ($count == 0){
+        if ($count == 0) {
             return false;
         }
         return true;
@@ -265,15 +271,15 @@ class Product
         $result = DB::doQuery($query);
         $count = mysqli_num_rows($result);
 
-        if ($count > 0){
+        if ($count > 0) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    public static function createCategory($name){
+    public static function createCategory($name)
+    {
         $query = "INSERT INTO `categories` (`cid`, `category`) VALUES (NULL, '$name')";
         DB::doQuery($query);
     }

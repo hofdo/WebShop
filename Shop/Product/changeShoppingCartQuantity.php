@@ -10,9 +10,7 @@ $quantity = $_REQUEST["quantity"];
 
 $quantity = preg_replace('/\s+/', '', $quantity);
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Cart::changeQuantity($sid, $quantity);
 }
 DB::closeConnection();
-
-?>

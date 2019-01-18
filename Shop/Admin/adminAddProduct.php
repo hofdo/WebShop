@@ -3,7 +3,7 @@
 require_once "../autoloader.php";
 
 $db = DB::getInstance();
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $name = mysqli_escape_string($db, $_REQUEST['productName']);
     $value = mysqli_escape_string($db, $_REQUEST['value']);
@@ -11,19 +11,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $resultName = Product::checkProductExists($name);
 
-        try {
-            $product = new Product($name, $category, $value);
+    try {
+        $product = new Product($name, $category, $value);
 
-            if (!($resultName) && isset($name)) {
-                $product->createProduct();
-            }
-        } catch (Exception $exception) {
-
+        if (!($resultName) && isset($name)) {
+            $product->createProduct();
         }
+    } catch (Exception $exception) {
+
     }
-    $pid = Product::getProduct($name)->fetch_row()[0];
-    echo $pid . ";" . $resultName;
+}
+$pid = Product::getProduct($name)->fetch_row()[0];
+echo $pid . ";" . $resultName;
 
 DB::closeConnection();
-
-?>

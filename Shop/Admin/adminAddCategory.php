@@ -8,12 +8,10 @@ $category = mysqli_escape_string($db, $_REQUEST['name']);
 
 $resultName = Product::checkCategoryExists($category);
 
-if (!$resultName){
+if (!$resultName) {
     Product::createCategory($category);
 }
 
 echo $resultName;
 
 DB::closeConnection();
-
-?>

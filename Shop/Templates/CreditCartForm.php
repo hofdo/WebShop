@@ -29,18 +29,19 @@ $cancel = t("cancel");
                 <option>12</option>
             </select>
             <select id="creditCardExpireDateYear">
-                    <option>2019</option>
-                    <option>2020</option>
-                    <option>2021</option>
-                    <option>2022</option>
-                    <option>2023</option>
+                <option>2019</option>
+                <option>2020</option>
+                <option>2021</option>
+                <option>2022</option>
+                <option>2023</option>
             </select>
         </div>
         <label><b>CVV</b></label>
         <input type="text" id="creditCardCVV">
 
         <button type="button" onclick="sendPaymentCreditCard()"><?php echo $submit ?></button>
-        <button type="button" onclick="document.getElementById('creditCard_container').style.display='none'" class="cancel_Btn">
+        <button type="button" onclick="document.getElementById('creditCard_container').style.display='none'"
+                class="cancel_Btn">
             <?php echo $cancel ?>
         </button>
     </div>

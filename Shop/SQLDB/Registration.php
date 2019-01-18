@@ -3,7 +3,7 @@
 require_once "../autoloader.php";
 require_once "../Pages/helper.php";
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     $user = new User(strtolower($_POST["username"]), $_POST["password"], $_POST["firstName"], $_POST["lastName"], $_POST["email"]);

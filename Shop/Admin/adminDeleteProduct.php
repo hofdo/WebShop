@@ -7,6 +7,3 @@ $db = DB::getInstance();
 $productName = $_REQUEST["name"];
 Product::deleteProduct($productName);
 DB::closeConnection();
-
-
-?>

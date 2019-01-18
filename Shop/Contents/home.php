@@ -1,10 +1,9 @@
-
 <div class="home_Box">
     <img src="../Pictures/adventure-backlit-birds-443356.jpg">
     <p>
-<?php
-echo t("home_1");
-?>
+        <?php
+        echo t("home_1");
+        ?>
     </p>
     <div>
         <p class="Zitat">

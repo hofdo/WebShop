@@ -71,7 +71,7 @@ function render_rightNav($language, $pageId)
 {
     $dropDownNav = array("languageDropDown");
     foreach ($dropDownNav as $dropDown) {
-         if ($dropDown == "languageDropDown") {
+        if ($dropDown == "languageDropDown") {
             echo "<div class='languageDropDown'><button class='languagebtn'><img src='/shop/Pictures/translation.png' height='14' width='14'></button>";
             echo "<div class='language-content'>";
             echo render_languages($language) . "</div></div>";
@@ -107,7 +107,7 @@ function render_profileDropDown($language, $pageId)
 {
     $profileDropDownNav = array("profile", "orders");
     foreach ($profileDropDownNav as $profileNav) {
-        $url ="/shop/".$language."/".$profileNav;
+        $url = "/shop/" . $language . "/" . $profileNav;
         $class = $pageId == $profileNav ? 'active' : 'inactive';
         echo "<a class='$class' href=\"$url\">" . t($profileNav) . "</a>";
     };
@@ -165,9 +165,10 @@ function render_sidebar($pageId)
 }
 
 
-function proceedPaymentSite($language){
-    $url ="/shop/".$language."/"."paymentSite";
-    echo "<a href='$url'><button type='submit'>" . t('buy') ."</button></a>";
+function proceedPaymentSite($language)
+{
+    $url = "/shop/" . $language . "/" . "paymentSite";
+    echo "<a href='$url'><button type='submit'>" . t('buy') . "</button></a>";
 }
 
 // The translation function.
@@ -182,6 +183,6 @@ function t($key)
             return "NEED TRANSLATION $key";
         }
     } else {
-        return "Not yet implemented lang".$language."|";
+        return "Not yet implemented lang" . $language . "|";
     }
 }

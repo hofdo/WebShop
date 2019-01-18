@@ -14,6 +14,12 @@ RewriteCond %{REQUEST_FILENAME} !-d
 #Rule for home
 RewriteRule ^home /shop/pages/home.php [R,L]
 
+#Rule for products
+RewriteRule ^products /shop/en/products [R,L]
+
+#Rule for produkte
+RewriteRule ^produkte /shop/de/products [R,L]
+
 #Rule for lang/id
 RewriteRule ^(de|en)/?(\w*)$ /shop/pages/home.php?lang=$1&id=$2 [L]
 

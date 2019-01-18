@@ -16,10 +16,11 @@ header {
 }
 
 @media screen and (min-width: 768px) {
-    header h1{
+    header h1 {
         font-size: 75px;
     }
-    header img{
+
+    header img {
         height: 58px;
         width: 58px;
         margin-left: 25%;
@@ -27,10 +28,11 @@ header {
 }
 
 @media screen and (max-width: 768px) {
-    header h1{
+    header h1 {
         font-size: 50px;
     }
-    header img{
+
+    header img {
         height: 48px;
         width: 48px;
         margin-left: 20%;
@@ -38,16 +40,16 @@ header {
 }
 
 @media only screen and (max-width: 500px) {
-    header h1{
+    header h1 {
         font-size: 30px;
     }
-    header img{
+
+    header img {
         height: 28px;
         width: 28px;
         margin-left: 15%;
     }
 }
-
 
 
 header h1 {
@@ -85,25 +87,27 @@ Navigation
     list-style-type: none;
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 450px) {
     .navigation ul li {
         padding: 14px 12px;
     }
+
     .navigation ul li a, .adminViewBtn a, .productViewBtn a {
         font-size: 14px;
     }
 }
 
-@media screen and (min-width: 450px){
+@media screen and (min-width: 450px) {
     .navigation ul li {
         padding: 14px 16px;
     }
+
     .navigation ul li a, .adminViewBtn a, .productViewBtn a {
         font-size: 16px;
     }
 }
 
-.navigation ul li{
+.navigation ul li {
     float: left;
     display: block;
     text-align: center;
@@ -159,16 +163,16 @@ Profile & Admin
     padding: 8px;
 }
 
-.profileView table tr th, .userList table tr th, .productList table tr th, .paymentTable tr th, .orderTable tr th, .adminOrderTable tr th{
+.profileView table tr th, .userList table tr th, .productList table tr th, .paymentTable tr th, .orderTable tr th, .adminOrderTable tr th {
     padding: 8px;
     text-align: left;
 }
 
-.profileView button:hover, .userEdit button:hover, .userList button:hover, .List button:hover, .profileEdit button:hover, .PaymentDetails button:hover, .paymentTable tr td button:hover, .adminOrderTable tr td button:hover{
+.profileView button:hover, .userEdit button:hover, .userList button:hover, .List button:hover, .profileEdit button:hover, .PaymentDetails button:hover, .paymentTable tr td button:hover, .adminOrderTable tr td button:hover {
     background-color: #3498db;
 }
 
-.profileEdit, .userEdit, .productEdit, .PaymentDetails, .adminOrderEdit, .categoryAdd{
+.profileEdit, .userEdit, .productEdit, .PaymentDetails, .adminOrderEdit, .categoryAdd {
     margin-top: 10px;
     display: none;
 }
@@ -220,7 +224,7 @@ DropDown AdminView
     position: absolute;
     background-color: #485460;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     top: 46px;
 }
@@ -241,7 +245,6 @@ DropDown AdminView
 .adminViewDropDown:hover .adminView-content {
     display: block;
 }
-
 
 
 /*
@@ -271,7 +274,7 @@ Dropdown Products
     position: absolute;
     background-color: #485460;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     top: 46px;
 }
@@ -302,7 +305,7 @@ DropDown Profile
     overflow: hidden;
 }
 
-.profileViewDropDown .profileViewBtn{
+.profileViewDropDown .profileViewBtn {
     font-size: 16px;
     border: none;
     outline: none;
@@ -322,7 +325,7 @@ DropDown Profile
     position: absolute;
     background-color: #485460;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     top: 46px;
 }
@@ -375,7 +378,7 @@ DropDown Language
     position: absolute;
     background-color: #485460;
     min-width: 95px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 .language-content a {
@@ -443,7 +446,7 @@ Sidebar right
     color: #ecf0f1;
 }
 
-.sideBar_content ul{
+.sideBar_content ul {
     list-style-type: none;
 }
 
@@ -462,18 +465,18 @@ Content of the Site
     font-family: Arial, serif;
 }
 
-.home_Box img{
+.home_Box img {
     max-width: 100%;
     max-height: 100%;
 }
 
-.Zitat{
+.Zitat {
     font-size: 25px;
     font-family: "Arial Black", serif;
     margin-bottom: -16px;
 }
 
-.home_Box p:nth-child(3){
+.home_Box p:nth-child(3) {
     margin-top: 5%;
 }
 
@@ -483,7 +486,7 @@ Content of the Site
     }
 }
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 768px) {
     .content {
         margin-right: 25%;
         margin-left: 5%;
@@ -528,7 +531,7 @@ Content of the Site
     color: #ecf0f1;
 }
 
-.buttonAdd:hover{
+.buttonAdd:hover {
     opacity: 0.8;
 }
 
@@ -536,7 +539,7 @@ Content of the Site
 Login-form, Registration-form
  */
 
-.login_container, .registration_container, .creditCard_container{
+.login_container, .registration_container, .creditCard_container {
     display: none;
     position: fixed;
     z-index: 1;
@@ -546,7 +549,7 @@ Login-form, Registration-form
     height: 100%;
     overflow: auto;
     padding-top: 60px;
-    background: rgba(0,0,0, 0.4);
+    background: rgba(0, 0, 0, 0.4);
 }
 
 
@@ -558,14 +561,14 @@ Login-form, Registration-form
     box-sizing: border-box;
 }
 
-.login_Form label, .registration_Form label, .creditCard_content label{
+.login_Form label, .registration_Form label, .creditCard_content label {
     font-size: 20px;
     font-style: normal;
     font-family: Arial, serif;
     color: #576574;
 }
 
-.login_Form button, .registration_Form button, .creditCard_content button{
+.login_Form button, .registration_Form button, .creditCard_content button {
     background-color: #0be881;
     color: #576574;
     padding: 14px 20px;
@@ -575,7 +578,7 @@ Login-form, Registration-form
     width: 100%;
 }
 
-.login_Form button:hover, .registration_Form button:hover, .creditCard_content button:hover{
+.login_Form button:hover, .registration_Form button:hover, .creditCard_content button:hover {
     opacity: 0.8;
 }
 
@@ -584,7 +587,7 @@ Login-form, Registration-form
     padding: 10px 18px;
 }
 
-.login_Form, .registration_Form, .creditCard_content{
+.login_Form, .registration_Form, .creditCard_content {
     background-color: #dfe4ea;
     margin: 10% auto 15% auto;
     width: 40%;
@@ -607,7 +610,7 @@ Payment
 Shopping Cart
  */
 
-.shoppingCart_Container{
+.shoppingCart_Container {
     display: none;
     position: fixed;
     z-index: 1;
@@ -617,10 +620,10 @@ Shopping Cart
     height: 100%;
     overflow: auto;
     padding-top: 60px;
-    background: rgba(0,0,0, 0.4);
+    background: rgba(0, 0, 0, 0.4);
 }
 
-.shoppingCart_Container button{
+.shoppingCart_Container button {
     background-color: #0be881;
     color: #576574;
     padding: 14px 20px;
@@ -630,7 +633,7 @@ Shopping Cart
     width: 100%;
 }
 
-.shoppingCart_Container button:hover{
+.shoppingCart_Container button:hover {
     opacity: 0.8;
 }
 
@@ -639,19 +642,20 @@ Shopping Cart
     padding: 10px 18px;
 }
 
-@media screen and (max-width: 768px){
-    .shoppingCart_Content{
+@media screen and (max-width: 768px) {
+    .shoppingCart_Content {
         width: 80%;
         margin: 1% auto 3% auto
     }
 }
 
-@media screen and (min-width: 768px){
-    .shoppingCart_Content{
+@media screen and (min-width: 768px) {
+    .shoppingCart_Content {
         width: 60%;
         margin: 5% auto 10% auto;
     }
 }
+
 .shoppingCart_Content {
     background-color: #dfe4ea;
     padding: 10px;

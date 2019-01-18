@@ -11,7 +11,8 @@ class User
     private $lastName;
     private $email;
 
-    public function __construct($username, $password, $firstName, $lastName, $email) {
+    public function __construct($username, $password, $firstName, $lastName, $email)
+    {
         $this->username = $username;
         $this->password = $password;
         $this->firstName = $firstName;
@@ -74,12 +75,14 @@ class User
 
     //Methods
 
-    public function createUser(){
+    public function createUser()
+    {
         $query = "INSERT INTO `users` (`uid`, `username`, `password`, `firstname`, `lastname`, `email`) VALUES (NULL, '$this->username', '$this->password', '$this->firstName', '$this->lastName', '$this->email')";
         DB::doQuery($query);
     }
 
-    public static function updateUser($uid, $subject, $toChange){
+    public static function updateUser($uid, $subject, $toChange)
+    {
         try {
             if ($subject == "username" && preg_match("^([A-Za-z0-9\-_.?!]){3,20}^", $toChange)) {
                 $query = "UPDATE users SET $subject='$toChange' WHERE users.uid='$uid'";
@@ -92,32 +95,34 @@ class User
                 DB::doQuery($query);
             } elseif ($subject == "firstname" || $subject == "lastname" && preg_match("^[A-Za-z]{1,30}^", $toChange)) {
                 $query = "UPDATE users SET $subject='$toChange' WHERE users.uid='$uid'";
-                return(DB::doQuery($query));
+                return (DB::doQuery($query));
             }
-        }
-        catch (Exception $exception){
+        } catch (Exception $exception) {
             echo $exception->getMessage();
         }
     }
 
 
-    public static function getUser($username){
+    public static function getUser($username)
+    {
         $query = "SELECT * FROM users WHERE username='$username'";
-        return(DB::doQuery($query));
+        return (DB::doQuery($query));
     }
 
-    public static function deleteUser($username){
+    public static function deleteUser($username)
+    {
         $query = "DELETE FROM users WHERE username='$username'";
-        return(DB::doQuery($query));
+        return (DB::doQuery($query));
     }
 
-    public static function renderUserList(){
+    public static function renderUserList()
+    {
         $query = "SELECT * From users";
         $counter = 1;
         $result = DB::doQuery($query)->fetch_all();
         echo "<tr><th>Select</th><th>ID</th><th>Username</th><th>Firstname</th><th>Lastname</th><th>Email</th></tr>";
-        foreach ($result as $row){
-            if ($row[1]!="admin") {
+        foreach ($result as $row) {
+            if ($row[1] != "admin") {
                 echo "<tr><td><input type='checkbox' id='adminCheckBox$counter'></td><td>$row[0]</td><td id='editUsername'>$row[1]</td><td>$row[3]</td><td>$row[4]</td><td>$row[5]</td></tr>";
                 $counter++;
             }
@@ -125,43 +130,45 @@ class User
 
     }
 
-    public static function checkLogin($username, $password){
+    public static function checkLogin($username, $password)
+    {
         $query = "SELECT * FROM users WHERE username='$username' and password='$password'";
         $result = DB::doQuery($query);
         $count = mysqli_num_rows($result);
 
-        if ($count == 1){
+        if ($count == 1) {
             return true;
         }
         return false;
     }
 
-    public static function checkUserExists($username){
+    public static function checkUserExists($username)
+    {
         $query = "SELECT * FROM users WHERE username='$username'";
         $result = DB::doQuery($query);
         $count = mysqli_num_rows($result);
-        if ($count == 1){
+        if ($count == 1) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    public static function isLoggedIn(){
-        if (!($_SESSION["logged_in"])){
+    public static function isLoggedIn()
+    {
+        if (!($_SESSION["logged_in"])) {
             return false;
         }
         return true;
     }
 
-    public static function isAdmin($username){
+    public static function isAdmin($username)
+    {
         $query = "SELECT isAdmin FROM users WHERE username = '$username' AND isAdmin > 0";
         $result = DB::doQuery($query)->fetch_row();
-        if ($result[0]==1){
+        if ($result[0] == 1) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }

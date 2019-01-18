@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<p>" . t("Wrong user/pw") . "</p>";
         echo "<p>" . t("try again") . " <a href='/Shop/Pages/Home.php'>" . t("Home") . "</a></p>";
     }
-    header("Location: /shop/".get_param('lang','de')."/home");
+    header("Location: /shop/" . get_param('lang', 'de') . "/home");
 
 }
 DB::closeConnection();

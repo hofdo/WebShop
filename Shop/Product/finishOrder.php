@@ -6,7 +6,7 @@ require_once "../SQLDB/Session.php";
 
 $db = DB::getInstance();
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $gender = $_REQUEST["gender"];
     $firstName = $_REQUEST["firstName"];
@@ -39,5 +39,3 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 DB::closeConnection();
-
-?>
